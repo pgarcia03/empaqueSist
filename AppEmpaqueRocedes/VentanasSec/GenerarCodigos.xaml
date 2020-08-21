@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="AppEmpaqueRocedes.GenerarCodigos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        xmlns:local="clr-namespace:AppEmpaqueRocedes"
+        mc:Ignorable="d"
+        Height="580" Width="900" Background="Transparent">
+    <Grid Background="#2e3b4c" Opacity="0.84" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Generar Codigos de Barra" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="18" Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3"   />
+        <Label Content="Busqueda de Corte" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource lblpanelInfoTitulo}" Height="25" />
+
+        <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5,0,0,0" Grid.Column="0" Grid.Row="2"   >
+            <StackPanel Background="Transparent"  >
+                <Grid Margin="0,10,0,0"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*" />
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+
+                    <TextBox Style="{StaticResource mytextbox}"  x:Name="txtcorte" TextChanged="Txtcorte_TextChanged"  TextWrapping="NoWrap" GotFocus="Txtcorte_GotFocus" KeyUp="Txtcorte_KeyUp">
+                    </TextBox>
+
+                    <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Padding="0"  Click="BtnBuscar_Click" x:Name="BtnBuscar" >
+                       
+                        <iconPacks:PackIconMaterial Kind="DatabaseSearch" Height="24" Width="20" Foreground="WhiteSmoke" />
+                    </Button>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <ListBox Name="lblsugestion" Panel.ZIndex="2000" IsMouseCapturedChanged="Lblsugestion_IsMouseCapturedChanged" SelectionChanged="Lblsugestion_SelectionChanged" KeyUp="Lblsugestion_KeyUp"   Visibility="Collapsed"  Grid.Row="3" Grid.RowSpan="1"  />
+        <Label Foreground="White" Padding="10,2" x:Name="lblCondicional" Visibility="Collapsed" >NoSelect</Label>
+
+        <DockPanel Grid.Row="2" Grid.Column="1">
+            <Border Padding="10,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Guardar Tickets" Grid.Column="0" Height="45" Style="{StaticResource ButtonGreen}" Name="BtnImprimir" Click="BtnImprimir_Click" />
+                    <Button Content="Limpiar" Grid.Column="1"  Height="45"  Style="{StaticResource ButtonRed}" Name="BtnLimpiar" Click="BtnLimpiar_Click" />
+                    <!---->
+
+                </Grid>
+            </Border>
+
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="0,0,3,0">
+            <Border Padding="3,0,3,0" BorderBrush="White" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="39*"/>
+                        <ColumnDefinition Width="68*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="46*"/>
+                        <RowDefinition Height="48*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="Imprimir Avanzada" Style="{StaticResource lblpanelInfoTitulo}" Grid.ColumnSpan="2" />
+                    
+                    <Button Content="Imprimir Secuencia" Grid.Row="1"  Style="{StaticResource ButtonBlue}" Name="BtnImprimirAvanzada" Click="BtnImprimirAvanzada_Click" Grid.ColumnSpan="2"  />
+                  
+                    <Label  Style="{StaticResource lblpanelInfoTitulo}" Content="Inicio" Grid.Row="2" />
+                    <Label  Style="{StaticResource lblpanelInfoTitulo}" Content="Final" Grid.Row="3"/>
+                    
+                   
+                    <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5,0,0,0" Grid.Column="1" Grid.Row="2"   >
+                        <TextBox Style="{StaticResource mytextbox}"  x:Name="txtinicio"   TextWrapping="NoWrap" >
+                        </TextBox>  
+                    </Border>
+                     <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5,0,0,0" Grid.Column="1" Grid.Row="3"   >
+                        <TextBox Style="{StaticResource mytextbox}"  x:Name="txtfinal"   TextWrapping="NoWrap" >
+                        </TextBox>  
+                    </Border>
+                    
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <Border BorderBrush="White"  BorderThickness="0,0,0,0" Padding="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  >
+            <DockPanel  >
+                <Grid  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                      
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Corte :" Grid.Column="0"  Style="{StaticResource lblpanelInfoTitulo}" />
+                    <Label Content="" Grid.Column="0" Grid.Row="1"   Style="{StaticResource lbltitulos}" Name="lblCorte" />
+
+                    <Label Content="Estilo :" Grid.Column="1"   Style="{StaticResource lblpanelInfoTitulo}"   />
+                    <Label Content="" Grid.Column="1" Grid.Row="1"  Style="{StaticResource lbltitulos}" Name="lblEstilo"/>
+
+                    <Label Grid.Column="2" Content="Unidades :" Style="{StaticResource lblpanelInfoTitulo}"/>
+                    <Label Grid.Row="1" Grid.Column="2" Content="0"   Style="{StaticResource lbltitulos}" Name="lblUnidades" />
+                </Grid>
+            </DockPanel>
+        </Border>
+        <Border BorderBrush="White"  BorderThickness="0,0,0,0" Padding="5" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" >
+            <DataGrid CanUserAddRows="False" Style="{StaticResource MyGridStyle}" x:Name="gridCodigos"   AutoGenerateColumns="False" >
+                <DataGrid.Columns >
+                    
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="15*" MinWidth="150" Header="Corte" Binding="{Binding POrder}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*" MinWidth="100" Header="Talla" Binding="{Binding Size}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*" MinWidth="100" Header="Secuencia" Binding="{Binding NSeq}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="20*" MinWidth="100" Header="Codigo Barra" Binding="{Binding codigoBarra}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="20*" MinWidth="100" Header="Estado De Codigo" Binding="{Binding Estado}" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+    </Grid>
+
+    <!--<DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyle}"  >
+        <DataGridTemplateColumn.CellTemplate >
+            <DataTemplate >
+                <Button Name="btndelete" Style="{StaticResource MyButtongrid}" Click="btndelete_Click" Background="Black" BorderBrush="White" >
+                    <Image Source="/images/edit.png"  Width="20" Height="20" Grid.Column="1" FlowDirection="LeftToRight" />
+                </Button>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>-->
+                    <!--<DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="65*" Visibility="Hidden" MinWidth="100" Header="complemento" Binding="{Binding Linea}" />-->
+</UserControl>

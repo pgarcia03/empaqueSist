@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="AppEmpaqueRocedes.EscanerEmpaque"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:AppEmpaqueRocedes"
+        mc:Ignorable="d"
+        Width="900" Height="580" Background="Transparent">
+    <Grid Background="#2e3b4c" Opacity="0.84" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width="673*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="144*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Registro de Empaque" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="18" Grid.Column="1" Height="34" Margin="133,19,360,19" Width="180"   />
+        <Label Content="Busqueda de Corte" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource lblpanelInfoTitulo}" Height="25" />
+        <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5" Grid.Column="0" Grid.Row="2"   >
+            <StackPanel Background="Transparent"   >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*" />
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Style="{StaticResource mytextbox}"  x:Name="txtcorte" TextChanged="txtcorte_TextChanged"  TextWrapping="NoWrap" GotFocus="txtcorte_GotFocus" KeyUp="txtcorte_KeyUp" >
+
+                    </TextBox>
+
+                    <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Padding="0" Click="BtnBuscar_Click" x:Name="BtnBuscar" >
+                        <iconPacks:PackIconMaterial Kind="DatabaseSearch" Height="24" Width="20" Foreground="WhiteSmoke" />
+                    </Button>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+       
+        <Label Foreground="White" Padding="10,2" x:Name="lblCondicional" Visibility="Collapsed" >NoSelect</Label>
+        
+        <Border BorderBrush="White"  BorderThickness="0,0,1,0" Padding="5" Grid.Column="0" Grid.Row="3"   >
+            <DockPanel Grid.Row="3" Grid.Column="0"  >
+                <Grid  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*" />
+                        <ColumnDefinition Width="60*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="35*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ListBox Panel.ZIndex="2000" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" Name="lblsugestion" SelectionChanged="lblsugestion_SelectionChanged" IsMouseCapturedChanged="lblsugestion_IsMouseCapturedChanged" KeyUp="lblsugestion_KeyUp" Visibility="Collapsed"  />
+                   
+                    <Label Grid.Row="1" Content="Corte :"  Grid.ColumnSpan="2"  Style="{StaticResource lblpanelInfoTitulo}"/>
+                    <Label Grid.Row="2" Content="Estilo :"  Grid.ColumnSpan="2"  Style="{StaticResource lblpanelInfoTitulo}"/>
+                    <Label Grid.Row="3" Content="Unidades :"  Grid.ColumnSpan="2"   Style="{StaticResource lblpanelInfoTitulo}"/>
+                    <Label Grid.Row="4" Content="Und. Empaq. :"  Grid.ColumnSpan="2"   Style="{StaticResource lblpanelInfoTitulo}"/>
+                    <Label Grid.Row="5" Content="Total Cajas :"  Grid.ColumnSpan="2"  Style="{StaticResource lblpanelInfoTitulo}"/>
+
+                    <Label Grid.Row="1" Grid.Column="1" Content=""  Grid.ColumnSpan="2" Style="{StaticResource lblpanelInfo}" Name="lblCorte" />
+                    <Label Grid.Row="2" Grid.Column="1" Content=""  Grid.ColumnSpan="2" Style="{StaticResource lblpanelInfo}" Name="lblEstilo" />
+                    <Label Grid.Row="3" Grid.Column="1" Content=""  Grid.ColumnSpan="2" Style="{StaticResource lblpanelInfo}" Name="lblunidades" />
+                    <Label Grid.Row="4" Grid.Column="1" Content=""  Grid.ColumnSpan="2" Style="{StaticResource lblpanelInfo}" Name="lblTotalEmpaquadas" />
+                    <Label Grid.Row="5" Grid.Column="1" Content=""  Grid.ColumnSpan="2" Style="{StaticResource lblpanelInfo}" Name="lblTotalcajas" />
+
+                </Grid>
+            </DockPanel>
+        </Border>
+
+        <DockPanel Grid.Row="2" Grid.RowSpan="2" Grid.Column="1">
+            <Border Padding="10,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Corte :" Grid.Column="0"  Style="{StaticResource lblpanelInfoTitulo}" />
+                    <Label Name="lblCorteT" Content="" Grid.Column="1"  Grid.ColumnSpan="2" Style="{StaticResource lbltitulos}"/>
+
+                    <Label Content="Estilo :" Grid.Column="3"   Style="{StaticResource lblpanelInfoTitulo}"  />
+                    <Label Name="lblEstiloT" Content="" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource lbltitulos}"/>
+
+                    <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Crear Caja" Grid.Column="0" Height="45" Style="{StaticResource ButtonGreen}" Name="BtnAbrir" Click="BtnAbrir_Click" />
+
+                            <Button Content="Imprimir Box" Grid.Column="1"  Height="45"   Style="{StaticResource ButtonBlue}" Name="BtnCerrar" Click="BtnCerrar_Click" />
+
+                            <Button Content="Limpiar" Grid.Column="3"  Height="45"  Style="{StaticResource ButtonRed}" Name="BtnLimpiar" Click="BtnLimpiar_Click" />
+
+                        </Grid>
+                    </DockPanel>
+
+
+                    <Label Content="Codigo Scan :"   Grid.Row="2" Style="{StaticResource lblpanelInfoTitulo}" />
+
+                    <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Padding="5,5,5,3" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"   >
+                        <StackPanel Background="Transparent"   >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Style="{StaticResource mytextbox}"  x:Name="txtcodigo" CaretBrush="WhiteSmoke" KeyUp="txtcodigo_KeyUp"  >
+                                </TextBox>
+                                <Border Grid.Column="1" Padding="5,0,0,0">
+                                    <iconPacks:PackIconBoxIcons Kind="RegularScan" Height="30" Width="30" Foreground="WhiteSmoke" />
+                                </Border>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <ComboBox Name="comboclasificacion" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Margin="20,5"  >
+                       
+                    </ComboBox>
+                    <Label Name="lblstatus" Foreground="Aqua"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource lbltitulos}"  />
+                    
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Codigo Escaneado"  Style="{StaticResource lblpanelInfoTitulo}" />
+                           
+                            <Border Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" >
+                                <iconPacks:PackIconIonicons Kind="BarcodeiOS" Height="30" Width="30" Foreground="WhiteSmoke" />
+                               
+                            </Border>
+                            <Label Name="lblCodigoScan" Content="" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
+
+                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="Codigo Box"  Style="{StaticResource lblpanelInfoTitulo}" />
+                            <Border Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" >
+                                <iconPacks:PackIconOcticons Kind="Package" Height="30" Width="30" Foreground="WhiteSmoke" />
+                            </Border>
+                       
+                            <Label Name="lblbox" Content="" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
+
+                        </Grid>
+                    </DockPanel>
+                    
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Unidades en Caja:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource lblpanelInfoTitulo}" />
+                            <Label Name="lblUnidadesCaja" Content="" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource lbltitulosYellow}" FontSize="100" HorizontalAlignment="Center" />
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </Border>
+
+        </DockPanel>
+
+
+    </Grid>
+</UserControl>

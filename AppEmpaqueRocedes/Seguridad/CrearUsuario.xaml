@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="AppEmpaqueRocedes.Seguridad.CrearUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"       
+             xmlns:local="clr-namespace:AppEmpaqueRocedes.Seguridad"
+             mc:Ignorable="d" 
+             Height="400" Width="900" Background="Transparent" Margin="0,30" >
+
+    <Grid Background="#2e3b4c" Opacity="0.85"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+           
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="30*" />
+            
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Crear Nuevo Usuario" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="18" Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" Height="34" Margin="192,3" Width="176"   />
+
+        <Image Source="/images/userfondo3.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="8" />
+
+        <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="6" Margin="0,0,70,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                
+                <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Grid.Row="0" Background="Transparent" Margin="0,5,0,8" >
+                   
+                        <Grid Margin="0,0,0,0"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="85*" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Border Padding="5">
+                         
+                            <iconPacks:PackIconMaterial Width="24" Height="24" Kind="Account" Foreground="WhiteSmoke"  />
+                            </Border>
+
+                        <TextBox Style="{StaticResource mytextboxUserText}"  Grid.Column="1" x:Name="txtuser"  TextWrapping="NoWrap">
+                            <!--<Controls:WatermarkService.Watermark>
+                                <TextBlock>Type here to search text</TextBlock>
+                            </Controls:WatermarkService.Watermark>-->
+                        </TextBox>
+
+
+
+                        </Grid>
+                  
+                </Border>
+                <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Grid.Row="1" Background="Transparent" Margin="0,5,0,8" >
+
+                    <Grid Margin="0,0,0,0"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="85*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Padding="5">
+                            <iconPacks:PackIconMaterial Width="24" Height="24" Kind="Key" Foreground="WhiteSmoke"  />
+                        </Border>
+
+                        <PasswordBox Style="{StaticResource mytextboxUser}" Grid.Column="1" x:Name="txtcontraseña"   Controls:TextBoxHelper.Watermark="Contraseña" >
+                        </PasswordBox>
+                    </Grid>
+
+                </Border>
+                <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Grid.Row="2" Background="Transparent" Margin="0,5,0,8" >
+
+                    <Grid Margin="0,0,0,0"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="85*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Padding="5">
+                            <iconPacks:PackIconFontAwesome Width="24" Height="24" Kind="CheckCircleRegular" Foreground="WhiteSmoke"  />
+                        </Border>
+
+                        <PasswordBox Style="{StaticResource mytextboxUser}" Grid.Column="1" x:Name="txtconfimacionC"  Controls:TextBoxHelper.Watermark="Confirmación de Contraseña"  KeyUp="txtconfimacionC_KeyUp"  >
+                        </PasswordBox>
+
+
+
+                    </Grid>
+
+                </Border>
+                <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Grid.Row="3" Background="Transparent" Margin="0,5,0,8" >
+
+                    <Grid Margin="0,0,0,0"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="85*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Border Padding="5">
+                            <iconPacks:PackIconFontAwesome Width="24" Height="24" Kind="UserTagSolid" Foreground="WhiteSmoke"  />
+                        </Border>
+
+                        <ComboBox Name="cbxroles" Grid.Column="1"  >
+                            
+                        </ComboBox> 
+
+
+                    </Grid>
+
+                </Border>
+                <Button Name="BtnCrearUser" Click="BtnCrearUser_Click" Grid.Row="4"  Content="Crear usuario" Style="{StaticResource ButtonGreen}" />
+            </Grid>
+
+        </Border>
+        
+        <Label Content="Lista de Usuarios" Foreground="White" Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalAlignment="Left" Margin="5,0" FontSize="16" />
+       
+        <Border BorderBrush="White"  BorderThickness="0,0,0,0" Padding="5" Grid.Column="2" Grid.Row="2" Grid.RowSpan="6" >
+            <DataGrid CanUserAddRows="False" Style="{StaticResource MyGridStyle}" x:Name="gridUsuarios"   AutoGenerateColumns="False" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="15*"   Header="Usuario" Binding="{Binding nombreUsuario}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*"  Header="Rol" Binding="{Binding rol}" />
+                    <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyle}" Width="6*"  >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <Button Name="btndelete" Style="{StaticResource MyButtongrid}" Click="btndelete_Click" Background="Black" BorderBrush="White" >
+                                    <iconPacks:PackIconMaterial Width="24" Height="24" Kind="AccountRemoveOutline" Foreground="WhiteSmoke" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        
+    </Grid>
+</UserControl>
