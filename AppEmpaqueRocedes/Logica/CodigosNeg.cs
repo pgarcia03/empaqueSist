@@ -187,7 +187,7 @@ namespace AppEmpaqueRocedes.Logica
 
         public static int EscaneoCodigo(string Codigobox, string codigoBarra, string usuario)
         {
-           // var list = new List<object>();
+            // var list = new List<object>();
             try
             {
 
@@ -195,13 +195,13 @@ namespace AppEmpaqueRocedes.Logica
                 {
 
                     var fecha = contex.ExtraefechaServidor(1).ToArray();
-                    var fechaActual= fecha[0]; 
+                    var fechaActual = fecha[0];
                     var obj = contex.tbBultosCodigosBarra.Find(codigoBarra);
 
                     obj.fechaEscaneado = fechaActual;
                     obj.estado = "Escaneado";
 
-                   // contex.SaveChanges();
+                    // contex.SaveChanges();
 
                     var objscan = new tbCodigosBarraScan
                     {
@@ -209,7 +209,7 @@ namespace AppEmpaqueRocedes.Logica
                         codigoBarra = codigoBarra,
                         fechaEscaneado = fechaActual,
                         usuario = usuario,
-                        estado=true
+                        estado = true
                     };
 
                     contex.tbCodigosBarraScan.Add(objscan);
@@ -249,7 +249,7 @@ namespace AppEmpaqueRocedes.Logica
                 {
                     using (var contex1 = new AuditoriaEntities())
                     {
-                       var resp= contex1.ExtraefechaServidor(1).ToArray();
+                        var resp = contex1.ExtraefechaServidor(1).ToArray();
 
                         return resp;
                     }
@@ -261,9 +261,9 @@ namespace AppEmpaqueRocedes.Logica
                     using (var contex1 = new AuditoriaEntities())
                     {
                         var resp = contex1.POrder
-                                          .Join(contex1.Bundle, x => x.Id_Order, y => y.Id_Order, (x, y) => new { x.Id_Order, y.Color,x.POrder1 })
-                                          .Where(x=>x.Id_Order==idcorte)
-                                          .Select(x=> new {x.Color,Porder=x.POrder1 }).Take(1).ToArray();
+                                          .Join(contex1.Bundle, x => x.Id_Order, y => y.Id_Order, (x, y) => new { x.Id_Order, y.Color, x.POrder1 })
+                                          .Where(x => x.Id_Order == idcorte)
+                                          .Select(x => new { x.Color, Porder = x.POrder1 }).Take(1).ToArray();
 
                         return resp[0];
                     }
@@ -271,7 +271,7 @@ namespace AppEmpaqueRocedes.Logica
                 });
 
 
-                await Task.WhenAll(tarea1,tarea2,tarea3);
+                await Task.WhenAll(tarea1, tarea2, tarea3);
 
                 using (var contex = new AuditoriaEntities())
                 {
@@ -291,8 +291,8 @@ namespace AppEmpaqueRocedes.Logica
                     };
 
                     contex.tbCorteSecuenciaCaja.Add(obj);
-                  
-                    var fecha = tarea2.Result; 
+
+                    var fecha = tarea2.Result;
 
                     contex.tbcodigosCajas.Add(new tbcodigosCajas
                     {
@@ -303,8 +303,8 @@ namespace AppEmpaqueRocedes.Logica
                         fechaGenerado = fecha[0],
                         estado = true,
                         numeroImpresion = 0,
-                        color=tarea3.Result.Color,
-                        corteCompleto=tarea3.Result.Porder
+                        color = tarea3.Result.Color,
+                        corteCompleto = tarea3.Result.Porder
                     });
 
                     contex.SaveChanges();
@@ -313,21 +313,41 @@ namespace AppEmpaqueRocedes.Logica
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               await crearCaja(idcorte, estilo);
-                throw;
+                await crearCaja(idcorte, estilo);
+                // throw;
+                return null;
             }
 
         }
 
-        public static getcorteBox_Result imprimirBox(string codigobox,string usuario,string clasificacion)
+        public  static getInfobox_Result BuscarCaja(string box)
         {
             try
             {
                 using (var contex=new AuditoriaEntities())
                 {
-                    var obj = contex.getcorteBox(codigobox,usuario,clasificacion).First();
+                    var obj = contex.getInfobox(box).FirstOrDefault();
+
+                    return obj;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public static getcorteBox_Result imprimirBox(string codigobox, string usuario, string clasificacion)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+                    var obj = contex.getcorteBox(codigobox, usuario, clasificacion).First();
 
                     return obj;
                 }
@@ -344,7 +364,7 @@ namespace AppEmpaqueRocedes.Logica
 
 
                 return objerror;
-               
+
             }
         }
 

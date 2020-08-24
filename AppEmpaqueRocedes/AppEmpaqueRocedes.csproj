@@ -163,6 +163,9 @@
     <Compile Include="Model\getcorteBox_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\getInfobox_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\tbUserEmpaque.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

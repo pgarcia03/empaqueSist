@@ -21,6 +21,45 @@
 
         <Label Content="Registro de Empaque" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="18" Grid.Column="1" Height="34" Margin="133,19,360,19" Width="180"   />
         <Label Content="Busqueda de Corte" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource lblpanelInfoTitulo}" Height="25" />
+
+        <DockPanel Grid.Row="1" Grid.Column="1"  >
+            <Border  Padding="10,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition   />
+                        <ColumnDefinition   />
+                        <ColumnDefinition   />
+                        <ColumnDefinition   />
+                        <ColumnDefinition   />
+                        <ColumnDefinition   />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Abrir caja:"   Grid.Column="3" Style="{StaticResource lblpanelInfoTitulo}" />
+                    <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Padding="5,5,5,3" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"   >
+                        <StackPanel Background="Transparent"   >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Style="{StaticResource mytextbox}"  x:Name="txtboxscan" CaretBrush="WhiteSmoke" KeyUp="txtboxscan_KeyUp"  >
+                                </TextBox>
+                                <Button Margin="2" Background="Transparent" BorderThickness="0" Grid.Column="1" Padding="5" Name="BtnBuscarBox" Click="BtnBuscarBox_Click"  >
+                                    <iconPacks:PackIconMaterial Kind="PackageVariant" Foreground="WhiteSmoke" Height="24" Width="24"  />
+                                
+                                    <!--<iconPacks:PackIconMaterial Kind="RegularScan" Height="30" Width="30" Foreground="WhiteSmoke" />-->
+                                </Button>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+            </Border>
+        </DockPanel> 
+
+        
+        
         <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5" Grid.Column="0" Grid.Row="2"   >
             <StackPanel Background="Transparent"   >
                 <Grid >
@@ -41,6 +80,7 @@
             </StackPanel>
         </Border>
        
+        
         <Label Foreground="White" Padding="10,2" x:Name="lblCondicional" Visibility="Collapsed" >NoSelect</Label>
         
         <Border BorderBrush="White"  BorderThickness="0,0,1,0" Padding="5" Grid.Column="0" Grid.Row="3"   >
@@ -139,7 +179,7 @@
                             </Grid>
                         </StackPanel>
                     </Border>
-                    <ComboBox Name="comboclasificacion" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Margin="20,5"  >
+                    <ComboBox Name="comboclasificacion" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Margin="20,5,0,5"  >
                        
                     </ComboBox>
                     <Label Name="lblstatus" Foreground="Aqua"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource lbltitulos}"  />

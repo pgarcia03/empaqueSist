@@ -65,5 +65,14 @@ namespace AppEmpaqueRocedes.Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("ExtraefechaServidor", valParameter);
         }
+    
+        public virtual ObjectResult<getInfobox_Result> getInfobox(string box)
+        {
+            var boxParameter = box != null ?
+                new ObjectParameter("box", box) :
+                new ObjectParameter("box", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getInfobox_Result>("getInfobox", boxParameter);
+        }
     }
 }

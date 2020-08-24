@@ -34,8 +34,8 @@ namespace AppEmpaqueRocedes
 
             usuario = obj.nombreUsuario.ToLower().Trim();
 
-          //  txtcorte.TextChanged += new TextChangedEventHandler(txtcorte_TextChanged);
-         //   txtcorte.Focus();
+            //  txtcorte.TextChanged += new TextChangedEventHandler(txtcorte_TextChanged);
+            //   txtcorte.Focus();
             txtcodigo.IsEnabled = false;
 
             idporder = 0;
@@ -44,7 +44,7 @@ namespace AppEmpaqueRocedes
             band = true;
 
 
-            var ListaClasificacion = new string[] {"Seleccione...", "Primera", "Segunda", "Tercera" };
+            var ListaClasificacion = new string[] { "Seleccione...", "Primera", "Segunda", "Tercera" };
 
             comboclasificacion.ItemsSource = ListaClasificacion;
 
@@ -134,7 +134,7 @@ namespace AppEmpaqueRocedes
                     lblsugestion.Visibility = Visibility.Collapsed;
                     lblCondicional.Content = "NoSelect";
                     txtcorte.Text = string.Empty;
-                    
+
                 }
             }
             catch (Exception)
@@ -223,10 +223,7 @@ namespace AppEmpaqueRocedes
                                 {
                                     bandera = true;
                                 }
-                                else
-                                {
-                                    bandera = false;
-                                }
+
                             }
 
                         }
@@ -262,11 +259,11 @@ namespace AppEmpaqueRocedes
                             }
                             else
                             {
-                              
+
                                 var regis = CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
 
                                 // var regis = (int)resp[0];
-                                if (regis==1)
+                                if (regis == 1)
                                 {
                                     cont += regis;
 
@@ -301,7 +298,7 @@ namespace AppEmpaqueRocedes
 
                                 }
 
-                               
+
                             }
                         }
 
@@ -329,6 +326,68 @@ namespace AppEmpaqueRocedes
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtboxscan_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+
+                    limpiarTodo();
+
+                    var box = txtboxscan.Text.Trim().ToLower();
+
+                    var resp = CodigosNeg.BuscarCaja(box);
+
+                    if (resp == null)
+                    {
+                        MessageBox.Show("El codigo no existe", "Advertencia");
+                    }
+                    else
+                    {
+                        cont = (int)resp.totalencaja;
+
+                        lblUnidadesCaja.Content = cont;
+                        lblbox.Content = resp.codigoBox.TrimEnd();
+
+                        lblCorte.Content = resp.corteCompleto.TrimEnd();
+                        lblCorteT.Content = resp.corteCompleto.TrimEnd();
+
+                        lblEstilo.Content = resp.estilo.TrimEnd();
+                        lblEstiloT.Content = resp.estilo.TrimEnd();
+
+                        lblunidades.Content = resp.Quantity;
+
+                        idbox = resp.id;
+
+                        txtboxscan.Clear();
+                        txtcodigo.Clear();
+                        txtcodigo.IsEnabled = true;
+                        txtcodigo.Focus();
+                        txtcorte.Clear();
+
+                        idporder = resp.Id_Order;
+
+                        var total = PorderNeg.TotalesLeft(idporder);
+
+                        lblTotalcajas.Content = (total.Count() - 1).ToString();
+                        lblTotalEmpaquadas.Content = total.Sum(x => x.unidades);
+
+                        lblsugestion.Visibility = Visibility.Collapsed;
+                        lblCondicional.Content = "Select";
+
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
 
         //Listo
@@ -522,18 +581,76 @@ namespace AppEmpaqueRocedes
             }
         }
 
+        private void BtnBuscarBox_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                limpiarTodo();
+
+                var box = txtboxscan.Text.Trim().ToLower();
+
+                var resp = CodigosNeg.BuscarCaja(box);
+
+                if (resp == null)
+                {
+                    MessageBox.Show("El codigo no existe", "Advertencia");
+                }
+                else
+                {
+                    cont = (int)resp.totalencaja;
+
+                    lblUnidadesCaja.Content = cont;
+                    lblbox.Content = resp.codigoBox.TrimEnd();
+
+                    lblCorte.Content = resp.corteCompleto.TrimEnd();
+                    lblCorteT.Content = resp.corteCompleto.TrimEnd();
+
+                    lblEstilo.Content = resp.estilo.TrimEnd();
+                    lblEstiloT.Content = resp.estilo.TrimEnd();
+
+                    lblunidades.Content = resp.Quantity;
+
+                    idbox = resp.id;
+
+                    txtboxscan.Clear();
+                    txtcodigo.Clear();
+                    txtcodigo.IsEnabled = true;
+                    txtcodigo.Focus();
+                    txtcorte.Clear();
+
+                    idporder = resp.Id_Order;
+
+                    var total = PorderNeg.TotalesLeft(idporder);
+
+                    lblTotalcajas.Content = (total.Count() - 1).ToString();
+                    lblTotalEmpaquadas.Content = total.Sum(x => x.unidades);
+
+                    lblsugestion.Visibility = Visibility.Collapsed;
+                    lblCondicional.Content = "Select";
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
 
                 var clasificacion = comboclasificacion.SelectedItem.ToString();
-               // var b = string.Compare(clasificacion, "Seleccione...");
+                // var b = string.Compare(clasificacion, "Seleccione...");
 
-                if ((idbox != 0 || !lblbox.Content.ToString().Equals(string.Empty)) && string.Compare(clasificacion,"Seleccione...")!=0 )
+                if ((idbox != 0 || !lblbox.Content.ToString().Equals(string.Empty)) && string.Compare(clasificacion, "Seleccione...") != 0)
                 {
-                    
-                    var resp = CodigosNeg.imprimirBox(lblbox.Content.ToString(), usuario,clasificacion.ToUpper());
+
+                    var resp = CodigosNeg.imprimirBox(lblbox.Content.ToString(), usuario, clasificacion.ToUpper());
 
 
                     List<object> arg = new List<object>();
@@ -570,7 +687,6 @@ namespace AppEmpaqueRocedes
             }
         }
 
-
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -588,24 +704,6 @@ namespace AppEmpaqueRocedes
         #endregion
 
         #region funciones
-        void mensajeVoz(object texto)
-        {
-            SpeechSynthesizer voz = new SpeechSynthesizer();
-            voz.Rate = 0;
-            voz.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
-            voz.SetOutputToDefaultAudioDevice();
-            voz.Speak(texto.ToString());
-        }
-
-        void mensaje(object texto)
-        {
-            SpeechSynthesizer voz = new SpeechSynthesizer();
-            voz.Rate = 0;
-            voz.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
-            voz.SetOutputToDefaultAudioDevice();
-            voz.Speak(texto.ToString());
-        }
-
         void limpiarTodo()
         {
             //variables
@@ -635,7 +733,7 @@ namespace AppEmpaqueRocedes
             lblCodigoScan.Content = string.Empty;
             lblbox.Content = string.Empty;
             lblUnidadesCaja.Content = 0;
-            lblstatus.Content = "Realice Busqueda, Espenado...";
+            lblstatus.Content = "Realice Busqueda, Esperando...";
             comboclasificacion.SelectedIndex = 0;
 
         }
@@ -659,6 +757,25 @@ namespace AppEmpaqueRocedes
             comboclasificacion.SelectedIndex = 0;
 
         }
+
+        void mensajeVoz(object texto)
+        {
+            SpeechSynthesizer voz = new SpeechSynthesizer();
+            voz.Rate = 0;
+            voz.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
+            voz.SetOutputToDefaultAudioDevice();
+            voz.Speak(texto.ToString());
+        }
+
+        void mensaje(object texto)
+        {
+            SpeechSynthesizer voz = new SpeechSynthesizer();
+            voz.Rate = 0;
+            voz.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
+            voz.SetOutputToDefaultAudioDevice();
+            voz.Speak(texto.ToString());
+        }
+
 
 
         #endregion

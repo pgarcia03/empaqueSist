@@ -11,6 +11,7 @@ namespace AppEmpaqueRocedes.Model
         public int idcorte{ get; set; }
         public int cajas { get; set; }
         public int unidades{ get; set; }
+        public int impreso{ get; set; }
 
         public string box { get; set; }
     }

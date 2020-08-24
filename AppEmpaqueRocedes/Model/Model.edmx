@@ -220,6 +220,9 @@
           <Parameter Name="usuario" Type="nchar" Mode="In" />
           <Parameter Name="clasificacion" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="getInfobox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="box" Type="nchar" Mode="In" />
+        </Function>
         <EntityContainer Name="AuditoriaModelStoreContainer">
           <EntitySet Name="Bundle" EntityType="Self.Bundle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
@@ -433,7 +436,10 @@
           </FunctionImport>
           <EntitySet Name="tbUserEmpaque" EntityType="AuditoriaModel.tbUserEmpaque" />
           <FunctionImport Name="ExtraefechaServidor" ReturnType="Collection(DateTime)">
-            <Parameter Name="val" Mode="In" Type="Int32" />
+          <Parameter Name="val" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getInfobox" ReturnType="Collection(AuditoriaModel.getInfobox_Result)">
+            <Parameter Name="box" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbBultosCodigosBarra">
@@ -526,6 +532,15 @@
           <Property Name="contraseña" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="rol" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
         </EntityType>
+        <ComplexType Name="getInfobox_Result">
+          <Property Type="String" Name="corteCompleto" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="codigoBox" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="estilo" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="Id_Order" Nullable="false" />
+          <Property Type="Int32" Name="totalencaja" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -705,6 +720,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ExtraefechaServidor" FunctionName="AuditoriaModel.Store.ExtraefechaServidor" />
+          <FunctionImportMapping FunctionImportName="getInfobox" FunctionName="AuditoriaModel.Store.getInfobox">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.getInfobox_Result">
+                <ScalarProperty Name="corteCompleto" ColumnName="corteCompleto" />
+                <ScalarProperty Name="codigoBox" ColumnName="codigoBox" />
+                <ScalarProperty Name="estilo" ColumnName="estilo" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+                <ScalarProperty Name="totalencaja" ColumnName="totalencaja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
