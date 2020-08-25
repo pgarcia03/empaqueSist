@@ -92,6 +92,8 @@
           <Property Name="fechaAnulado" Type="datetime" />
           <Property Name="corteCompleto" Type="nchar" MaxLength="20" />
           <Property Name="estado" Type="nchar" MaxLength="11" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Restante" Type="int" />
         </EntityType>
         <EntityType Name="tbCodigosBarraScan">
           <Key>
@@ -458,6 +460,8 @@
           <Property Name="corteCompleto" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="fechaImpreso" Type="DateTime" Precision="3" />
           <Property Name="fechaAnulado" Type="DateTime" Precision="3" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Restante" Type="Int32" />
         </EntityType>
         <EntityType Name="tbCodigosBarraScan">
           <Key>
@@ -540,6 +544,7 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="Int32" Name="Id_Order" Nullable="false" />
           <Property Type="Int32" Name="totalencaja" Nullable="true" />
+          <Property Type="String" Name="clasificacion" Nullable="true" MaxLength="9" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -637,6 +642,8 @@
           <EntitySetMapping Name="tbBultosCodigosBarra">
             <EntityTypeMapping TypeName="AuditoriaModel.tbBultosCodigosBarra">
               <MappingFragment StoreEntitySet="tbBultosCodigosBarra">
+                <ScalarProperty Name="Restante" ColumnName="Restante" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="fechaAnulado" ColumnName="fechaAnulado" />
                 <ScalarProperty Name="fechaImpreso" ColumnName="fechaImpreso" />
                 <ScalarProperty Name="corteCompleto" ColumnName="corteCompleto" />
@@ -730,6 +737,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="totalencaja" ColumnName="totalencaja" />
+                <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

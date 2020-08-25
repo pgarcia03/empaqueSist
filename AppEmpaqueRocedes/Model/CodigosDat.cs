@@ -20,5 +20,8 @@ namespace AppEmpaqueRocedes.Model
         public  string codigoBarra { get; set; }
         public string POrderGuiones{ get; set; }
         public string Estado { get; set; }
+        public Nullable<int> Cantidad { get; set; }
+        public Nullable<int> Resto { get; set; }
+
     }
 }

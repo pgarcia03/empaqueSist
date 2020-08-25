@@ -219,7 +219,8 @@ namespace AppEmpaqueRocedes
                             else
                             {
                                 // valida que el carton exista y no halla sido escaneado
-                                if (busqueda.estado.TrimEnd().Equals("Escaneado") || busqueda.estado.TrimEnd().Equals("Inactivo"))
+                                //if (busqueda.estado.TrimEnd().Equals("Escaneado") || busqueda.estado.TrimEnd().Equals("Inactivo"))
+                                if (busqueda.Restante<=0)
                                 {
                                     bandera = true;
                                 }
@@ -247,14 +248,14 @@ namespace AppEmpaqueRocedes
                         {
                             if (bandera)
                             {
-                                lblstatus.Content = "Escaneo doble";
+                                lblstatus.Content = "Exceso de unidades en talla";
                                 lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
 
                                 txtcodigo.Text = string.Empty;
                                 txtcodigo.Focus();
 
                                 Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                                tarea.Start("Escaneo doble");
+                                tarea.Start("Exceso de unidades en talla");
 
                             }
                             else
@@ -358,7 +359,7 @@ namespace AppEmpaqueRocedes
                         lblEstiloT.Content = resp.estilo.TrimEnd();
 
                         lblunidades.Content = resp.Quantity;
-
+                        lblestadobox.Content = resp.clasificacion==string.Empty?"Pendiente":resp.clasificacion.TrimEnd();
                         idbox = resp.id;
 
                         txtboxscan.Clear();
@@ -376,6 +377,7 @@ namespace AppEmpaqueRocedes
 
                         lblsugestion.Visibility = Visibility.Collapsed;
                         lblCondicional.Content = "Select";
+
 
                     }
 
@@ -526,6 +528,8 @@ namespace AppEmpaqueRocedes
                     txtcodigo.Focus();
 
                     lblstatus.Content = "Esperando Lectura de Escanner";
+
+                    lblestadobox.Content = "Pendiente";
                 }
 
             }
@@ -609,7 +613,8 @@ namespace AppEmpaqueRocedes
                     lblEstiloT.Content = resp.estilo.TrimEnd();
 
                     lblunidades.Content = resp.Quantity;
-
+                   // lblestadobox.Content = resp.clasificacion;
+                    lblestadobox.Content = resp.clasificacion == string.Empty ? "Pendiente" : resp.clasificacion.TrimEnd();
                     idbox = resp.id;
 
                     txtboxscan.Clear();
@@ -627,6 +632,8 @@ namespace AppEmpaqueRocedes
 
                     lblsugestion.Visibility = Visibility.Collapsed;
                     lblCondicional.Content = "Select";
+
+                    lblstatus.Content = "Esperando Lectura de Escanner";
 
                 }
 
@@ -735,6 +742,7 @@ namespace AppEmpaqueRocedes
             lblUnidadesCaja.Content = 0;
             lblstatus.Content = "Realice Busqueda, Esperando...";
             comboclasificacion.SelectedIndex = 0;
+            lblestadobox.Content = string.Empty;
 
         }
 
@@ -755,6 +763,7 @@ namespace AppEmpaqueRocedes
             lblUnidadesCaja.Content = 0;
             lblstatus.Content = "Crear Caja Para Iniciar Escaneo";
             comboclasificacion.SelectedIndex = 0;
+            lblestadobox.Content = string.Empty;
 
         }
 

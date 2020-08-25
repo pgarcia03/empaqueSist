@@ -137,12 +137,12 @@
             <DataGrid CanUserAddRows="False" Style="{StaticResource MyGridStyle}" x:Name="gridUsuarios"   AutoGenerateColumns="False" >
                 <DataGrid.Columns >
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="15*"   Header="Usuario" Binding="{Binding nombreUsuario}" />
-                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*"  Header="Rol" Binding="{Binding rol}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*"   Header="Rol" Binding="{Binding rol}" />
                     <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyle}" Width="6*"  >
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate >
                                 <Button Name="btndelete" Style="{StaticResource MyButtongrid}" Click="btndelete_Click" Background="Black" BorderBrush="White" >
-                                    <iconPacks:PackIconMaterial Width="24" Height="24" Kind="AccountRemoveOutline" Foreground="WhiteSmoke" />
+                                    <iconPacks:PackIconMaterial Width="24" Height="24" Kind="AccountRemoveOutline" Foreground="Red" />
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

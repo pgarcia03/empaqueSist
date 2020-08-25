@@ -20,5 +20,6 @@ namespace AppEmpaqueRocedes.Model
         public int id { get; set; }
         public int Id_Order { get; set; }
         public Nullable<int> totalencaja { get; set; }
+        public string clasificacion { get; set; }
     }
 }

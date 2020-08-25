@@ -112,6 +112,105 @@ namespace AppEmpaqueRocedes.Logica
             }
         }
 
+        public async static Task<List<CodigosDat>> GetCodigosDatsXtalla(int idorder)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+
+                    var tarea1 = Task.Run(() =>
+                    {
+                        using (var contex1 = new AuditoriaEntities())
+                        {
+                            var l1 = contex1.POrder.Join(contex1.Bundle, x => x.Id_Order, y => y.Id_Order, (x, y) => new { x, y })
+                                               .Where(x => x.x.Id_Order.Equals(idorder))
+                                               .GroupBy(x => new
+                                               {
+                                                   x.x.Id_Order,
+                                                   x.x.POrder1,
+                                                   x.y.Size
+                                               }).Select(x => new CodigosDat
+                                               {
+                                                   Id_Order = x.Key.Id_Order,
+                                                   POrder = x.Key.POrder1,
+                                                   Size = x.Key.Size,
+                                                   Quantity = x.Sum(z => z.y.Quantity),
+                                                   Estado = "Generado",
+                                               }).ToList();
+
+
+                            return l1;
+                        }
+
+                    });
+
+
+                    var tarea2 = Task.Run(() =>
+                    {
+                        using (var contex1 = new AuditoriaEntities())
+                        {
+                            var l2 = contex1.POrder.Join(contex1.tbBultosCodigosBarra, x => x.Id_Order, y => y.idCorte, (x, y) => new { x, y })
+                                                 .Where(x => x.x.Id_Order == idorder)
+                                                 .Select(
+                                                  x => new CodigosDat
+                                                  {
+                                                      Id_Order = x.x.Id_Order,
+                                                      POrder = x.x.POrder1,
+                                                      Size = x.y.talla,
+                                                      NSeq = x.y.secuenciaUnidades,
+                                                      Cantidad = x.y.Cantidad,
+                                                      Resto = x.y.Restante,
+                                                      codigoBarra = x.y.codigoBarra,
+                                                      Estado = x.y.estado  
+                                                  }).OrderBy(x => x.NSeq).ToList();
+
+                            return l2;
+                        }
+                    });
+
+
+                    await Task.WhenAll(tarea1, tarea2).ConfigureAwait(false);
+
+
+                    var list = tarea1.Result;
+                    var listas = tarea2.Result;
+
+
+
+                    var listaTotal = new List<CodigosDat>();
+                    int incrementable = 1;
+
+
+                    foreach (var item in list)
+                    {
+
+                           listaTotal.Add(new CodigosDat()
+                            {
+                                Id_Order = item.Id_Order,
+                                POrder = item.POrder,                             
+                                Size = item.Size.Replace('*', 'X'),
+                                NSeq = incrementable,
+                                Cantidad=item.Quantity,
+                                Resto=item.Quantity,
+                                codigoBarra = string.Concat(item.Id_Order.ToString(), incrementable.ToString(), item.Size),
+                                Estado = item.Estado
+                            });
+
+                            incrementable++;
+                      
+                    }
+
+                    return listas.Count == 0 ? listaTotal.OrderBy(x => x.NSeq).ToList() : listas;
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public static List<object> GuardarCodigos(List<CodigosDat> listaGuardar, string corte)
         {
             List<object> listObject = new List<object>();
@@ -144,7 +243,10 @@ namespace AppEmpaqueRocedes.Logica
                                         secuenciaUnidades = item.NSeq,
                                         fechaGenerado = fe,
                                         estado = "Generado",
-                                        corteCompleto = corte
+                                        corteCompleto = corte,
+                                        Cantidad=item.Cantidad,
+                                        Restante=item.Resto
+
                                     });
 
                                     //item.POrder = corte;//opcional
@@ -200,6 +302,8 @@ namespace AppEmpaqueRocedes.Logica
 
                     obj.fechaEscaneado = fechaActual;
                     obj.estado = "Escaneado";
+                    obj.Restante = obj.Restante - 1;
+
 
                     // contex.SaveChanges();
 

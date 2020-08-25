@@ -135,6 +135,7 @@
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="15*" MinWidth="150" Header="Corte" Binding="{Binding POrder}" />
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*" MinWidth="100" Header="Talla" Binding="{Binding Size}" />
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*" MinWidth="100" Header="Secuencia" Binding="{Binding NSeq}" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="10*" MinWidth="100" Header="Unidades" Binding="{Binding Cantidad}" />
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="20*" MinWidth="100" Header="Codigo Barra" Binding="{Binding codigoBarra}" />
                     <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyle}" Width="20*" MinWidth="100" Header="Estado De Codigo" Binding="{Binding Estado}" />
 

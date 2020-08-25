@@ -26,5 +26,7 @@ namespace AppEmpaqueRocedes.Model
         public string corteCompleto { get; set; }
         public Nullable<System.DateTime> fechaImpreso { get; set; }
         public Nullable<System.DateTime> fechaAnulado { get; set; }
+        public Nullable<int> Cantidad { get; set; }
+        public Nullable<int> Restante { get; set; }
     }
 }

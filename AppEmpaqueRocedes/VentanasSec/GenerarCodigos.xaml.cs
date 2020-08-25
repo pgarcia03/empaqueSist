@@ -255,7 +255,7 @@ namespace AppEmpaqueRocedes
 
                             if (idporder != 0)
                             {
-                                listacodigo = CodigosNeg.GetCodigosDats(idporder).Result;
+                                listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                                 gridCodigos.ItemsSource = listacodigo;
                             }
@@ -312,7 +312,7 @@ namespace AppEmpaqueRocedes
 
                         if (idporder != 0)
                         {
-                            listacodigo = CodigosNeg.GetCodigosDats(idporder).Result;
+                            listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                             gridCodigos.ItemsSource = listacodigo;
                         }
@@ -338,7 +338,7 @@ namespace AppEmpaqueRocedes
             {
                 if (idporder != 0)
                 {
-                    listacodigo = CodigosNeg.GetCodigosDats(idporder).Result;
+                    listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                     gridCodigos.ItemsSource = listacodigo;
                 }
@@ -473,6 +473,10 @@ namespace AppEmpaqueRocedes
                             _worker.RunWorkerAsync(arg);
 
                         
+                        }
+                        else
+                        {
+                            Limpiar();
                         }
                     }
                     else

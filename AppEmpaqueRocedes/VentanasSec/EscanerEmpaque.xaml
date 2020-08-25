@@ -201,13 +201,12 @@
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Codigo Escaneado"  Style="{StaticResource lblpanelInfoTitulo}" />
-                           
                             <Border Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" >
                                 <iconPacks:PackIconIonicons Kind="BarcodeiOS" Height="30" Width="30" Foreground="WhiteSmoke" />
-                               
                             </Border>
                             <Label Name="lblCodigoScan" Content="" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
 
@@ -215,9 +214,14 @@
                             <Border Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" >
                                 <iconPacks:PackIconOcticons Kind="Package" Height="30" Width="30" Foreground="WhiteSmoke" />
                             </Border>
-                       
                             <Label Name="lblbox" Content="" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
 
+                            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Content="Estato de Box"  Style="{StaticResource lblpanelInfoTitulo}" />
+                            <Border Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" >
+                                <iconPacks:PackIconMaterial Kind="TransitConnection" Height="30" Width="30" Foreground="WhiteSmoke" />
+                            </Border>
+                            <Label Name="lblestadobox" Content="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
+                            
                         </Grid>
                     </DockPanel>
                     
