@@ -28,7 +28,7 @@ namespace AppEmpaqueRocedes.Seguridad
         {
             InitializeComponent();
 
-            var lista = new string[] { "Seleccione...", "Admin", "Empaque", "SAdmin" };
+            var lista = new string[] { "Seleccione...", "Admin", "Empaque", "SAdmin", "Tickets" };
 
             cbxroles.ItemsSource = lista;
             cbxroles.SelectedIndex = 0;

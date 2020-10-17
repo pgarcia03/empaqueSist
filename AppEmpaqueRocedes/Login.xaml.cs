@@ -57,6 +57,13 @@ namespace AppEmpaqueRocedes
                         case "null":
                             MessageBox.Show("Icorrecto", "Las credenciales proporcionadas no son validas");
                             break;
+                        case "Tickets":
+                            App.Current.Properties["User"] = resp;
+                            var form2 = new PricipalTickets();
+                            this.Close();
+                            form2.Show();
+                           // stackPanelContenido.Children.Add(new TicktesScan());
+                            break;
                         default:
                             App.Current.Properties["User"] = resp;
                             var form =new Principal();                  

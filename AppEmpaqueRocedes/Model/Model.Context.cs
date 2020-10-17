@@ -39,6 +39,10 @@ namespace AppEmpaqueRocedes.Model
         public virtual DbSet<tbcodigosCajas> tbcodigosCajas { get; set; }
         public virtual DbSet<tbCorteSecuenciaCaja> tbCorteSecuenciaCaja { get; set; }
         public virtual DbSet<tbUserEmpaque> tbUserEmpaque { get; set; }
+        public virtual DbSet<Operacion> Operacion { get; set; }
+        public virtual DbSet<Operario> Operario { get; set; }
+        public virtual DbSet<tbProduccionTickets> tbProduccionTickets { get; set; }
+        public virtual DbSet<Biohorario> Biohorario { get; set; }
     
         public virtual ObjectResult<getcorteBox_Result> getcorteBox(string codigobox, string usuario, string clasificacion)
         {
@@ -73,6 +77,15 @@ namespace AppEmpaqueRocedes.Model
                 new ObjectParameter("box", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getInfobox_Result>("getInfobox", boxParameter);
+        }
+    
+        public virtual ObjectResult<spdProduccionOperarioDiario_Result> spdProduccionOperarioDiario(Nullable<int> idoper)
+        {
+            var idoperParameter = idoper.HasValue ?
+                new ObjectParameter("idoper", idoper) :
+                new ObjectParameter("idoper", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdProduccionOperarioDiario_Result>("spdProduccionOperarioDiario", idoperParameter);
         }
     }
 }

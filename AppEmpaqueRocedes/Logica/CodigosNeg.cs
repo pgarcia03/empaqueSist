@@ -419,6 +419,7 @@ namespace AppEmpaqueRocedes.Logica
             }
             catch (Exception ex)
             {
+                var sr = ex.Message;
                 await crearCaja(idcorte, estilo);
                 // throw;
                 return null;

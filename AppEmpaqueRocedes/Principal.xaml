@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"     
         Title="Principal" 
-        Height="640"
+        Height="660"
         Width="1220" Background="Transparent" AllowsTransparency="True" WindowStyle="None"              
         >
 
@@ -103,6 +103,21 @@
                             </Grid>
                         </StackPanel>
                     </Button>
+
+
+                    <Button Name="LinkTickets" Style="{StaticResource MyButtonStyle}" Click="LinkTickets_Click"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  >
+                        <StackPanel MinWidth="250" Width="auto" Orientation="Horizontal" >
+                            <Grid Width="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="20*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Foreground="White" TextAlignment="Left" Padding="8" Grid.Column="0" >Escáner Tickets</TextBlock>
+                                <Image Source="/images/scanner.png"  Width="30" Height="30" Grid.Column="1" FlowDirection="RightToLeft" />
+                            </Grid>
+                        </StackPanel>
+                    </Button>
+
                     <!--
                     <Button Name="btncargaEta" Style="{StaticResource MyButtonStyle}"  Click="btncargaEta_Click"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" >
                         <StackPanel MinWidth="250" Width="auto" Orientation="Horizontal" >

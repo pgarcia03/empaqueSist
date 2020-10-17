@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AuditoriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Biohorario">
+          <Key>
+            <PropertyRef Name="id_bio" />
+          </Key>
+          <Property Name="id_bio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bihorario" Type="nvarchar" MaxLength="3" />
+          <Property Name="rango1" Type="float" />
+          <Property Name="rango2" Type="float" />
+          <Property Name="horas" Type="float" />
+          <Property Name="hora_t" Type="float" />
+        </EntityType>
         <EntityType Name="Bundle">
           <Key>
             <PropertyRef Name="Id_Bundle" />
@@ -35,6 +46,26 @@
           <Property Name="numero" Type="nvarchar" MaxLength="5" />
           <Property Name="idcliente" Type="int" />
           <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion_completa" Type="nvarchar" MaxLength="250" />
+          <Property Name="codigo" Type="nchar" MaxLength="10" />
+          <Property Name="SAM" Type="float" />
+        </EntityType>
+        <EntityType Name="Operario">
+          <Key>
+            <PropertyRef Name="id_operario" />
+          </Key>
+          <Property Name="id_operario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="codigoBarra" Type="nchar" MaxLength="12" />
+          <Property Name="activo" Type="bit" />
         </EntityType>
         <EntityType Name="Planta">
           <Key>
@@ -145,6 +176,24 @@
           <Property Name="nombreUsuario" Type="nchar" MaxLength="30" />
           <Property Name="modulo" Type="nchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="tbProduccionTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serial" Type="nvarchar" MaxLength="30" />
+          <Property Name="codigoOperacion" Type="nchar" MaxLength="15" />
+          <Property Name="operarioId" Type="int" />
+          <Property Name="descOperacion" Type="nchar" MaxLength="80" />
+          <Property Name="corte" Type="nchar" MaxLength="20" />
+          <Property Name="nSeq" Type="int" />
+          <Property Name="linea" Type="nchar" MaxLength="10" />
+          <Property Name="fechaRegistro" Type="datetime" />
+          <Property Name="usuario" Type="nchar" MaxLength="15" />
+          <Property Name="BundleUni" Type="int" />
+          <Property Name="bihorario" Type="int" />
+          <Property Name="lineaConfeccion" Type="int" />
+        </EntityType>
         <EntityType Name="tbUserEmpaque">
           <Key>
             <PropertyRef Name="id" />
@@ -225,10 +274,16 @@
         <Function Name="getInfobox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="box" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="spdProduccionOperarioDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idoper" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AuditoriaModelStoreContainer">
+          <EntitySet Name="Biohorario" EntityType="Self.Biohorario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bundle" EntityType="Self.Bundle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Linea" EntityType="Self.Linea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operacion" EntityType="Self.Operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operario" EntityType="Self.Operario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Planta" EntityType="Self.Planta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POrder" EntityType="Self.POrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
@@ -237,6 +292,7 @@
           <EntitySet Name="tbcodigosCajas" EntityType="Self.tbcodigosCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbCorteSecuenciaCaja" EntityType="Self.tbCorteSecuenciaCaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserEnvio" EntityType="Self.tblUserEnvio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProduccionTickets" EntityType="Self.tbProduccionTickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbUserEmpaque" EntityType="Self.tbUserEmpaque" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Bundle_POrder" Association="Self.FK_Bundle_POrder">
             <End Role="POrder" EntitySet="POrder" />
@@ -441,7 +497,14 @@
           <Parameter Name="val" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getInfobox" ReturnType="Collection(AuditoriaModel.getInfobox_Result)">
-            <Parameter Name="box" Mode="In" Type="String" />
+          <Parameter Name="box" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Operacion" EntityType="AuditoriaModel.Operacion" />
+          <EntitySet Name="Operario" EntityType="AuditoriaModel.Operario" />
+          <EntitySet Name="tbProduccionTickets" EntityType="AuditoriaModel.tbProduccionTickets" />
+          <EntitySet Name="Biohorario" EntityType="AuditoriaModel.Biohorario" />
+          <FunctionImport Name="spdProduccionOperarioDiario" ReturnType="Collection(AuditoriaModel.spdProduccionOperarioDiario_Result)">
+            <Parameter Name="idoper" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbBultosCodigosBarra">
@@ -545,6 +608,62 @@
           <Property Type="Int32" Name="Id_Order" Nullable="false" />
           <Property Type="Int32" Name="totalencaja" Nullable="true" />
           <Property Type="String" Name="clasificacion" Nullable="true" MaxLength="9" />
+        </ComplexType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion_completa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SAM" Type="Double" />
+        </EntityType>
+        <EntityType Name="Operario">
+          <Key>
+            <PropertyRef Name="id_operario" />
+          </Key>
+          <Property Name="id_operario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="codigoBarra" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbProduccionTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serial" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="codigoOperacion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="operarioId" Type="Int32" />
+          <Property Name="descOperacion" Type="String" MaxLength="80" FixedLength="true" Unicode="true" />
+          <Property Name="corte" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="nSeq" Type="Int32" />
+          <Property Name="linea" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="BundleUni" Type="Int32" />
+          <Property Name="bihorario" Type="Int32" />
+          <Property Name="lineaConfeccion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Biohorario">
+          <Key>
+            <PropertyRef Name="id_bio" />
+          </Key>
+          <Property Name="id_bio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bihorario" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="rango1" Type="Double" />
+          <Property Name="rango2" Type="Double" />
+          <Property Name="horas" Type="Double" />
+          <Property Name="hora_t" Type="Double" />
+        </EntityType>
+        <ComplexType Name="spdProduccionOperarioDiario_Result">
+          <Property Type="String" Name="Prodno" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Serialno" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Bundleno" Nullable="true" />
+          <Property Type="String" Name="Descr" Nullable="true" MaxLength="80" />
+          <Property Type="Int32" Name="bihorario" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -738,6 +857,70 @@
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="totalencaja" ColumnName="totalencaja" />
                 <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Operacion">
+            <EntityTypeMapping TypeName="AuditoriaModel.Operacion">
+              <MappingFragment StoreEntitySet="Operacion">
+                <ScalarProperty Name="SAM" ColumnName="SAM" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion_completa" ColumnName="descripcion_completa" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operario">
+            <EntityTypeMapping TypeName="AuditoriaModel.Operario">
+              <MappingFragment StoreEntitySet="Operario">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="codigoBarra" ColumnName="codigoBarra" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="id_operario" ColumnName="id_operario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProduccionTickets">
+            <EntityTypeMapping TypeName="AuditoriaModel.tbProduccionTickets">
+              <MappingFragment StoreEntitySet="tbProduccionTickets">
+                <ScalarProperty Name="lineaConfeccion" ColumnName="lineaConfeccion" />
+                <ScalarProperty Name="bihorario" ColumnName="bihorario" />
+                <ScalarProperty Name="BundleUni" ColumnName="BundleUni" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="linea" ColumnName="linea" />
+                <ScalarProperty Name="nSeq" ColumnName="nSeq" />
+                <ScalarProperty Name="corte" ColumnName="corte" />
+                <ScalarProperty Name="descOperacion" ColumnName="descOperacion" />
+                <ScalarProperty Name="operarioId" ColumnName="operarioId" />
+                <ScalarProperty Name="codigoOperacion" ColumnName="codigoOperacion" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Biohorario">
+            <EntityTypeMapping TypeName="AuditoriaModel.Biohorario">
+              <MappingFragment StoreEntitySet="Biohorario">
+                <ScalarProperty Name="hora_t" ColumnName="hora_t" />
+                <ScalarProperty Name="horas" ColumnName="horas" />
+                <ScalarProperty Name="rango2" ColumnName="rango2" />
+                <ScalarProperty Name="rango1" ColumnName="rango1" />
+                <ScalarProperty Name="bihorario" ColumnName="bihorario" />
+                <ScalarProperty Name="id_bio" ColumnName="id_bio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spdProduccionOperarioDiario" FunctionName="AuditoriaModel.Store.spdProduccionOperarioDiario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.spdProduccionOperarioDiario_Result">
+                <ScalarProperty Name="Prodno" ColumnName="Prodno" />
+                <ScalarProperty Name="Serialno" ColumnName="Serialno" />
+                <ScalarProperty Name="Bundleno" ColumnName="Bundleno" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="bihorario" ColumnName="bihorario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

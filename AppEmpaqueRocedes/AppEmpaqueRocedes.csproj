@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -131,16 +131,26 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Pervasive.Data.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c84cd5c63851e072, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\ADONET3.5\Pervasive.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Pervasive.Data.SqlClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c84cd5c63851e072, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\ADONET3.5\Pervasive.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="Seagull.BarTender.Print, Version=11.1.5.1, Culture=neutral, PublicKeyToken=109ff779a1b4cbc7, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -159,21 +169,52 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Logica\Pervasive_PSQL.cs" />
     <Compile Include="Logica\UsuarioNeg.cs" />
+    <Compile Include="Model\Biohorario.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\getcorteBox_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\getInfobox_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Operacion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Operario.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pervasives.cs" />
+    <Compile Include="Model\spdProduccionOperarioDiario_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbProduccionTickets.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\tbUserEmpaque.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanTickets\PricipalTickets.xaml.cs">
+      <DependentUpon>PricipalTickets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScanTickets\TicktesScan.xaml.cs">
+      <DependentUpon>TicktesScan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\CrearUsuario.xaml.cs">
       <DependentUpon>CrearUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\HashClass.cs" />
     <Compile Include="VentanasSec\ImprimirBoxCl.cs" />
+    <Page Include="ScanTickets\PricipalTickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScanTickets\TicktesScan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Seguridad\CrearUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,7 +337,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\conf.ico" />
@@ -330,6 +373,7 @@
     <Resource Include="images\userfondo2.png" />
     <Resource Include="images\userfondo3.png" />
     <Resource Include="images\Logo.png" />
+    <Resource Include="images\escan.ico" />
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>

@@ -30,6 +30,7 @@ namespace AppEmpaqueRocedes
             LinkEmpaque.Visibility = Visibility.Collapsed;
             LinkCodigos.Visibility = Visibility.Collapsed;
             LinkReporte.Visibility = Visibility.Collapsed;
+            LinkTickets.Visibility = Visibility.Collapsed;
 
             var obj = (tbUserEmpaque)App.Current.Properties["User"];
 
@@ -51,17 +52,23 @@ namespace AppEmpaqueRocedes
                     stackPanelContenido.Children.Add(new EscanerEmpaque());
                     break;
                 case "SAdmin":
+                
                     BtnCrearUsuario.Visibility = Visibility.Visible;
                     LinkEmpaque.Visibility = Visibility.Visible;
                     LinkCodigos.Visibility = Visibility.Visible;
                     LinkReporte.Visibility = Visibility.Visible;
+                    LinkTickets.Visibility = Visibility.Visible;
                     stackPanelContenido.Children.Add(new CrearUsuario());
                     break;
+                case "Tickets":
+                    LinkTickets.Visibility = Visibility.Visible;
+                    stackPanelContenido.Children.Add(new TicktesScan());
+                break;
                 default:
                     break;
             }
 
-
+    
         }
 
         private void LinkEmpaque_Click(object sender, RoutedEventArgs e)
@@ -91,6 +98,14 @@ namespace AppEmpaqueRocedes
 
             // Añadir el CustomControl
             stackPanelContenido.Children.Add(new CrearUsuario());
+        }
+
+        private void LinkTickets_Click(object sender, RoutedEventArgs e)
+        {
+            stackPanelContenido.Children.Clear();
+
+            // Añadir el CustomControl
+            stackPanelContenido.Children.Add(new TicktesScan());
         }
 
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
