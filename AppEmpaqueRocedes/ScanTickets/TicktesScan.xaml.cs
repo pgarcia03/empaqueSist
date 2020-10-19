@@ -36,6 +36,7 @@ namespace AppEmpaqueRocedes
 
         private BackgroundWorker _worker;
 
+
         #region Tareas Segundo plano
 
         private void CancelWorker(object sender, RoutedEventArgs e)
