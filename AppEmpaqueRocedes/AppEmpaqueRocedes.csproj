@@ -196,6 +196,7 @@
     <Compile Include="Model\tbUserEmpaque.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ScanTickets\Converter.cs" />
     <Compile Include="ScanTickets\PricipalTickets.xaml.cs">
       <DependentUpon>PricipalTickets.xaml</DependentUpon>
     </Compile>

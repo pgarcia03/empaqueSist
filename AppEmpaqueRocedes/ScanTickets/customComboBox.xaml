@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="AppEmpaqueRocedes.customComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="customComboBox"
+             
+             >
+    
+    <UserControl.Resources>
+        <AppEmpaqueRocedes:InverseNullVisibilityConverter x:Key="invNullVisibleConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <ComboBox x:Name="comboBox"
+                  ItemsSource="{Binding ElementName=customComboBox, Path=MyItemsSource}"
+                  SelectedItem="{Binding ElementName=customComboBox, Path=MySelectedItem}"
+                  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+        <Label HorizontalAlignment="Left" VerticalAlignment="Center"
+               Margin="0,2,20,2" IsHitTestVisible="False"
+               Content="{Binding ElementName=customComboBox, Path=DefaultText}"
+               Visibility="{Binding ElementName=comboBox, Path=SelectedItem, Converter={StaticResource invNullVisibleConverter}}"/>
+    </Grid>
+</UserControl>

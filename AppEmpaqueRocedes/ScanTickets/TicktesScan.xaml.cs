@@ -140,35 +140,18 @@ namespace AppEmpaqueRocedes
                     var bihorario = contex.Biohorario.ToList();
 
 
-                    var lineaArr = new string[linea.Count + 1];
+                    linea.Insert(0,new Linea { id_linea=0,numero= "Seleccione..."});
+                    bihorario.Insert(0, new Biohorario { id_bio = 0, bihorario = "Seleccione..." });
 
-                    lineaArr[0] = "Seleccione...";
-
-                    int cont = 1;
-                    foreach (var item in linea)
-                    {
-                        lineaArr[cont] = item.numero.TrimEnd();
-                        cont++;
-                    }
-
-                    comboLinea.ItemsSource = lineaArr;
+                    comboLinea.ItemsSource = linea;//lineaArr;
+                    comboLinea.DisplayMemberPath = "numero";
+                    comboLinea.SelectedValuePath = "id_linea";
                     comboLinea.SelectedIndex = 0;
 
-
-                    var BihorarioArr = new string[bihorario.Count + 1];
-
-                    BihorarioArr[0] = "Seleccione...";
-
-                    cont = 1;
-                    foreach (var item in bihorario)
-                    {
-                        BihorarioArr[cont] = item.bihorario.TrimEnd();
-                        cont++;
-                    }
-
-                    comboBihorario.ItemsSource = BihorarioArr;
+                    comboBihorario.ItemsSource = bihorario;//lineaArr;
+                    comboBihorario.DisplayMemberPath = "bihorario";
+                    comboBihorario.SelectedValuePath = "id_bio";
                     comboBihorario.SelectedIndex = 0;
-
 
                 }
             }
@@ -286,11 +269,11 @@ namespace AppEmpaqueRocedes
 
                             lbltotal.Content = listadb.Count.ToString();
 
-                            lbltotalBihorario.Content = comboBihorario.SelectedItem.ToString() == "Seleccione..." 
+                            lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0" 
                                                         ? 
                                                         listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString() 
                                                         :
-                                                        listadb.Where(x => x.bihorario ==Convert.ToInt16(comboBihorario.SelectedItem.ToString())).Count().ToString();
+                                                        listadb.Where(x => x.bihorario ==Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
 
                             gridCodigos.ItemsSource = listadb;
 
@@ -319,7 +302,7 @@ namespace AppEmpaqueRocedes
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (txtticket.Text.Trim().Equals("433755XL"))
+                    if (txtticket.Text.Trim().Equals("11101"))
                     {
                         txtoperario.Clear();
                         txtticket.Clear();
@@ -328,7 +311,7 @@ namespace AppEmpaqueRocedes
                         return;
                     }
 
-                    if (comboBihorario.SelectedItem.ToString() == "Seleccione..." || comboLinea.SelectedItem.ToString() == "Seleccione...")
+                    if (comboBihorario.SelectedValue.ToString() == "0" || comboLinea.SelectedValue.ToString() == "0")
                     {
                         lblEstadoTicket.Content = "Debe seleccionar Linea y bihorario";
 
@@ -415,8 +398,8 @@ namespace AppEmpaqueRocedes
                                     usuario = emp,
                                     operarioId = idemp,
                                     BundleUni = Convert.ToInt32(dt.Rows[0][8].ToString()),
-                                    bihorario=Convert.ToInt16(comboBihorario.SelectedItem.ToString().TrimEnd()),
-                                    lineaConfeccion= Convert.ToInt16(comboLinea.SelectedItem.ToString().TrimEnd())
+                                    bihorario=Convert.ToInt16(comboBihorario.SelectedValue.ToString()),
+                                    lineaConfeccion= Convert.ToInt16(comboLinea.SelectedValue.ToString())
                                 };
 
                                 contex.tbProduccionTickets.Add(newobjS);
@@ -448,11 +431,11 @@ namespace AppEmpaqueRocedes
 
                             lbltotal.Content = listadb.Count.ToString();
 
-                            lbltotalBihorario.Content = comboBihorario.SelectedItem.ToString() == "Seleccione..."
+                            lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0"
                                                         ?
                                                         listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString()
                                                         :
-                                                        listadb.Where(x => x.bihorario == Convert.ToInt16(comboBihorario.SelectedItem.ToString())).Count().ToString();
+                                                        listadb.Where(x => x.bihorario == Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
 
                             gridCodigos.ItemsSource = listadb;
 
@@ -499,6 +482,8 @@ namespace AppEmpaqueRocedes
                 txtticket.Focus();
 
                 lblEstadoTicket.Content = string.Empty;
+
+                //var ee = comboLinea.SelectedValue;
             }
             catch (Exception)
             {
