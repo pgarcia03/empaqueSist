@@ -26,7 +26,6 @@ namespace AppEmpaqueRocedes.Logica
                 // Open the connection
                 DBConn.Open();
                 PsqlDataAdapter da = new PsqlDataAdapter();
-                //string query = "select  badgeno,firstname,lastname,EMPNO,SALARY from EMPLOYEE"; //WHERE  SALARY>'0' order by salary desc";//EMPNO LIKE '%MART%' ";//badgeno='51488'"
                 da.SelectCommand = new PsqlCommand(query, DBConn);
                 da.Fill(dt);
                 //Console.WriteLine("Connection Successful!");

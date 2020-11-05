@@ -22,10 +22,10 @@
         <AssociationConnector Association="AuditoriaModel.FK_tbCodigosBarraScan_tbcodigosCajas" />
         <EntityTypeShape EntityType="AuditoriaModel.tbCorteSecuenciaCaja" Width="1.5" PointX="9.625" PointY="0.75" />
         <EntityTypeShape EntityType="AuditoriaModel.tbUserEmpaque" Width="1.5" PointX="9.625" PointY="5.5" />
-        <EntityTypeShape EntityType="AuditoriaModel.Operacion" Width="1.5" PointX="0.5" PointY="6" />
+        <EntityTypeShape EntityType="AuditoriaModel.Operacion" Width="1.5" PointX="0.75" PointY="6" />
         <EntityTypeShape EntityType="AuditoriaModel.Operario" Width="1.5" PointX="2.5" PointY="6" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbProduccionTickets" Width="1.5" PointX="4.375" PointY="5.875" />
-        <EntityTypeShape EntityType="AuditoriaModel.Biohorario" Width="1.5" PointX="6.125" PointY="7" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbProduccionTickets" Width="1.5" PointX="4.375" PointY="5.5" />
+        <EntityTypeShape EntityType="AuditoriaModel.Biohorario" Width="1.5" PointX="6.125" PointY="6.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
