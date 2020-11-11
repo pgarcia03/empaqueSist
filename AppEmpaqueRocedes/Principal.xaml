@@ -5,7 +5,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"     
         Title="Principal" 
         Height="660"
-        Width="1220" Background="Transparent" AllowsTransparency="True" WindowStyle="None"              
+        Width="1220" Background="Transparent" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize"              
         >
 
     <Controls:MetroWindow.RightWindowCommands>

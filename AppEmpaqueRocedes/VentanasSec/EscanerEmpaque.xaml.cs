@@ -234,8 +234,8 @@ namespace AppEmpaqueRocedes
                         {
 
                             // string us = (string)App.Current.Properties["user"];
-                            Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                            tarea.Start("Codigo no existe");
+                          //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                          //  tarea.Start("Codigo no existe");
 
                             lblstatus.Content = "Codigo no existe!";
                             lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
@@ -254,8 +254,8 @@ namespace AppEmpaqueRocedes
                                 txtcodigo.Text = string.Empty;
                                 txtcodigo.Focus();
 
-                                Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                                tarea.Start("Exceso de unidades en talla");
+                            //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                            //    tarea.Start("Exceso de unidades en talla");
 
                             }
                             else
@@ -280,8 +280,8 @@ namespace AppEmpaqueRocedes
                                     txtcodigo.Text = string.Empty;
                                     txtcodigo.Focus();
 
-                                    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                                    tarea.Start("Codigo Leido Correctamente!!!");
+                              //      Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                              //      tarea.Start("Codigo Leido Correctamente!!!");
                                 }
                                 else
                                 {
@@ -294,8 +294,8 @@ namespace AppEmpaqueRocedes
 
                                     lblCodigoScan.Content = string.Empty;
 
-                                    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                                    tarea.Start("Error de Lectura, Intente de nuevo por favor!!!");
+                                //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                                //    tarea.Start("Error de Lectura, Intente de nuevo por favor!!!");
 
                                 }
 
@@ -310,8 +310,8 @@ namespace AppEmpaqueRocedes
                         lblstatus.Content = "Campos vacíos";
                         txtcodigo.Text = "";
                         txtcodigo.Focus();
-                        Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                        tarea.Start("Campos vacíos");
+                     //   Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                     //   tarea.Start("Campos vacíos");
 
                     }
                 }
@@ -359,7 +359,7 @@ namespace AppEmpaqueRocedes
                         lblEstiloT.Content = resp.estilo.TrimEnd();
 
                         lblunidades.Content = resp.Quantity;
-                        lblestadobox.Content = resp.clasificacion==string.Empty?"Pendiente":resp.clasificacion.TrimEnd();
+                        lblestadobox.Content = resp.clasificacion;//.Trim()==string.Empty?"Pendiente":resp.clasificacion.TrimEnd();
                         idbox = resp.id;
 
                         txtboxscan.Clear();
@@ -613,8 +613,8 @@ namespace AppEmpaqueRocedes
                     lblEstiloT.Content = resp.estilo.TrimEnd();
 
                     lblunidades.Content = resp.Quantity;
-                   // lblestadobox.Content = resp.clasificacion;
-                    lblestadobox.Content = resp.clasificacion == string.Empty ? "Pendiente" : resp.clasificacion.TrimEnd();
+                    // lblestadobox.Content = resp.clasificacion;
+                    lblestadobox.Content = resp.clasificacion;// == string.Empty ? "Pendiente" : resp.clasificacion.TrimEnd();
                     idbox = resp.id;
 
                     txtboxscan.Clear();
@@ -663,8 +663,8 @@ namespace AppEmpaqueRocedes
                     List<object> arg = new List<object>();
                     arg.Add(resp);
 
-                    Thread tarea = new Thread(new ParameterizedThreadStart(mensajeVoz));
-                    tarea.Start("Iniciando Proceso de impresión");
+                  //  Thread tarea = new Thread(new ParameterizedThreadStart(mensajeVoz));
+                  //  tarea.Start("Iniciando Proceso de impresión");
 
                     _worker.RunWorkerAsync(arg);
 
@@ -680,8 +680,9 @@ namespace AppEmpaqueRocedes
 
                     lblstatus.Content = "";
 
-                    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                    tarea.Start("Campos vacíos");
+                    MessageBox.Show("Campos vacíos");
+                  //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                  //  tarea.Start("Campos vacíos");
                 }
 
 

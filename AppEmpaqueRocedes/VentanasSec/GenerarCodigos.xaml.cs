@@ -380,8 +380,8 @@ namespace AppEmpaqueRocedes
                         {
                          //   MessageBoxTimeout((System.IntPtr)0, $"Iniciando impresion de {result.Count} tickets ", "Informacion", 0, 0, 1000);
 
-                            Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                            tarea.Start("Iniciando Trabajo de impresión");
+                           // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                           // tarea.Start("Iniciando Trabajo de impresión");
 
                             List<object> arg = new List<object>
                             {
@@ -397,16 +397,24 @@ namespace AppEmpaqueRocedes
                     }
                     else
                     {
-                        Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                        tarea.Start("Ha ocurrido un error");
+                        //Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                       // tarea.Start("Ha ocurrido un error");
+
+                        string respMess = "Ha ocurrido un error";
+
+                        var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
                         ///  MessageBox.Show("Ha ocurrido un error comuniquese con el departamento de informatica para recibir asistencia??", "Informacion", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                    tarea.Start("Debe Seleccionar corte y Generar codigos");
+
+                    string respMess = "Debe Seleccionar corte y Generar codigos";
+
+                    var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                   // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                   // tarea.Start("Debe Seleccionar corte y Generar codigos");
                 }
 
                 BtnImprimir.IsEnabled = true;
@@ -416,8 +424,12 @@ namespace AppEmpaqueRocedes
             {
                 string mess = ex.Message;
                 BtnImprimir.IsEnabled = true;
-                Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                tarea.Start("Ha ocurrido un error");
+                //Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                //tarea.Start("Ha ocurrido un error");
+
+                string respMess = "Ha ocurrido un error";
+
+                var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
 
         }
@@ -455,8 +467,8 @@ namespace AppEmpaqueRocedes
 
                         if (respmensaje == MessageBoxResult.OK)
                         {
-                            Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                            tarea.Start("Iniciando Trabajo de impresión");
+                           // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                           // tarea.Start("Iniciando Trabajo de impresión");
 
                             var ListaSecuencia = listacodigo.Where(x => x.NSeq >= secI && x.NSeq <= secF).ToList();
 
@@ -481,15 +493,21 @@ namespace AppEmpaqueRocedes
                     }
                     else
                     {
-                        Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                        tarea.Start("Debe ingresar datos numericos en secuencias");
+                        //   Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                        //   tarea.Start("Debe ingresar datos numericos en secuencias");
+                        string respMess = "Debe ingresar datos numericos en secuencias";
+
+                        var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                     }
                    
                 }
                 else
                 {
-                    Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                    tarea.Start("Debe Seleccionar corte y Generar codigos");
+                  //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                  //  tarea.Start("Debe Seleccionar corte y Generar codigos");
+                    string respMess = "Debe Seleccionar corte y Generar codigos";
+
+                    var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
 
                 BtnImprimirAvanzada.IsEnabled = true;
@@ -499,8 +517,13 @@ namespace AppEmpaqueRocedes
             {
                 string mess = ex.Message;
                 BtnImprimir.IsEnabled = true;
-                Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                tarea.Start("Ha ocurrido un error");
+              //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+              //  tarea.Start("Ha ocurrido un error");
+
+                string respMess = "Ha ocurrido un error";
+
+                var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+
             }
         }
         #endregion

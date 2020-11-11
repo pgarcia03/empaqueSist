@@ -193,7 +193,7 @@ namespace AppEmpaqueRocedes.Logica
                                 NSeq = incrementable,
                                 Cantidad=item.Quantity,
                                 Resto=item.Quantity,
-                                codigoBarra = string.Concat(item.Id_Order.ToString(), incrementable.ToString(), item.Size),
+                                codigoBarra = string.Concat(item.Id_Order.ToString(), incrementable.ToString(),item.Size.Replace('*','X')),
                                 Estado = item.Estado
                             });
 
