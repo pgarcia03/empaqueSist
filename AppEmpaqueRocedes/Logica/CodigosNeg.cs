@@ -334,7 +334,7 @@ namespace AppEmpaqueRocedes.Logica
             }
         }
 
-        public async static Task<tbCorteSecuenciaCaja> crearCaja(int idcorte, string estilo)
+        public async static Task<tbCorteSecuenciaCaja> crearCaja(int idcorte, string estilo,string usuario)
         {
             try
             {
@@ -408,7 +408,8 @@ namespace AppEmpaqueRocedes.Logica
                         estado = true,
                         numeroImpresion = 0,
                         color = tarea3.Result.Color,
-                        corteCompleto = tarea3.Result.Porder
+                        corteCompleto = tarea3.Result.Porder,
+                        usuario=usuario
                     });
 
                     contex.SaveChanges();
@@ -420,7 +421,7 @@ namespace AppEmpaqueRocedes.Logica
             catch (Exception ex)
             {
                 var sr = ex.Message;
-                await crearCaja(idcorte, estilo);
+                await crearCaja(idcorte, estilo,usuario);
                 // throw;
                 return null;
             }
@@ -463,7 +464,7 @@ namespace AppEmpaqueRocedes.Logica
 
                 objerror.unidades = 0;
                 objerror.corte = "corte";
-                objerror.estado = "error";
+                objerror.estado = "Error";
 
                 string mes = ex.Message;
 

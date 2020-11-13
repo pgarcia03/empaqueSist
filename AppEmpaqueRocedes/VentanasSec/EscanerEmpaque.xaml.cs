@@ -515,7 +515,7 @@ namespace AppEmpaqueRocedes
             {
                 if (idporder != 0 && lblEstilo.Content.ToString() != string.Empty)
                 {
-                    var resp = await CodigosNeg.crearCaja(idporder, lblEstilo.Content.ToString());
+                    var resp = await CodigosNeg.crearCaja(idporder, lblEstilo.Content.ToString(),usuario);
 
                     lblbox.Content = resp.codigo;
                     idbox = resp.id;
