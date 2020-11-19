@@ -197,112 +197,25 @@ namespace AppEmpaqueRocedes
 
         private void txtcodigo_KeyUp(object sender, KeyEventArgs e)
         {
+            
+        }
+
+        private void txtunidadesScan_KeyUp(object sender, KeyEventArgs e)
+        {
             try
             {
                 if (e.Key == Key.Enter)
                 {
+
+                    var unidades = Convert.ToInt16(txtunidadesScan.Text);
+
+
                     if (txtcodigo.Text != string.Empty && idbox != 0)
                     {
-                        var bandera1 = false;// verifica si el codigo de barra existe en base de datos 
-                        var bandera = false; // Verifica si el codigo ha sido escanedo o esta inactivo
-
-                        using (AuditoriaEntities contex = new AuditoriaEntities())
+                        for (int i = 0; i < unidades; i++)
                         {
-                            var codigobarra = txtcodigo.Text.TrimEnd();
-
-                            var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigobarra));
-
-                            if (busqueda == null)
-                            {
-                                bandera1 = true;
-                            }
-                            else
-                            {
-                                // valida que el carton exista y no halla sido escaneado
-                                //if (busqueda.estado.TrimEnd().Equals("Escaneado") || busqueda.estado.TrimEnd().Equals("Inactivo"))
-                                if (busqueda.Restante<=0)
-                                {
-                                    bandera = true;
-                                }
-
-                            }
-
+                            registroUnidades();
                         }
-
-
-                        if (bandera1)
-                        {
-
-                            // string us = (string)App.Current.Properties["user"];
-                          //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                          //  tarea.Start("Codigo no existe");
-
-                            lblstatus.Content = "Codigo no existe!";
-                            lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
-
-                            txtcodigo.Text = string.Empty;
-                            txtcodigo.Focus();
-
-                        }
-                        else
-                        {
-                            if (bandera)
-                            {
-                                lblstatus.Content = "Exceso de unidades en talla";
-                                lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
-
-                                txtcodigo.Text = string.Empty;
-                                txtcodigo.Focus();
-
-                            //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                            //    tarea.Start("Exceso de unidades en talla");
-
-                            }
-                            else
-                            {
-
-                                var regis = CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
-
-                                // var regis = (int)resp[0];
-                                if (regis == 1)
-                                {
-                                    cont += regis;
-
-                                    lblUnidadesCaja.Content = cont.ToString();
-
-                                    var totalunidades = Convert.ToInt16(lblTotalEmpaquadas.Content.ToString());
-
-                                    lblTotalEmpaquadas.Content = totalunidades + regis;
-
-                                    lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
-                                    lblstatus.Content = "Codigo Leido Correctamente!!!";
-
-                                    txtcodigo.Text = string.Empty;
-                                    txtcodigo.Focus();
-
-                              //      Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                              //      tarea.Start("Codigo Leido Correctamente!!!");
-                                }
-                                else
-                                {
-
-                                    lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
-                                    lblstatus.Content = "Codigo No Leido!!!";
-
-                                    txtcodigo.Text = string.Empty;
-                                    txtcodigo.Focus();
-
-                                    lblCodigoScan.Content = string.Empty;
-
-                                //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                                //    tarea.Start("Error de Lectura, Intente de nuevo por favor!!!");
-
-                                }
-
-
-                            }
-                        }
-
                     }
                     else
                     {
@@ -310,8 +223,8 @@ namespace AppEmpaqueRocedes
                         lblstatus.Content = "Campos vacíos";
                         txtcodigo.Text = "";
                         txtcodigo.Focus();
-                     //   Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                     //   tarea.Start("Campos vacíos");
+                        //   Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                        //   tarea.Start("Campos vacíos");
 
                     }
                 }
@@ -786,7 +699,109 @@ namespace AppEmpaqueRocedes
             voz.Speak(texto.ToString());
         }
 
+        void registroUnidades()
+        {
+            var bandera1 = false;// verifica si el codigo de barra existe en base de datos 
+            var bandera = false; // Verifica si el codigo ha sido escanedo o esta inactivo
 
+            using (AuditoriaEntities contex = new AuditoriaEntities())
+            {
+                var codigobarra = txtcodigo.Text.TrimEnd();
+
+                var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigobarra));
+
+                if (busqueda == null)
+                {
+                    bandera1 = true;
+                }
+                else
+                {
+                    // valida que el carton exista y no halla sido escaneado
+                    //if (busqueda.estado.TrimEnd().Equals("Escaneado") || busqueda.estado.TrimEnd().Equals("Inactivo"))
+                    if (busqueda.Restante <= 0)
+                    {
+                        bandera = true;
+                    }
+
+                }
+
+            }
+
+
+            if (bandera1)
+            {
+
+                // string us = (string)App.Current.Properties["user"];
+                //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                //  tarea.Start("Codigo no existe");
+
+                lblstatus.Content = "Codigo no existe!";
+                lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
+
+                txtcodigo.Text = string.Empty;
+                txtcodigo.Focus();
+
+            }
+            else
+            {
+                if (bandera)
+                {
+                    lblstatus.Content = "Exceso de unidades en talla";
+                    lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
+
+                    txtcodigo.Text = string.Empty;
+                    txtcodigo.Focus();
+
+                    //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                    //    tarea.Start("Exceso de unidades en talla");
+
+                }
+                else
+                {
+
+                    var regis = CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
+
+                    // var regis = (int)resp[0];
+                    if (regis == 1)
+                    {
+                        cont += regis;
+
+                        lblUnidadesCaja.Content = cont.ToString();
+
+                        var totalunidades = Convert.ToInt16(lblTotalEmpaquadas.Content.ToString());
+
+                        lblTotalEmpaquadas.Content = totalunidades + regis;
+
+                        lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
+                        lblstatus.Content = "Codigo Leido Correctamente!!!";
+
+                        txtcodigo.Text = string.Empty;
+                        txtcodigo.Focus();
+
+                        //      Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                        //      tarea.Start("Codigo Leido Correctamente!!!");
+                    }
+                    else
+                    {
+
+                        lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
+                        lblstatus.Content = "Codigo No Leido!!!";
+
+                        txtcodigo.Text = string.Empty;
+                        txtcodigo.Focus();
+
+                        lblCodigoScan.Content = string.Empty;
+
+                        //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                        //    tarea.Start("Error de Lectura, Intente de nuevo por favor!!!");
+
+                    }
+
+
+                }
+            }
+
+        }
 
         #endregion
 

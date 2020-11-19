@@ -6,7 +6,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:AppEmpaqueRocedes"
         mc:Ignorable="d"
-        Width="900" Height="580" Background="Transparent">
+        Width="900" Height="640" Background="Transparent">
     <Grid Background="#2e3b4c" Opacity="0.84" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="227*"/>
@@ -46,7 +46,7 @@
                                 </TextBox>
                                 <Button Margin="2" Background="Transparent" BorderThickness="0" Grid.Column="1" Padding="5" Name="BtnBuscarBox" Click="BtnBuscarBox_Click"  >
                                     <iconPacks:PackIconMaterial Kind="PackageVariant" Foreground="WhiteSmoke" Height="24" Width="24"  />
-                                
+
                                     <!--<iconPacks:PackIconMaterial Kind="RegularScan" Height="30" Width="30" Foreground="WhiteSmoke" />-->
                                 </Button>
 
@@ -56,10 +56,10 @@
 
                 </Grid>
             </Border>
-        </DockPanel> 
+        </DockPanel>
 
-        
-        
+
+
         <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,5" Padding="5" Grid.Column="0" Grid.Row="2"   >
             <StackPanel Background="Transparent"   >
                 <Grid >
@@ -79,10 +79,10 @@
                 </Grid>
             </StackPanel>
         </Border>
-       
-        
+
+
         <Label Foreground="White" Padding="10,2" x:Name="lblCondicional" Visibility="Collapsed" >NoSelect</Label>
-        
+
         <Border BorderBrush="White"  BorderThickness="0,0,1,0" Padding="5" Grid.Column="0" Grid.Row="3"   >
             <DockPanel Grid.Row="3" Grid.Column="0"  >
                 <Grid  >
@@ -99,9 +99,9 @@
                         <RowDefinition Height="10*"/>
                         <RowDefinition Height="35*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <ListBox Panel.ZIndex="2000" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" Name="lblsugestion" SelectionChanged="lblsugestion_SelectionChanged" IsMouseCapturedChanged="lblsugestion_IsMouseCapturedChanged" KeyUp="lblsugestion_KeyUp" Visibility="Collapsed"  />
-                   
+
                     <Label Grid.Row="1" Content="Corte :"  Grid.ColumnSpan="2"  Style="{StaticResource lblpanelInfoTitulo}"/>
                     <Label Grid.Row="2" Content="Estilo :"  Grid.ColumnSpan="2"  Style="{StaticResource lblpanelInfoTitulo}"/>
                     <Label Grid.Row="3" Content="Unidades :"  Grid.ColumnSpan="2"   Style="{StaticResource lblpanelInfoTitulo}"/>
@@ -130,11 +130,12 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="8*"/>
                         <RowDefinition Height="10*"/>
-                        <RowDefinition Height="12*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="58*"/>
                     </Grid.RowDefinitions>
 
                     <Label Content="Corte :" Grid.Column="0"  Style="{StaticResource lblpanelInfoTitulo}" />
@@ -179,21 +180,44 @@
                             </Grid>
                         </StackPanel>
                     </Border>
+
                     <ComboBox Name="comboclasificacion" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Margin="20,5,0,5"  >
-                       
+
                     </ComboBox>
-                    <Label Name="lblstatus" Foreground="Aqua"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource lbltitulos}"  />
-                    
-                    <DockPanel Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" >
+
+                    <Label Content="Unidades :"   Grid.Row="3" Style="{StaticResource lblpanelInfoTitulo}" />
+
+                    <Border BorderBrush="White"  BorderThickness="0,0,0,1"  Padding="5,5,5,3" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"   >
+                        <StackPanel Background="Transparent"   >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Style="{StaticResource mytextbox}"  x:Name="txtunidadesScan" CaretBrush="WhiteSmoke" KeyUp="txtunidadesScan_KeyUp"  >
+                                </TextBox>
+                                <Border Grid.Column="1" Padding="5,0,0,0">
+                                   
+                                    <iconPacks:PackIconUnicons Kind="FocusAdd" Height="30" Width="30" Foreground="WhiteSmoke" />
+                                </Border>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+
+                    <Label Name="lblstatus" Foreground="Aqua"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource lbltitulos}"  />
+
+                    <DockPanel Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0" >
                         <Grid >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="28*"/>
+                                <ColumnDefinition Width="54*"/>
+                                <ColumnDefinition Width="55*"/>
+                                <ColumnDefinition Width="54*"/>
+                                <ColumnDefinition Width="55*"/>
+                                <ColumnDefinition Width="54*"/>
+                                <ColumnDefinition Width="28*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10*"/>
@@ -221,11 +245,11 @@
                                 <iconPacks:PackIconMaterial Kind="TransitConnection" Height="30" Width="30" Foreground="WhiteSmoke" />
                             </Border>
                             <Label Name="lblestadobox" Content="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Right" FontSize="30" Style="{StaticResource lbltitulosYellow}" />
-                            
+
                         </Grid>
                     </DockPanel>
-                    
-                    <DockPanel Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="3">
+
+                    <DockPanel Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="3">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10*"/>
@@ -243,13 +267,13 @@
                             </Grid.RowDefinitions>
                             <Label Content="Unidades en Caja:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource lblpanelInfoTitulo}" />
                             <Label Name="lblUnidadesCaja" Content="" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource lbltitulosYellow}" FontSize="100" HorizontalAlignment="Center" />
+                           
                         </Grid>
                     </DockPanel>
                 </Grid>
             </Border>
 
         </DockPanel>
-
 
     </Grid>
 </UserControl>
