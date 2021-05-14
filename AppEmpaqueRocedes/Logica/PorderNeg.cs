@@ -26,6 +26,18 @@ namespace AppEmpaqueRocedes.Logica
                                     .Take(20)
                                     .Select(x => new PorderDat { Id_Order = x.Id_Order, POrder = x.POrder1, Id_Style = x.Id_Style, Quantity = x.Quantity, style = x.Style1 })
                                     .ToList();
+
+        }
+
+        public static List<PorderDat> GetPordersGeneradosAutocompletado(string pre)
+        {
+
+            using (var contex = new AuditoriaEntities())
+                return contex.tbPorderSinGuion.Where(x => x.corte.Contains(pre))
+                                    .Take(20)
+                                    .Select(x => new PorderDat { Id_Order = x.idCorte, POrder = x.corte.Trim(), Id_Style = x.idEstilo, Quantity = x.unidades, style = x.estilo })
+                                    .ToList();
+
         }
 
         public static List<Totales> Totales(int idcorte)

@@ -36,7 +36,6 @@ namespace AppEmpaqueRocedes
 
         private BackgroundWorker _worker;
 
-
         #region Tareas Segundo plano
 
         private void CancelWorker(object sender, RoutedEventArgs e)
@@ -140,7 +139,7 @@ namespace AppEmpaqueRocedes
                     var bihorario = contex.Biohorario.ToList();
 
 
-                    linea.Insert(0,new Linea { id_linea=0,numero= "Seleccione..."});
+                    linea.Insert(0, new Linea { id_linea = 0, numero = "Seleccione..." });
                     bihorario.Insert(0, new Biohorario { id_bio = 0, bihorario = "Seleccione..." });
 
                     comboLinea.ItemsSource = linea;//lineaArr;
@@ -211,7 +210,7 @@ namespace AppEmpaqueRocedes
 
                         lblEstadoTicket.Content = "El operario " + operario + " no existe";
 
-                        MensajeVoz("El operario no existe!!!");
+                        //MensajeVoz("El operario no existe!!!");
 
                         //MessageBox.Show("El operario no existe", "Advertencia");
                     }
@@ -269,11 +268,11 @@ namespace AppEmpaqueRocedes
 
                             lbltotal.Content = listadb.Count.ToString();
 
-                            lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0" 
-                                                        ? 
-                                                        listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString() 
+                            lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0"
+                                                        ?
+                                                        listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString()
                                                         :
-                                                        listadb.Where(x => x.bihorario ==Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
+                                                        listadb.Where(x => x.bihorario == Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
 
                             gridCodigos.ItemsSource = listadb;
 
@@ -286,7 +285,7 @@ namespace AppEmpaqueRocedes
             {
                 lblEstadoTicket.Content = ex.Message;
 
-                MensajeVoz(ex.Message);
+                ///  MensajeVoz(ex.Message);
 
             }
         }
@@ -311,9 +310,9 @@ namespace AppEmpaqueRocedes
                         return;
                     }
 
-                    if (comboBihorario.SelectedValue.ToString() == "0" || comboLinea.SelectedValue.ToString() == "0")
+                    if (comboBihorario.SelectedValue.ToString() == "0" || comboLinea.SelectedValue.ToString() == "0" || idemp==0)
                     {
-                        lblEstadoTicket.Content = "Debe seleccionar Linea y bihorario";
+                        lblEstadoTicket.Content = "Debe Seleccionar Linea, Bihorario ó Asignar Operario";
 
                         txtticket.Clear();
                         txtticket.Focus();
@@ -341,106 +340,118 @@ namespace AppEmpaqueRocedes
 
                     var dt = Pervasive_PSQL.GetDataTable(sql);
 
-                    foreach (DataRow item in dt.Rows)
+                    if (dt.Rows.Count == 0)
                     {
-                        var obj = new Pervasives
-                        {
-                            Prodno = item.ItemArray[0].ToString(),
-                            Serialno = item.ItemArray[1].ToString(),
-                            Operno = item.ItemArray[2].ToString(),
-                            Bundleno = Convert.ToInt16(item.ItemArray[3].ToString()),
-                            Descr = item.ItemArray[4].ToString(),
-                            Ctdescr = item.ItemArray[5].ToString(),
-                            BundleUni = Convert.ToInt32(item.ItemArray[8].ToString())
 
-                        };
-
-                        lista.Add(obj);
-                    }
-
-                    if (lista.Count == 0)
-                    {
                         txtticket.Text = string.Empty;
                         txtticket.Focus();
 
                         lblEstadoTicket.Content = "El codigo no existe, Advertencia";
 
-                        //   MensajeVoz("El codigo no existe!!!");
-                        //   MessageBox.Show("El codigo no existe", "Advertencia");
+                       
+
                     }
                     else
                     {
-                        lblCorte.Content = lista[0].Prodno;
-                        lblBulto.Content = lista[0].Bundleno.ToString();
-                        lblEstilo.Content = lista[0].Serialno;
-                        lbloperacion.Content = lista[0].Descr;
-                        lblUnidades.Content = lista[0].BundleUni;
-
-                        // txtticket.Text = string.Empty;
-                        // txtticket.Focus();
-
-                        using (AuditoriaEntities contex = new AuditoriaEntities())
+                        foreach (DataRow item in dt.Rows)
                         {
-                            var serial2 = dt.Rows[0][1].ToString().TrimEnd();
-                            var band = contex.tbProduccionTickets.Where(x => x.serial.Equals(serial2)).FirstOrDefault();
-
-                            if (band == null)
+                            var obj = new Pervasives
                             {
-                                var newobjS = new tbProduccionTickets()
-                                {
-                                    serial = serial2, // dt.Rows[0][1].ToString(),
-                                    codigoOperacion = dt.Rows[0][5].ToString(),
-                                    descOperacion = dt.Rows[0][4].ToString(),
-                                    corte = dt.Rows[0][0].ToString(),
-                                    nSeq = Convert.ToInt16(dt.Rows[0][3].ToString()),
-                                    linea = dt.Rows[0][6].ToString(),
-                                    fechaRegistro = DateTime.Now,
-                                    usuario = emp,
-                                    operarioId = idemp,
-                                    BundleUni = Convert.ToInt32(dt.Rows[0][8].ToString()),
-                                    bihorario=Convert.ToInt16(comboBihorario.SelectedValue.ToString()),
-                                    lineaConfeccion= Convert.ToInt16(comboLinea.SelectedValue.ToString())
-                                };
+                                Prodno = item.ItemArray[0].ToString(),
+                                Serialno = item.ItemArray[1].ToString(),
+                                Operno = item.ItemArray[2].ToString(),
+                                Bundleno = Convert.ToInt16(item.ItemArray[3].ToString()),
+                                Descr = item.ItemArray[4].ToString(),
+                                Ctdescr = item.ItemArray[5].ToString(),
+                                BundleUni = Convert.ToInt32(item.ItemArray[8].ToString())
+                            };
 
-                                contex.tbProduccionTickets.Add(newobjS);
-
-                                contex.SaveChanges();
-
-
-
-                                txtticket.Text = string.Empty;
-                                txtticket.Focus();
-
-                                lblEstadoTicket.Content = "Agregado Correctamente";
-
-                                //  MensajeVoz("Lectura Exitosa");
-
-
-                            }
-                            else
-                            {
-                                txtticket.Text = string.Empty;
-                                txtticket.Focus();
-                                lblEstadoTicket.Content = "Lectura Duplicada";
-
-                                //  MensajeVoz("Lectura Duplicada");
-                            }
-
-
-                            var listadb = contex.spdProduccionOperarioDiario(idemp).ToList();
-
-                            lbltotal.Content = listadb.Count.ToString();
-
-                            lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0"
-                                                        ?
-                                                        listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString()
-                                                        :
-                                                        listadb.Where(x => x.bihorario == Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
-
-                            gridCodigos.ItemsSource = listadb;
-
+                            lista.Add(obj);
                         }
+
+                        if (lista.Count > 0)
+                        {
+
+                            lblCorte.Content = lista[0].Prodno;
+                            lblBulto.Content = lista[0].Bundleno.ToString();
+                            lblEstilo.Content = lista[0].Serialno;
+                            lbloperacion.Content = lista[0].Descr;
+                            lblUnidades.Content = lista[0].BundleUni;
+
+                            using (AuditoriaEntities contex = new AuditoriaEntities())
+                            {
+                                var serial2 = dt.Rows[0][1].ToString().TrimEnd();
+                                var band = contex.tbProduccionTickets.Where(x => x.serial.Equals(serial2)).FirstOrDefault();
+
+                                if (band == null)
+                                {
+                                    var newobjS = new tbProduccionTickets()
+                                    {
+                                        serial = serial2, // dt.Rows[0][1].ToString(),
+                                        codigoOperacion = dt.Rows[0][5].ToString(),
+                                        descOperacion = dt.Rows[0][4].ToString(),
+                                        corte = dt.Rows[0][0].ToString(),
+                                        nSeq = Convert.ToInt16(dt.Rows[0][3].ToString()),
+                                        linea = dt.Rows[0][6].ToString(),
+                                        fechaRegistro = DateTime.Now,
+                                        usuario = emp,
+                                        operarioId = idemp,
+                                        BundleUni = Convert.ToInt32(dt.Rows[0][8].ToString()),
+                                        bihorario = Convert.ToInt16(comboBihorario.SelectedValue.ToString()),
+                                        lineaConfeccion = Convert.ToInt16(comboLinea.SelectedValue.ToString())
+                                    };
+
+                                    contex.tbProduccionTickets.Add(newobjS);
+
+                                    contex.SaveChanges();
+
+
+
+                                    txtticket.Text = string.Empty;
+                                    txtticket.Focus();
+
+                                    lblEstadoTicket.Content = "Agregado Correctamente";
+
+                                    //  MensajeVoz("Lectura Exitosa");
+
+
+                                }
+                                else
+                                {
+                                    txtticket.Text = string.Empty;
+                                    txtticket.Focus();
+                                    lblEstadoTicket.Content = "Lectura Duplicada";
+
+                                    //  MensajeVoz("Lectura Duplicada");
+                                }
+
+
+                                var listadb = contex.spdProduccionOperarioDiario(idemp).ToList();
+
+                                lbltotal.Content = listadb.Count.ToString();
+
+                                lbltotalBihorario.Content = comboBihorario.SelectedValue.ToString() == "0"
+                                                            ?
+                                                            listadb.Where(x => x.bihorario == listadb.Max(z => z.bihorario)).Count().ToString()
+                                                            :
+                                                            listadb.Where(x => x.bihorario == Convert.ToInt16(comboBihorario.SelectedValue.ToString())).Count().ToString();
+
+                                gridCodigos.ItemsSource = listadb;
+
+                            }
+                        }
+                        else
+                        {
+                            txtticket.Text = string.Empty;
+                            txtticket.Focus();
+
+                            lblEstadoTicket.Content = "El codigo no existe, Advertencia";
+                        }
+
                     }
+
+
+                   
 
                 }
             }
@@ -448,7 +459,10 @@ namespace AppEmpaqueRocedes
             {
                 lblEstadoTicket.Content = ex.Message;
 
-                MensajeVoz(ex.Message);
+                txtticket.Text = string.Empty;
+                txtticket.Focus();
+
+                // MensajeVoz(ex.Message);
 
             }
         }
@@ -505,7 +519,7 @@ namespace AppEmpaqueRocedes
             catch (Exception)
             {
 
-                throw;
+                // throw;
             }
         }
 

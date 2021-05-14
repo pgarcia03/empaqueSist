@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:AppEmpaqueRocedes"
         mc:Ignorable="d"
-        Width="900" Height="640" Background="Transparent">
+        Width="900" Height="610" Background="Transparent">
     <Grid Background="#2e3b4c" Opacity="0.84" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="227*"/>
@@ -267,7 +268,7 @@
                             </Grid.RowDefinitions>
                             <Label Content="Unidades en Caja:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource lblpanelInfoTitulo}" />
                             <Label Name="lblUnidadesCaja" Content="" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource lbltitulosYellow}" FontSize="100" HorizontalAlignment="Center" />
-                           
+                            <fa:ImageAwesome Icon="Cog" Spin="True" SpinDuration="4"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" Foreground="White" Visibility="Collapsed" Name="spinn"  />
                         </Grid>
                     </DockPanel>
                 </Grid>

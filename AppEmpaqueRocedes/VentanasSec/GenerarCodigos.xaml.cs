@@ -77,7 +77,8 @@ namespace AppEmpaqueRocedes
                 List<object> genericlist = e.Argument as List<object>;
 
                 var Lista = (List<CodigosDat>)genericlist[0];
-                var bandI = (bool)genericlist[1];
+                var estilo = (string)genericlist[1];
+                var bandI = (bool)genericlist[2];
 
                 BackgroundWorker worker = sender as BackgroundWorker;
 
@@ -95,6 +96,8 @@ namespace AppEmpaqueRocedes
                             btformate.SubStrings["lblcorte"].Value = item.POrder.Trim();
                             btformate.SubStrings["lbltalla"].Value = item.Size.TrimEnd();
                             btformate.SubStrings["lblcodigo"].Value = item.codigoBarra.TrimEnd();
+                            btformate.SubStrings["lblestilo"].Value = estilo.TrimEnd();
+                            btformate.SubStrings["lblcantidad"].Value = item.Cantidad.ToString();
 
                             var resp= btformate.Print();
 
@@ -248,15 +251,23 @@ namespace AppEmpaqueRocedes
                             txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
                             var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
+
                             idporder = obj.Id_Order;
                             lblCorte.Content = obj.POrder;
+
+                            //eliminaremos el guion del corte para que sea completo 
                             lblEstilo.Content = obj.style;
-                            lblUnidades.Content = obj.Quantity;
+                           // lblUnidades.Content = obj.Quantity;//no va 
 
-                            if (idporder != 0)
+                            if (idporder != 0) 
                             {
-                                listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
+                                var user = (tbUserEmpaque)App.Current.Properties["User"];
+
+                                listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder,obj.POrder,obj.Id_Style,obj.style,user.nombreUsuario.ToLower()).Result;
+
+                                lblUnidades.Content = listacodigo.Sum(x=>x.Cantidad);
+                                
                                 gridCodigos.ItemsSource = listacodigo;
                             }
 
@@ -307,12 +318,19 @@ namespace AppEmpaqueRocedes
                         idporder = obj.Id_Order;
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
-                        lblUnidades.Content = obj.Quantity;
+                       // lblUnidades.Content = obj.Quantity;
 
 
                         if (idporder != 0)
                         {
-                            listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
+
+                            var user = (tbUserEmpaque)App.Current.Properties["User"];
+
+                            listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder, obj.POrder, obj.Id_Style, obj.style, user.nombreUsuario.ToLower()).Result;
+
+                            lblUnidades.Content = listacodigo.Sum(x => x.Cantidad);
+
+                           // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                             gridCodigos.ItemsSource = listacodigo;
                         }
@@ -338,7 +356,13 @@ namespace AppEmpaqueRocedes
             {
                 if (idporder != 0)
                 {
-                    listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
+                    var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
+
+                    var user = (tbUserEmpaque)App.Current.Properties["User"];
+
+                    listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder, obj.POrder, obj.Id_Style, obj.style, user.nombreUsuario.ToLower()).Result;
+
+                   // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                     gridCodigos.ItemsSource = listacodigo;
                 }
@@ -360,6 +384,8 @@ namespace AppEmpaqueRocedes
                     var num = lblCorte.Content.ToString().IndexOf('-', 4);
 
                     var corte = lblCorte.Content.ToString().Substring(0, num == -1 ? lblCorte.Content.ToString().Length : num);
+
+                    var estilo = lblEstilo.Content.ToString();
 
                     var resp = CodigosNeg.GuardarCodigos(listacodigo, corte);
 
@@ -386,6 +412,7 @@ namespace AppEmpaqueRocedes
                             List<object> arg = new List<object>
                             {
                                 result,
+                                estilo,
                                 false
                             };
 
@@ -463,6 +490,8 @@ namespace AppEmpaqueRocedes
                         var secF = Convert.ToInt32(txtinicio.Text) < Convert.ToInt32(txtfinal.Text) ? Convert.ToInt32(txtfinal.Text) : Convert.ToInt32(txtfinal.Text);
                         string respMess = $"Desea imprimir la siguiente secuencia {secI}-{secF}??";
 
+                        var estilo = lblEstilo.Content.ToString();
+
                         var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                         if (respmensaje == MessageBoxResult.OK)
@@ -477,6 +506,7 @@ namespace AppEmpaqueRocedes
                             List<object> arg = new List<object>
                             {
                                 ListaSecuencia,
+                                estilo,
                                 true
                             };
 

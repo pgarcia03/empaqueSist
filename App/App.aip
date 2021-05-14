@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="16.2" version="16.2" Modules="simple" RootPath="." Language="en" Id="{43DD5A89-7231-4CA2-838B-18E57D635131}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;FixupComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.2" version="18.2" Modules="simple" RootPath="." Language="en" Id="{43DD5A89-7231-4CA2-838B-18E57D635131}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_CURRENT_YEAR" Value="2021" ValueLocId="-"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe.config" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.pdb" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_ControlzEx.dll" Value="..\packages\ControlzEx.4.3.2\lib\net45"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_FontAwesome.WPF.dll" Value="..\packages\FontAwesome.WPF.4.7.0.9\lib\net40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Entypo.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
@@ -35,15 +34,16 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.dll" Value="..\packages\MahApps.Metro.2.2.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.Xaml.Behaviors.dll" Value="..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.Common.dll" Value="..\..\..\..\Desktop\ADONET3.5"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.SqlClient.dll" Value="..\..\..\..\Desktop\ADONET3.5"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Seagull.BarTender.Print.dll" Value="..\..\..\..\..\..\Program Files (x86)\Seagull\BarTender 2019\SDK\Assemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.Common.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.SqlClient.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Seagull.BarTender.Print.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe" Value="AppEmpaqueRocedes.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe.config" Value="AppEmpaqueRocedes.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.pdb" Value="AppEmpaqueRocedes.pdb"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ControlzEx.dll" Value="ControlzEx.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll" Value="EntityFramework.SqlServer.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll" Value="EntityFramework.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_FontAwesome.WPF.dll" Value="FontAwesome.WPF.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Value="MahApps.Metro.IconPacks.BoxIcons.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Value="MahApps.Metro.IconPacks.Core.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Entypo.dll" Value="MahApps.Metro.IconPacks.Entypo.dll"/>
@@ -76,10 +76,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="escan.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Rocedes"/>
-    <ROW Property="ProductCode" Value="1033:{DE9A3359-9300-4F4A-8C02-CA4F15927E1C} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{1E80EE31-4186-4E31-BE9C-5CC9689643D0} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Scanning"/>
-    <ROW Property="ProductVersion" Value="1.0.11" Type="32"/>
+    <ROW Property="ProductVersion" Value="2.0.5" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{7FD4ED2A-1E0B-4DF5-8AE0-A872D7D9965C}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -88,8 +88,8 @@
     <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -99,11 +99,11 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{FD126C44-E700-47BE-A991-557D4A25974B}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="AppEmpaqueRocedes_PrimaryOutput" ComponentId="{AFAFE1B8-C170-4E65-AC9E-A4EE87A19F4C}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.exe"/>
-    <ROW Component="AppEmpaqueRocedes_References" ComponentId="{FF0103E3-4740-4E39-94C5-6CA3BD263D89}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="Seagull.BarTender.Print.dll"/>
-    <ROW Component="AppEmpaqueRocedes_SymbolsOutput" ComponentId="{B10B0129-34ED-4AEC-B8F5-B86B5B1DB0C5}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.pdb"/>
+    <ROW Component="AppEmpaqueRocedes_PrimaryOutput" ComponentId="{2D93C477-0EE5-4917-9042-1C98A66A06FE}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.exe"/>
+    <ROW Component="AppEmpaqueRocedes_References" ComponentId="{B6040E3D-9977-4DF4-96F2-0411C150889E}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="Seagull.BarTender.Print.dll"/>
+    <ROW Component="AppEmpaqueRocedes_SymbolsOutput" ComponentId="{3A5D8D00-CA95-4BD8-A089-BA944E976B7E}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.pdb"/>
     <ROW Component="ProductInformation" ComponentId="{2CBA41DE-5CFC-4CA1-AECC-0FFFDC1DDEF6}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{CBA8BE9B-F6C4-4CFA-B6F2-4933CB2C64BA}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{357B1E19-C090-4E5F-9488-50149A288DB3}" Directory_="SHORTCUTDIR" Attributes="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -115,6 +115,7 @@
     <ROW File="ControlzEx.dll" Component_="AppEmpaqueRocedes_References" FileName="CONTRO~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_ControlzEx.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ControlzEx.dll&gt;" SelfReg="false"/>
     <ROW File="EntityFramework.dll" Component_="AppEmpaqueRocedes_References" FileName="ENTITY~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.dll&gt;" SelfReg="false"/>
     <ROW File="EntityFramework.SqlServer.dll" Component_="AppEmpaqueRocedes_References" FileName="ENTITY~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll&gt;" SelfReg="false"/>
+    <ROW File="FontAwesome.WPF.dll" Component_="AppEmpaqueRocedes_References" FileName="FONTAW~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_FontAwesome.WPF.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_FontAwesome.WPF.dll&gt;" SelfReg="false"/>
     <ROW File="MahApps.Metro.dll" Component_="AppEmpaqueRocedes_References" FileName="MAHAPP~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MahApps.Metro.dll&gt;" SelfReg="false"/>
     <ROW File="MahApps.Metro.IconPacks.BoxIcons.dll" Component_="AppEmpaqueRocedes_References" FileName="MAHAPP~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll&gt;" SelfReg="false"/>
     <ROW File="MahApps.Metro.IconPacks.Core.dll" Component_="AppEmpaqueRocedes_References" FileName="MAHAPP~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Core.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.Core.dll&gt;" SelfReg="false"/>
@@ -151,6 +152,7 @@
     <ROW Name="AI_APPPATH_PERBUILD_ControlzEx.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_ControlzEx.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_ControlzEx.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_FontAwesome.WPF.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_FontAwesome.WPF.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_FontAwesome.WPF.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Core.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Core.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.Entypo.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Entypo.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Entypo.dll]" Type="2" Content="0"/>
@@ -274,9 +276,9 @@
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
@@ -299,6 +301,7 @@
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="ControlzEx.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="EntityFramework.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="EntityFramework.SqlServer.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="FontAwesome.WPF.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="MahApps.Metro.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="MahApps.Metro.IconPacks.BoxIcons.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="MahApps.Metro.IconPacks.Core.dll"/>

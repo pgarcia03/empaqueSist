@@ -59,6 +59,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.2.0\lib\net46\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -128,6 +131,13 @@
     <Reference Include="MahApps.Metro.IconPacks.Zondicons, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46\MahApps.Metro.IconPacks.Zondicons.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\programador\Desktop\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms">
+      <HintPath>C:\Users\programador\Desktop\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
@@ -171,30 +181,84 @@
     </ApplicationDefinition>
     <Compile Include="Logica\Pervasive_PSQL.cs" />
     <Compile Include="Logica\UsuarioNeg.cs" />
+    <Compile Include="Model\AuditoriaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditoriaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AuditoriaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AuditoriaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Biohorario.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Bundle.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Cliente.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\getcorteBox_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\getInfobox_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Linea.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Operacion.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Operario.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Pervasives.cs" />
+    <Compile Include="Model\Planta.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\POrder.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spdExtraeTallasXCortecompleto_Result.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\spdProduccionOperarioDiario_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Style.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbBultosCodigosBarra.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbCodigosBarraScan.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbcodigosCajas.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbCorteSecuenciaCaja.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblUserEnvio.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbPorderSinGuion.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tbProduccionTickets.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tbUserEmpaque.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ScanTickets\Converter.cs" />
     <Compile Include="ScanTickets\PricipalTickets.xaml.cs">
@@ -207,7 +271,9 @@
       <DependentUpon>CrearUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\HashClass.cs" />
-    <Compile Include="VentanasSec\ImprimirBoxCl.cs" />
+    <Compile Include="VentanasSec\Class1.cs" />
+    <Compile Include="VentanasSec\ImprimirBox.cs" />
+    <Compile Include="VentanasSec\ImprimirTicket.cs" />
     <Page Include="ScanTickets\PricipalTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,15 +304,6 @@
     </Compile>
     <Compile Include="Logica\PorderNeg.cs" />
     <Compile Include="Model\PorderDat.cs" />
-    <Compile Include="Model\tbCodigosBarraScan.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tbcodigosCajas.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tbCorteSecuenciaCaja.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Totales.cs" />
     <Compile Include="VentanasSec\EscanerEmpaque.xaml.cs">
       <DependentUpon>EscanerEmpaque.xaml</DependentUpon>
@@ -264,46 +321,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Bundle.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Cliente.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\CodigosDat.cs" />
-    <Compile Include="Model\Linea.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Planta.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\POrder.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Style.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tbBultosCodigosBarra.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblUserEnvio.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
@@ -324,14 +342,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model.edmx">
+    <EmbeddedResource Include="VentanasSec\ReportBox.rdlc" />
+    <EntityDeploy Include="Model\AuditoriaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>AuditoriaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <None Include="Model\AuditoriaModel.edmx.diagram">
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\AppEmpaqueRocedes.Model.getcorteBox_Result.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -375,16 +397,6 @@
     <Resource Include="images\userfondo3.png" />
     <Resource Include="images\Logo.png" />
     <Resource Include="images\escan.ico" />
-    <Content Include="Model\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -392,7 +404,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6 %28x86 y x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -400,6 +412,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\AuditoriaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
+      <LastGenOutput>AuditoriaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\AuditoriaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
+      <LastGenOutput>AuditoriaModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,6 +17,9 @@ using System.Windows.Shapes;
 using System.Speech.Synthesis;
 using System.Threading;
 using Seagull.BarTender.Print;
+using Microsoft.Reporting.WinForms;
+using AppEmpaqueRocedes.VentanasSec;
+using System.Drawing.Printing;
 
 namespace AppEmpaqueRocedes
 {
@@ -48,13 +51,17 @@ namespace AppEmpaqueRocedes
 
             comboclasificacion.ItemsSource = ListaClasificacion;
 
-            comboclasificacion.SelectedIndex = 0;
+            comboclasificacion.SelectedIndex = 1;
 
             _worker = new BackgroundWorker();
 
             _worker.WorkerReportsProgress = true;
 
             _worker.DoWork += new System.ComponentModel.DoWorkEventHandler(_worker_DoWork);
+
+            ImpresoraPredeterminada();
+
+             
 
         }
 
@@ -82,7 +89,29 @@ namespace AppEmpaqueRocedes
 
                 BackgroundWorker worker = sender as BackgroundWorker;
 
-                var lb = @"D:\Box.btw";
+
+              /*  LocalReport rdlc = new LocalReport();
+                //  rdlc.ReportPath = @"..\..\Report1.rdlc";
+                // rdlc.ReportPath = @"C:\ReportDickies.rdlc";
+                rdlc.ReportPath = @"..\..\ReportBox.rdlc";
+
+               // var test = new Class1();
+              //  using (PackingDBEntities contex = new PackingDBEntities())
+              //  {
+                  //  var list = contex.spdFomatoEstibasDC(contenedor, abrev, Convert.ToInt32(estiba)).ToList();
+
+                    rdlc.DataSources.Add(new ReportDataSource("DataSet1", item));
+
+             //   }
+
+                using (ImprimirBox imp = new ImprimirBox())
+                {
+                    imp.Imprime(rdlc);
+                }
+              */
+
+
+                var lb = @"D:\Box12.btw";
                 using (Engine engine = new Engine(true))
                 {
                     engine.Start();
@@ -94,10 +123,30 @@ namespace AppEmpaqueRocedes
                         btformate.SubStrings["lblcorte"].Value = item.corte.TrimEnd();
                         btformate.SubStrings["lblestilo"].Value = item.estilo.TrimEnd();
                         btformate.SubStrings["lblunidades"].Value = item.unidades.ToString();
-                        btformate.SubStrings["lblcolor"].Value = item.color.TrimEnd();
-                        btformate.SubStrings["lblestado"].Value = item.estado.TrimEnd();
-                        btformate.SubStrings["lblcodigobox"].Value = item.codigoBox.TrimEnd();
-                        btformate.SubStrings["lblcorteGuion"].Value = item.corteguion.TrimEnd();
+                        //  btformate.SubStrings["lblcolor"].Value = item.color.TrimEnd();
+                        //  btformate.SubStrings["lblestado"].Value = item.estado.TrimEnd();
+                      //  btformate.SubStrings["lblcodigobox"].Value = item.codigoBox.TrimEnd();
+                       // btformate.SubStrings["lblcorteGuion"].Value = item.corteguion.TrimEnd();
+
+                        var arrtalla = item.tallas.Split(',');
+                        var talla1 = "";
+                        var talla2 = "";
+                       // var talla3 = "";
+
+                        for (int i = 0; i < arrtalla.Length; i++)
+                        {
+                            if (i < 2)
+                                talla1 = talla1 == "" ? arrtalla[i].Trim() : string.Concat(talla1, ", ", arrtalla[i].Trim());
+                            else if (i >= 2 && i < 4)
+                                talla2 = talla2 == "" ? arrtalla[i].Trim() : string.Concat(talla2, ", ", arrtalla[i].Trim());
+                           // else if (i >= 5)
+                               // talla3 = talla3 == "" ? arrtalla[i].Trim() : string.Concat(talla3, ", ", arrtalla[i].Trim());
+                        }
+
+                        btformate.SubStrings["lbltalla1"].Value = talla1;
+                        btformate.SubStrings["lbltalla2"].Value = talla2;
+                       // btformate.SubStrings["lbltalla3"].Value = talla3;
+
 
                         var resp = btformate.Print();
 
@@ -110,7 +159,7 @@ namespace AppEmpaqueRocedes
                     //  btformat.Close(BarTender.BtSaveOptions.btDoNotSaveChanges);
                     engine.Stop();
                 }
-
+                
 
             }
             catch (Exception ex)
@@ -162,7 +211,7 @@ namespace AppEmpaqueRocedes
             if (txtcorte.Text.Count() > 2)
             {
 
-                lista = PorderNeg.GetPordersAutocompletado(corte);
+                lista = PorderNeg.GetPordersGeneradosAutocompletado(corte);
 
                 List<string> listas = new List<string>();
 
@@ -197,10 +246,22 @@ namespace AppEmpaqueRocedes
 
         private void txtcodigo_KeyUp(object sender, KeyEventArgs e)
         {
-            
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    txtunidadesScan.Clear();
+                    txtunidadesScan.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        private void txtunidadesScan_KeyUp(object sender, KeyEventArgs e)
+        private async void txtunidadesScan_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
@@ -212,10 +273,27 @@ namespace AppEmpaqueRocedes
 
                     if (txtcodigo.Text != string.Empty && idbox != 0)
                     {
+                        lblUnidadesCaja.Visibility = Visibility.Collapsed;
+                        spinn.Visibility = Visibility.Visible;
+
                         for (int i = 0; i < unidades; i++)
                         {
-                            registroUnidades();
+
+                            var tarea = await registroUnidades();
+
+                            if (tarea!="OK")
+                            {
+                                break;
+                            }
+
                         }
+
+                        txtcodigo.Text = string.Empty;
+                        txtunidadesScan.Text = string.Empty;
+                        txtcodigo.Focus();
+
+                        spinn.Visibility = Visibility.Collapsed;
+                        lblUnidadesCaja.Visibility = Visibility.Visible;
                     }
                     else
                     {
@@ -327,7 +405,7 @@ namespace AppEmpaqueRocedes
                         lblCondicional.Content = "Select";
                         txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
-                        var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
+                        var obj = lista.FirstOrDefault(x => x.POrder.Trim().Equals(txtcorte.Text));
                         idporder = obj.Id_Order;
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
@@ -428,21 +506,34 @@ namespace AppEmpaqueRocedes
             {
                 if (idporder != 0 && lblEstilo.Content.ToString() != string.Empty)
                 {
-                    var resp = await CodigosNeg.crearCaja(idporder, lblEstilo.Content.ToString(),usuario);
+                    var resp = await CodigosNeg.crearCaja(idporder, lblEstilo.Content.ToString(), lblCorte.Content.ToString(), usuario);
 
                     lblbox.Content = resp.codigo;
                     idbox = resp.id;
 
                     lblUnidadesCaja.Content = 0;
+                    cont = 0;
                     lblCodigoScan.Content = string.Empty;
+
 
                     txtcodigo.Text = string.Empty;
                     txtcodigo.IsEnabled = true;
                     txtcodigo.Focus();
+                    txtunidadesScan.Text = string.Empty;
 
                     lblstatus.Content = "Esperando Lectura de Escanner";
 
                     lblestadobox.Content = "Pendiente";
+
+                    if (idporder != 0)
+                    {
+
+                        var total = PorderNeg.Totales(idporder);
+
+                        lblTotalcajas.Content = total.Count().ToString();
+                        lblTotalEmpaquadas.Content = total.Sum(x => x.unidades);
+
+                    }
                 }
 
             }
@@ -468,7 +559,7 @@ namespace AppEmpaqueRocedes
                         lblCondicional.Content = "Select";
                         txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
-                        var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
+                        var obj = lista.FirstOrDefault(x => x.POrder.Trim().Equals(txtcorte.Text));
                         idporder = obj.Id_Order;
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
@@ -576,8 +667,8 @@ namespace AppEmpaqueRocedes
                     List<object> arg = new List<object>();
                     arg.Add(resp);
 
-                  //  Thread tarea = new Thread(new ParameterizedThreadStart(mensajeVoz));
-                  //  tarea.Start("Iniciando Proceso de impresión");
+                    //  Thread tarea = new Thread(new ParameterizedThreadStart(mensajeVoz));
+                    //  tarea.Start("Iniciando Proceso de impresión");
 
                     _worker.RunWorkerAsync(arg);
 
@@ -594,8 +685,8 @@ namespace AppEmpaqueRocedes
                     lblstatus.Content = "";
 
                     MessageBox.Show("Campos vacíos");
-                  //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
-                  //  tarea.Start("Campos vacíos");
+                    //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
+                    //  tarea.Start("Campos vacíos");
                 }
 
 
@@ -637,6 +728,7 @@ namespace AppEmpaqueRocedes
             //autocompletado
             txtcorte.Text = string.Empty;
             txtcorte.Focus();
+            txtunidadesScan.Clear();
 
             //control panel izquierdo
             lblCorte.Content = string.Empty;
@@ -649,14 +741,15 @@ namespace AppEmpaqueRocedes
             lblCorteT.Content = string.Empty;
             lblEstiloT.Content = string.Empty;
 
-
             //estados
             lblCodigoScan.Content = string.Empty;
             lblbox.Content = string.Empty;
             lblUnidadesCaja.Content = 0;
             lblstatus.Content = "Realice Busqueda, Esperando...";
-            comboclasificacion.SelectedIndex = 0;
+            comboclasificacion.SelectedIndex = 1;
             lblestadobox.Content = string.Empty;
+
+
 
         }
 
@@ -671,12 +764,13 @@ namespace AppEmpaqueRocedes
 
             //estados
             txtcodigo.Clear();
+            txtunidadesScan.Clear();
             txtcodigo.IsEnabled = false;
             lblCodigoScan.Content = string.Empty;
             lblbox.Content = string.Empty;
             lblUnidadesCaja.Content = 0;
             lblstatus.Content = "Crear Caja Para Iniciar Escaneo";
-            comboclasificacion.SelectedIndex = 0;
+            comboclasificacion.SelectedIndex = 1;
             lblestadobox.Content = string.Empty;
 
         }
@@ -699,16 +793,19 @@ namespace AppEmpaqueRocedes
             voz.Speak(texto.ToString());
         }
 
-        void registroUnidades()
+        async Task<string> registroUnidades()
         {
+            var codigo = txtcodigo.Text.TrimEnd();
             var bandera1 = false;// verifica si el codigo de barra existe en base de datos 
             var bandera = false; // Verifica si el codigo ha sido escanedo o esta inactivo
 
+
             using (AuditoriaEntities contex = new AuditoriaEntities())
             {
-                var codigobarra = txtcodigo.Text.TrimEnd();
 
-                var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigobarra));
+                //var codigobarra = txtcodigo.Text.TrimEnd();
+
+                var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigo) && x.idCorte==idporder);
 
                 if (busqueda == null)
                 {
@@ -735,12 +832,14 @@ namespace AppEmpaqueRocedes
                 //  Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
                 //  tarea.Start("Codigo no existe");
 
-                lblstatus.Content = "Codigo no existe!";
+                lblstatus.Content = "Codigo no existe ó pertenece a otro corte!!!";
                 lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
 
                 txtcodigo.Text = string.Empty;
                 txtcodigo.Focus();
 
+                return "NE";
+                // break;
             }
             else
             {
@@ -752,6 +851,8 @@ namespace AppEmpaqueRocedes
                     txtcodigo.Text = string.Empty;
                     txtcodigo.Focus();
 
+                    return "UE";
+                    // break;
                     //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
                     //    tarea.Start("Exceso de unidades en talla");
 
@@ -759,7 +860,7 @@ namespace AppEmpaqueRocedes
                 else
                 {
 
-                    var regis = CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
+                    var regis =await CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
 
                     // var regis = (int)resp[0];
                     if (regis == 1)
@@ -775,8 +876,9 @@ namespace AppEmpaqueRocedes
                         lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
                         lblstatus.Content = "Codigo Leido Correctamente!!!";
 
-                        txtcodigo.Text = string.Empty;
-                        txtcodigo.Focus();
+                      
+
+                        return "OK";
 
                         //      Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
                         //      tarea.Start("Codigo Leido Correctamente!!!");
@@ -792,6 +894,8 @@ namespace AppEmpaqueRocedes
 
                         lblCodigoScan.Content = string.Empty;
 
+
+                        return "NL";
                         //    Thread tarea = new Thread(new ParameterizedThreadStart(mensaje));
                         //    tarea.Start("Error de Lectura, Intente de nuevo por favor!!!");
 
@@ -801,9 +905,23 @@ namespace AppEmpaqueRocedes
                 }
             }
 
+           
+
         }
 
         #endregion
+
+        private string ImpresoraPredeterminada()
+        {
+            for (Int32 i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                PrinterSettings a = new PrinterSettings();
+                a.PrinterName = PrinterSettings.InstalledPrinters[i].ToString();
+                if (a.IsDefaultPrinter)
+                { return PrinterSettings.InstalledPrinters[i].ToString(); }
+            }
+            return "";
+        }
 
     }
 }
