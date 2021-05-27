@@ -1,25 +1,25 @@
-﻿using AppEmpaqueRocedes.Model;
-using AppEmpaqueRocedes.Logica;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Speech.Synthesis;
-using System.Threading;
-using Seagull.BarTender.Print;
+
+//using Seagull.BarTender.Print;
 using Microsoft.Reporting.WinForms;
+using BarcodeLib;
+
+using AppEmpaqueRocedes.Model;
+using AppEmpaqueRocedes.Logica;
 using AppEmpaqueRocedes.VentanasSec;
-using System.Drawing.Printing;
+
 
 namespace AppEmpaqueRocedes
 {
@@ -58,11 +58,7 @@ namespace AppEmpaqueRocedes
             _worker.WorkerReportsProgress = true;
 
             _worker.DoWork += new System.ComponentModel.DoWorkEventHandler(_worker_DoWork);
-
-            ImpresoraPredeterminada();
-
-             
-
+          
         }
 
         private BackgroundWorker _worker;
@@ -84,32 +80,35 @@ namespace AppEmpaqueRocedes
             {
                 List<object> genericlist = e.Argument as List<object>;
 
-                var item = (getcorteBox_Result)genericlist[0];
-                //var codigobox = (string)genericlist[1];
+                var item = (List<resultBox>)genericlist[0];
 
                 BackgroundWorker worker = sender as BackgroundWorker;
 
 
-              /*  LocalReport rdlc = new LocalReport();
-                //  rdlc.ReportPath = @"..\..\Report1.rdlc";
-                // rdlc.ReportPath = @"C:\ReportDickies.rdlc";
-                rdlc.ReportPath = @"..\..\ReportBox.rdlc";
+                LocalReport rdlc = new LocalReport();
 
-               // var test = new Class1();
-              //  using (PackingDBEntities contex = new PackingDBEntities())
-              //  {
-                  //  var list = contex.spdFomatoEstibasDC(contenedor, abrev, Convert.ToInt32(estiba)).ToList();
+               // rdlc.ReportPath = @"..\..\VentanasSec\ReportBox.rdlc";
+                rdlc.ReportPath = @"C:\ReportBox.rdlc";
 
-                    rdlc.DataSources.Add(new ReportDataSource("DataSet1", item));
-
-             //   }
+                rdlc.DataSources.Add(new ReportDataSource("DataSet1", item));
 
                 using (ImprimirBox imp = new ImprimirBox())
                 {
                     imp.Imprime(rdlc);
                 }
-              */
 
+                #region codigo funcional dejado en comentario debido a que bartender no se puede instalar en algunas maquinas
+
+
+
+                /*
+
+            
+
+
+             //  rdlc.ReportPath = @"..\..\Report1.rdlc";
+            // rdlc.ReportPath = @"C:\ReportDickies.rdlc";
+         
 
                 var lb = @"D:\Box12.btw";
                 using (Engine engine = new Engine(true))
@@ -159,16 +158,18 @@ namespace AppEmpaqueRocedes
                     //  btformat.Close(BarTender.BtSaveOptions.btDoNotSaveChanges);
                     engine.Stop();
                 }
-                
-
+                */
+                #endregion
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //  throw;
+
             }
 
         }
+
+
         #endregion
 
         #region Eventos de Cajas de texto
@@ -245,18 +246,18 @@ namespace AppEmpaqueRocedes
         }
 
         private void txtcodigo_KeyUp(object sender, KeyEventArgs e)
-        {
+      {
             try
             {
                 if (e.Key == Key.Enter)
                 {
-                    txtunidadesScan.Clear();
+                    txtunidadesScan.Text=string.Empty;
                     txtunidadesScan.Focus();
+                    lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -281,7 +282,7 @@ namespace AppEmpaqueRocedes
 
                             var tarea = await registroUnidades();
 
-                            if (tarea!="OK")
+                            if (tarea != "OK")
                             {
                                 break;
                             }
@@ -383,7 +384,6 @@ namespace AppEmpaqueRocedes
 
         #endregion
 
-        //Listo
         #region Eventos ListBox
 
         private void lblsugestion_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -500,6 +500,7 @@ namespace AppEmpaqueRocedes
         #endregion
 
         #region Eventos click de botones
+
         private async void BtnAbrir_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -656,16 +657,47 @@ namespace AppEmpaqueRocedes
             {
 
                 var clasificacion = comboclasificacion.SelectedItem.ToString();
-                // var b = string.Compare(clasificacion, "Seleccione...");
 
                 if ((idbox != 0 || !lblbox.Content.ToString().Equals(string.Empty)) && string.Compare(clasificacion, "Seleccione...") != 0)
                 {
-
                     var resp = CodigosNeg.imprimirBox(lblbox.Content.ToString(), usuario, clasificacion.ToUpper());
+
+                    Barcode b = new Barcode();
+
+                    b.IncludeLabel = true;
+                    b.Alignment = AlignmentPositions.CENTER;
+                    b.LabelFont = new Font(System.Drawing.FontFamily.GenericMonospace, 20 * Barcode.DotsPerPointAt96Dpi, System.Drawing.FontStyle.Regular, GraphicsUnit.Pixel);
+                    b.LabelPosition = LabelPositions.BOTTOMCENTER;
+
+                    var img = b.Encode(TYPE.CODE128, resp.codigoBox.Trim(), System.Drawing.Color.Black, System.Drawing.Color.White, 250, 80);
+
+                    List<resultBox> T = new List<resultBox>();
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        img.Save(ms, ImageFormat.Png);
+
+                        var objnewImg = new resultBox
+                        {
+                            codigoBox = resp.codigoBox,
+                            color = resp.color,
+                            corte = resp.corte,
+                            corteguion = resp.corteguion,
+                            estado = resp.estado,
+                            estilo = resp.estilo,
+                            tallas = resp.tallas,
+                            unidades = resp.unidades,
+                            Img = ms.ToArray()
+                        };
+
+                        T.Add(objnewImg);
+
+                        ms.Dispose();
+                    }
 
 
                     List<object> arg = new List<object>();
-                    arg.Add(resp);
+                    arg.Add(T);
 
                     //  Thread tarea = new Thread(new ParameterizedThreadStart(mensajeVoz));
                     //  tarea.Start("Iniciando Proceso de impresión");
@@ -678,6 +710,7 @@ namespace AppEmpaqueRocedes
                     lblTotalEmpaquadas.Content = total.Sum(x => x.unidades);
 
                     limpiarDespuesDImprimir();
+
                 }
                 else
                 {
@@ -708,14 +741,14 @@ namespace AppEmpaqueRocedes
             catch (Exception)
             {
 
-                throw;
+               // throw;
             }
         }
-
 
         #endregion
 
         #region funciones
+
         void limpiarTodo()
         {
             //variables
@@ -805,7 +838,7 @@ namespace AppEmpaqueRocedes
 
                 //var codigobarra = txtcodigo.Text.TrimEnd();
 
-                var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigo) && x.idCorte==idporder);
+                var busqueda = contex.tbBultosCodigosBarra.FirstOrDefault(x => x.codigoBarra.TrimEnd().Equals(codigo) && x.idCorte == idporder);
 
                 if (busqueda == null)
                 {
@@ -860,7 +893,7 @@ namespace AppEmpaqueRocedes
                 else
                 {
 
-                    var regis =await CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
+                    var regis = await CodigosNeg.EscaneoCodigo(lblbox.Content.ToString(), txtcodigo.Text.TrimEnd(), usuario);
 
                     // var regis = (int)resp[0];
                     if (regis == 1)
@@ -876,7 +909,7 @@ namespace AppEmpaqueRocedes
                         lblCodigoScan.Content = txtcodigo.Text.TrimEnd();
                         lblstatus.Content = "Codigo Leido Correctamente!!!";
 
-                      
+
 
                         return "OK";
 
@@ -905,23 +938,13 @@ namespace AppEmpaqueRocedes
                 }
             }
 
-           
+
 
         }
 
         #endregion
 
-        private string ImpresoraPredeterminada()
-        {
-            for (Int32 i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
-            {
-                PrinterSettings a = new PrinterSettings();
-                a.PrinterName = PrinterSettings.InstalledPrinters[i].ToString();
-                if (a.IsDefaultPrinter)
-                { return PrinterSettings.InstalledPrinters[i].ToString(); }
-            }
-            return "";
-        }
+      
 
     }
 }

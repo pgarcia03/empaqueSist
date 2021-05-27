@@ -9,26 +9,30 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!corte.Value</Value>
-                <Style />
+                <Value>Corte:</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.89263cm</Top>
-        <Left>1.20365cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>0.05cm</Top>
+        <Left>0.03cm</Left>
+        <Height>0.35cm</Height>
+        <Width>1.4743cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
         </Style>
       </Textbox>
       <Textbox Name="Textbox2">
@@ -38,27 +42,31 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!unidades.Value</Value>
-                <Style />
+                <Value>Estilo:</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>1.92936cm</Top>
-        <Left>1.20365cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>0.45995cm</Top>
+        <Left>0.03cm</Left>
+        <Height>0.35cm</Height>
+        <Width>1.4743cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
         </Style>
       </Textbox>
       <Textbox Name="Textbox3">
@@ -68,27 +76,30 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!estilo.Value</Value>
-                <Style />
+                <Value>=Fields!corte.Value</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>0.89263cm</Top>
-        <Left>4.36569cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Left>1.53958cm</Left>
+        <Height>0.4cm</Height>
+        <Width>2.02235cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
         </Style>
       </Textbox>
       <Textbox Name="Textbox10">
@@ -98,39 +109,179 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!tallas.Value</Value>
-                <Style />
+                <Value>=Fields!estilo.Value</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>1.92936cm</Top>
-        <Left>4.36569cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>0.45689cm</Top>
+        <Left>1.53958cm</Left>
+        <Height>0.35306cm</Height>
+        <Width>2.02235cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
         </Style>
       </Textbox>
-      <Image Name="Image4">
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tallas:</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>1.28092cm</Top>
+        <Left>0.03cm</Left>
+        <Height>0.35cm</Height>
+        <Width>1.4743cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox11">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!tallas.Value</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>1.23482cm</Top>
+        <Left>1.53958cm</Left>
+        <Height>0.3961cm</Height>
+        <Width>2.02235cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Unidades:</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.86036cm</Top>
+        <Left>0.03cm</Left>
+        <Height>0.35cm</Height>
+        <Width>1.4743cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!unidades.Value</Value>
+                <Style>
+                  <FontFamily>Consolas</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>0.81036cm</Top>
+        <Left>1.53958cm</Left>
+        <Height>0.4cm</Height>
+        <Width>2.02235cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
+        </Style>
+      </Textbox>
+      <Image Name="Image3">
         <Source>Database</Source>
-        <Value>=First(Fields!codigoBox.Value, "DataSet1")</Value>
+        <Value>=First(Fields!Img.Value, "DataSet1")</Value>
         <MIMEType>image/png</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>3.30304cm</Top>
-        <Left>1.20365cm</Left>
-        <Height>1.5cm</Height>
-        <Width>1.5cm</Width>
-        <ZIndex>4</ZIndex>
+        <Top>1.6662cm</Top>
+        <Left>0.28424cm</Left>
+        <Height>1.235cm</Height>
+        <Width>3.30563cm</Width>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -138,19 +289,29 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>3.88775in</Height>
-    <Style />
+    <Height>2.9473cm</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
   </Body>
-  <Width>6.5in</Width>
+  <Width>3.87797cm</Width>
   <Page>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <PageHeight>3.6cm</PageHeight>
+    <PageWidth>4.2cm</PageWidth>
+    <InteractiveHeight>3.5cm</InteractiveHeight>
+    <InteractiveWidth>4.2cm</InteractiveWidth>
+    <LeftMargin>0.1cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0.2cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
-    <Style />
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -159,7 +320,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>5c4fc88e-3566-43e1-bce9-f075d0b28c7d</rd:DataSourceID>
+      <rd:DataSourceID>0930daa0-0968-45d4-913c-21d163589e17</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -193,6 +354,10 @@
           <DataField>estilo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Img">
+          <DataField>Img</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
         <Field Name="tallas">
           <DataField>tallas</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -204,8 +369,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>AppEmpaqueRocedes.Model</rd:DataSetName>
-        <rd:TableName>getcorteBox_Result</rd:TableName>
-        <rd:ObjectDataSourceType>AppEmpaqueRocedes.Model.getcorteBox_Result, AppEmpaqueRocedes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>resultBox</rd:TableName>
+        <rd:ObjectDataSourceType>AppEmpaqueRocedes.Model.resultBox, AppEmpaqueRocedes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

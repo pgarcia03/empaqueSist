@@ -393,7 +393,7 @@ namespace AppEmpaqueRocedes.Logica
 
                     obj.fechaEscaneado = fechaActual;
                     obj.estado = "Escaneado";
-                    obj.Restante = obj.Restante - 1;
+                    obj.Restante--;
 
 
                     // contex.SaveChanges();

@@ -51,7 +51,7 @@ namespace AppEmpaqueRocedes
                     switch (resp.rol.Trim())
                     {
                         case "error":
-                            MessageBox.Show("Error","Ha ocurrido un error intente nuevamente");
+                            MessageBox.Show(resp.nombreUsuario,"Ha ocurrido un error intente nuevamente");
 
                             break;
                         case "null":
@@ -75,7 +75,7 @@ namespace AppEmpaqueRocedes
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

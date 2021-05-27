@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AppEmpaqueRocedes.Configuracion;
 
 namespace AppEmpaqueRocedes
 {
@@ -31,6 +32,7 @@ namespace AppEmpaqueRocedes
             LinkCodigos.Visibility = Visibility.Collapsed;
             LinkReporte.Visibility = Visibility.Collapsed;
             LinkTickets.Visibility = Visibility.Collapsed;
+            btnConfigPrint.Visibility = Visibility.Collapsed;
 
             var obj = (tbUserEmpaque)App.Current.Properties["User"];
 
@@ -58,6 +60,7 @@ namespace AppEmpaqueRocedes
                     LinkCodigos.Visibility = Visibility.Visible;
                     LinkReporte.Visibility = Visibility.Visible;
                     LinkTickets.Visibility = Visibility.Visible;
+                    btnConfigPrint.Visibility = Visibility.Visible;
                     stackPanelContenido.Children.Add(new CrearUsuario());
                     break;
                 case "Tickets":
@@ -112,6 +115,14 @@ namespace AppEmpaqueRocedes
         {
             this.Close();
             App.Current.Properties["User"]=null;
+        }
+
+        private void btnConfigPrint_Click(object sender, RoutedEventArgs e)
+        {
+            stackPanelContenido.Children.Clear();
+
+            // Añadir el CustomControl
+            stackPanelContenido.Children.Add(new ConfigurarImpresora());
         }
     }
 }

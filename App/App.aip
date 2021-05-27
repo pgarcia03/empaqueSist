@@ -6,9 +6,11 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe.config" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.pdb" Value="..\AppEmpaqueRocedes\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_BarcodeStandard.dll" Value="..\packages\BarcodeLib.2.4.0\lib\netstandard2.0"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_ControlzEx.dll" Value="..\packages\ControlzEx.4.3.2\lib\net45"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_EnvDTE.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_FontAwesome.WPF.dll" Value="..\packages\FontAwesome.WPF.4.7.0.9\lib\net40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
@@ -33,16 +35,46 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Zondicons.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.dll" Value="..\packages\MahApps.Metro.IconPacks.4.4.0\lib\net46"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.dll" Value="..\packages\MahApps.Metro.2.2.0\lib\net46"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll" Value="..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.MSXML.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.Common.dll" Value="..\packages\Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll" Value="..\packages\Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.Design.dll" Value="..\packages\Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll" Value="..\packages\Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.WinForms.dll" Value="..\packages\Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.SqlServer.Types.dll" Value="..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.Xaml.Behaviors.dll" Value="..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Newtonsoft.Json.dll" Value="..\packages\Newtonsoft.Json.13.0.1\lib\net45"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.Common.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.SqlClient.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Seagull.BarTender.Print.dll" Value="..\AppEmpaqueRocedes\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SqlServerSpatial140.dll" Value="..\AppEmpaqueRocedes\bin\Debug\SqlServerTypes\x64"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SqlServerSpatial140.dll_1" Value="..\AppEmpaqueRocedes\bin\Debug\SqlServerTypes\x86"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Buffers.dll" Value="..\packages\System.Buffers.4.5.1\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Drawing.Common.dll" Value="..\packages\System.Drawing.Common.5.0.2\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Memory.dll" Value="..\packages\System.Memory.4.5.4\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Numerics.Vectors.dll" Value="..\packages\System.Numerics.Vectors.4.5.0\lib\net46"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Value="..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Text.Encodings.Web.dll" Value="..\packages\System.Text.Encodings.Web.5.0.1\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Text.Json.dll" Value="..\packages\System.Text.Json.5.0.2\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Threading.Tasks.Extensions.dll" Value="..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.ValueTuple.dll" Value="..\packages\System.ValueTuple.4.5.0\lib\net461"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_msvcr120.dll" Value="..\AppEmpaqueRocedes\bin\Debug\SqlServerTypes\x64"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_msvcr120.dll_1" Value="..\AppEmpaqueRocedes\bin\Debug\SqlServerTypes\x86"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_stdole.dll" Value="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\PublicAssemblies"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe" Value="AppEmpaqueRocedes.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe.config" Value="AppEmpaqueRocedes.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.pdb" Value="AppEmpaqueRocedes.pdb"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_BarcodeStandard.dll" Value="BarcodeStandard.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ControlzEx.dll" Value="ControlzEx.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll" Value="EntityFramework.SqlServer.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll" Value="EntityFramework.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EnvDTE.dll" Value="EnvDTE.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_FontAwesome.WPF.dll" Value="FontAwesome.WPF.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Value="MahApps.Metro.IconPacks.BoxIcons.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Value="MahApps.Metro.IconPacks.Core.dll"/>
@@ -67,19 +99,47 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Zondicons.dll" Value="MahApps.Metro.IconPacks.Zondicons.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.dll" Value="MahApps.Metro.IconPacks.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.dll" Value="MahApps.Metro.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll" Value="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.MSXML.dll" Value="Microsoft.MSXML.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Common.dll" Value="Microsoft.ReportViewer.Common.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll" Value="Microsoft.ReportViewer.DataVisualization.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Design.dll" Value="Microsoft.ReportViewer.Design.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll" Value="Microsoft.ReportViewer.ProcessingObjectModel.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.WinForms.dll" Value="Microsoft.ReportViewer.WinForms.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.SqlServer.Types.dll" Value="Microsoft.SqlServer.Types.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll" Value="Microsoft.VisualStudio.OLE.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll" Value="Microsoft.VisualStudio.Shell.Interop.8.0.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll" Value="Microsoft.VisualStudio.Shell.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll" Value="Microsoft.VisualStudio.TextManager.Interop.8.0.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll" Value="Microsoft.VisualStudio.TextManager.Interop.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Xaml.Behaviors.dll" Value="Microsoft.Xaml.Behaviors.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll" Value="Newtonsoft.Json.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Pervasive.Data.Common.dll" Value="Pervasive.Data.Common.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Pervasive.Data.SqlClient.dll" Value="Pervasive.Data.SqlClient.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Seagull.BarTender.Print.dll" Value="Seagull.BarTender.Print.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll" Value="SqlServerSpatial140.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll_1" Value="SqlServerSpatial140.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll" Value="System.Buffers.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Drawing.Common.dll" Value="System.Drawing.Common.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll" Value="System.Memory.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Numerics.Vectors.dll" Value="System.Numerics.Vectors.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Value="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Text.Encodings.Web.dll" Value="System.Text.Encodings.Web.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Text.Json.dll" Value="System.Text.Json.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Threading.Tasks.Extensions.dll" Value="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.ValueTuple.dll" Value="System.ValueTuple.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll" Value="msvcr120.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll_1" Value="msvcr120.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_stdole.dll" Value="stdole.dll"/>
     <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="escan.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Rocedes"/>
-    <ROW Property="ProductCode" Value="1033:{1E80EE31-4186-4E31-BE9C-5CC9689643D0} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{33AF2BB0-7573-479B-9E2B-7004AF576492} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Scanning"/>
-    <ROW Property="ProductVersion" Value="2.0.5" Type="32"/>
+    <ROW Property="ProductVersion" Value="2.1.2" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{7FD4ED2A-1E0B-4DF5-8AE0-A872D7D9965C}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -95,12 +155,17 @@
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="AppEmpaqueRocedes_Dir" Directory_Parent="APPDIR" DefaultDir="APPEMP~1|AppEmpaqueRocedes"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="SqlServerTypes_Dir" Directory_Parent="AppEmpaqueRocedes_Dir" DefaultDir="SQLSER~1|SqlServerTypes"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="x64_Dir" Directory_Parent="SqlServerTypes_Dir" DefaultDir="x64"/>
+    <ROW Directory="x86_Dir" Directory_Parent="SqlServerTypes_Dir" DefaultDir="x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{FD126C44-E700-47BE-A991-557D4A25974B}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x64" ComponentId="{BEAE8B31-61A4-4E6B-A487-7A9EBBAF6AD4}" Directory_="x64_Dir" Attributes="256" KeyPath="SqlServerSpatial140.dll"/>
+    <ROW Component="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x86" ComponentId="{5E31F303-E8A2-482B-ACBF-9F77DDBAAA30}" Directory_="x86_Dir" Attributes="0" KeyPath="SqlServerSpatial140.dll_1"/>
     <ROW Component="AppEmpaqueRocedes_PrimaryOutput" ComponentId="{2D93C477-0EE5-4917-9042-1C98A66A06FE}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.exe"/>
-    <ROW Component="AppEmpaqueRocedes_References" ComponentId="{B6040E3D-9977-4DF4-96F2-0411C150889E}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="Seagull.BarTender.Print.dll"/>
+    <ROW Component="AppEmpaqueRocedes_References" ComponentId="{B6040E3D-9977-4DF4-96F2-0411C150889E}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="System.ValueTuple.dll"/>
     <ROW Component="AppEmpaqueRocedes_SymbolsOutput" ComponentId="{3A5D8D00-CA95-4BD8-A089-BA944E976B7E}" Directory_="AppEmpaqueRocedes_Dir" Attributes="0" KeyPath="AppEmpaqueRocedes.pdb"/>
     <ROW Component="ProductInformation" ComponentId="{2CBA41DE-5CFC-4CA1-AECC-0FFFDC1DDEF6}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{357B1E19-C090-4E5F-9488-50149A288DB3}" Directory_="SHORTCUTDIR" Attributes="0"/>
@@ -144,14 +209,46 @@
     <ROW File="Pervasive.Data.SqlClient.dll" Component_="AppEmpaqueRocedes_References" FileName="PERVAS~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Pervasive.Data.SqlClient.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Pervasive.Data.SqlClient.dll&gt;" SelfReg="false"/>
     <ROW File="Seagull.BarTender.Print.dll" Component_="AppEmpaqueRocedes_References" FileName="SEAGUL~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Seagull.BarTender.Print.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Seagull.BarTender.Print.dll&gt;" SelfReg="false"/>
     <ROW File="AppEmpaqueRocedes.pdb" Component_="AppEmpaqueRocedes_SymbolsOutput" FileName="APPEMP~2.PDB|[|AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.pdb]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_AppEmpaqueRocedes.pdb&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.ReportViewer.Common.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Common.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.ReportViewer.Common.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.ReportViewer.DataVisualization.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.ReportViewer.Design.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~5.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Design.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.ReportViewer.Design.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.ReportViewer.ProcessingObjectModel.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~6.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.ReportViewer.WinForms.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~7.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.WinForms.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.ReportViewer.WinForms.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Types.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~8.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.SqlServer.Types.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.SqlServer.Types.dll&gt;" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="AppEmpaqueRocedes_References" FileName="NEWTON~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Newtonsoft.Json.dll&gt;" SelfReg="false"/>
+    <ROW File="EnvDTE.dll" Component_="AppEmpaqueRocedes_References" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_EnvDTE.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EnvDTE.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.Shell.Interop.dll" Component_="AppEmpaqueRocedes_References" FileName="MICROS~9.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.Shell.Interop.8.0.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~10.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll&gt;" SelfReg="false"/>
+    <ROW File="stdole.dll" Component_="AppEmpaqueRocedes_References" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_stdole.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_stdole.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.OLE.Interop.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~11.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.TextManager.Interop.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~12.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.TextManager.Interop.8.0.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~13.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.MSXML.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~14.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.MSXML.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.MSXML.dll&gt;" SelfReg="false"/>
+    <ROW File="msvcr120.dll" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x64" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_msvcr120.dll&gt;" SelfReg="false"/>
+    <ROW File="SqlServerSpatial140.dll" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x64" FileName="SQLSER~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SqlServerSpatial140.dll&gt;" SelfReg="false"/>
+    <ROW File="msvcr120.dll_1" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x86" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_msvcr120.dll_1&gt;" SelfReg="false"/>
+    <ROW File="SqlServerSpatial140.dll_1" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x86" FileName="SQLSER~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SqlServerSpatial140.dll_1&gt;" SelfReg="false"/>
+    <ROW File="BarcodeStandard.dll" Component_="AppEmpaqueRocedes_References" FileName="BARCOD~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_BarcodeStandard.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_BarcodeStandard.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.Bcl.AsyncInterfaces.dll" Component_="AppEmpaqueRocedes_References" FileName="MICRO~15.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Buffers.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Buffers.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Drawing.Common.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Drawing.Common.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Memory.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~5.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Numerics.Vectors.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Numerics.Vectors.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~6.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Text.Encodings.Web.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~7.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Text.Encodings.Web.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Text.Encodings.Web.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Text.Json.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~8.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Text.Json.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Text.Json.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTEM~9.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Threading.Tasks.Extensions.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Threading.Tasks.Extensions.dll&gt;" SelfReg="false"/>
+    <ROW File="System.ValueTuple.dll" Component_="AppEmpaqueRocedes_References" FileName="SYSTE~10.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.ValueTuple.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.ValueTuple.dll&gt;" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AppPathsComponent">
     <ROW Name="AI_APPPATH_PERBUILD_AppEmpaqueRocedes.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_AppEmpaqueRocedes.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.exe.config]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_AppEmpaqueRocedes.pdb" Path="[|AI_PROPPATH_DIR_PERBUILD_AppEmpaqueRocedes.pdb]\[|AI_PROPPATH_FILENAME_PERBUILD_AppEmpaqueRocedes.pdb]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_BarcodeStandard.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_BarcodeStandard.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_BarcodeStandard.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_ControlzEx.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_ControlzEx.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_ControlzEx.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_EnvDTE.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EnvDTE.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EnvDTE.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_FontAwesome.WPF.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_FontAwesome.WPF.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_FontAwesome.WPF.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.BoxIcons.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.Core.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Core.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Core.dll]" Type="2" Content="0"/>
@@ -176,10 +273,38 @@
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.Zondicons.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.Zondicons.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.Zondicons.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.IconPacks.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.IconPacks.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.IconPacks.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_MahApps.Metro.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MahApps.Metro.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MahApps.Metro.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Bcl.AsyncInterfaces.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.MSXML.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.MSXML.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.MSXML.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.ReportViewer.Common.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.Common.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Common.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.DataVisualization.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.ReportViewer.Design.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.Design.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.Design.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.ProcessingObjectModel.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.ReportViewer.WinForms.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.ReportViewer.WinForms.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.ReportViewer.WinForms.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.SqlServer.Types.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.SqlServer.Types.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.SqlServer.Types.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.OLE.Interop.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.8.0.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.Shell.Interop.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.8.0.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.VisualStudio.TextManager.Interop.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Microsoft.Xaml.Behaviors.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.Xaml.Behaviors.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Xaml.Behaviors.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Newtonsoft.Json.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Newtonsoft.Json.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Pervasive.Data.Common.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.Common.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Pervasive.Data.Common.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Pervasive.Data.SqlClient.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Pervasive.Data.SqlClient.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Pervasive.Data.SqlClient.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Seagull.BarTender.Print.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Seagull.BarTender.Print.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Seagull.BarTender.Print.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SqlServerSpatial140.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_SqlServerSpatial140.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SqlServerSpatial140.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_SqlServerSpatial140.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_SqlServerSpatial140.dll_1]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Buffers.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Buffers.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Drawing.Common.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Drawing.Common.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Drawing.Common.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Memory.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Memory.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Numerics.Vectors.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Numerics.Vectors.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Numerics.Vectors.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Text.Encodings.Web.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Text.Encodings.Web.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Text.Encodings.Web.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Text.Json.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Text.Json.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Text.Json.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Threading.Tasks.Extensions.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Threading.Tasks.Extensions.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Threading.Tasks.Extensions.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.ValueTuple.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.ValueTuple.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.ValueTuple.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_msvcr120.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_msvcr120.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_msvcr120.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_msvcr120.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_msvcr120.dll_1]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_stdole.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_stdole.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_stdole.dll]" Type="2" Content="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -257,6 +382,8 @@
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="AppEmpaqueRocedes_References"/>
     <ROW Feature_="MainFeature" Component_="AppEmpaqueRocedes_SymbolsOutput"/>
+    <ROW Feature_="MainFeature" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x64"/>
+    <ROW Feature_="MainFeature" Component_="AppEmpaqueRocedes_ContentOutput_SqlServerTypes_x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="escan.exe" SourcePath="..\AppEmpaqueRocedes\images\escan.ico" Index="0"/>
@@ -330,5 +457,35 @@
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Pervasive.Data.SqlClient.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Seagull.BarTender.Print.dll"/>
     <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="SymbolsOutput" OutputFile="AppEmpaqueRocedes.pdb"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.ReportViewer.Common.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.ReportViewer.DataVisualization.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.ReportViewer.Design.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.ReportViewer.ProcessingObjectModel.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.ReportViewer.WinForms.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.SqlServer.Types.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Newtonsoft.Json.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="EnvDTE.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.VisualStudio.Shell.Interop.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.VisualStudio.Shell.Interop.8.0.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="stdole.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.VisualStudio.OLE.Interop.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.VisualStudio.TextManager.Interop.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.VisualStudio.TextManager.Interop.8.0.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.MSXML.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="ContentOutput" OutputFile="msvcr120.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="ContentOutput" OutputFile="SqlServerSpatial140.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="ContentOutput" OutputFile="msvcr120.dll_1"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="ContentOutput" OutputFile="SqlServerSpatial140.dll_1"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="BarcodeStandard.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Buffers.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Drawing.Common.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Memory.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Numerics.Vectors.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Text.Encodings.Web.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Text.Json.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.Threading.Tasks.Extensions.dll"/>
+    <ROW ProjectId="{37e9a5e4-43ca-48f8-94de-f577412650f6}" ProjectName="AppEmpaqueRocedes" OutputGroup="References" OutputFile="System.ValueTuple.dll"/>
   </COMPONENT>
 </DOCUMENT>

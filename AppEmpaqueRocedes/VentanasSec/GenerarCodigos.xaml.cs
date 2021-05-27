@@ -1,23 +1,24 @@
-﻿using AppEmpaqueRocedes.Logica;
-using AppEmpaqueRocedes.Model;
-using Seagull.BarTender.Print;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Speech.Synthesis;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
+using AppEmpaqueRocedes.Logica;
+using AppEmpaqueRocedes.Model;
+
+//using Seagull.BarTender.Print;
+using Microsoft.Reporting.WinForms;
+using AppEmpaqueRocedes.VentanasSec;
+using BarcodeLib;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace AppEmpaqueRocedes
 {
@@ -81,39 +82,96 @@ namespace AppEmpaqueRocedes
                 var bandI = (bool)genericlist[2];
 
                 BackgroundWorker worker = sender as BackgroundWorker;
-
-                var lb = @"D:\ticketUni.btw";
-                using (Engine engine = new Engine(true))
+                
+                //
+                foreach (var item in Lista)
                 {
-                    engine.Start();
-
-                    foreach (var item in Lista)
+                    if (item.Estado.Equals("Generado") || bandI)
                     {
-                        if (item.Estado.Equals("Generado") || bandI )
-                        {                        
 
-                            LabelFormatDocument btformate = engine.Documents.Open(lb);
-                            btformate.SubStrings["lblcorte"].Value = item.POrder.Trim();
-                            btformate.SubStrings["lbltalla"].Value = item.Size.TrimEnd();
-                            btformate.SubStrings["lblcodigo"].Value = item.codigoBarra.TrimEnd();
-                            btformate.SubStrings["lblestilo"].Value = estilo.TrimEnd();
-                            btformate.SubStrings["lblcantidad"].Value = item.Cantidad.ToString();
+                        LocalReport rdlc = new LocalReport();
 
-                            var resp= btformate.Print();
+                        //rdlc.ReportPath = @"..\..\VentanasSec\ReportTicket.rdlc";
+                        rdlc.ReportPath = @"C:\ReportTicket.rdlc";
 
-                            
+                        Barcode b = new Barcode();
 
-                            Task.Run(() => { return ActualizarEstado(item.codigoBarra); });
+                        b.IncludeLabel = true;
+                        b.Alignment = AlignmentPositions.CENTER;
+                        b.LabelFont = new Font(System.Drawing.FontFamily.GenericMonospace, 20 * Barcode.DotsPerPointAt96Dpi, System.Drawing.FontStyle.Regular, GraphicsUnit.Pixel);
+                        b.LabelPosition = LabelPositions.BOTTOMCENTER;
+
+                        var img = b.Encode(TYPE.CODE128, item.codigoBarra.Trim(), System.Drawing.Color.Black, System.Drawing.Color.White, 290, 90);
+
+                        List<resultTicket> T = new List<resultTicket>();
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            img.Save(ms, ImageFormat.Png);
+
+                            var objnewImg = new resultTicket
+                            {
+                                POrder = item.POrder,
+                                Size = item.Size,
+                                Estilo = estilo,
+                                Cantidad = item.Cantidad,
+                                codigoBarra = item.codigoBarra,
+                                Img = ms.ToArray()
+                            };
+
+                            T.Add(objnewImg);
+
+                            ms.Dispose();
                         }
+
+
+                        rdlc.DataSources.Add(new ReportDataSource("DataSet2", T));
+
+                        using (ImprimirTicket imp = new ImprimirTicket())
+                        {
+                            imp.Imprime(rdlc);
+                        }
+
+                        Task.Run(() => { return ActualizarEstado(item.codigoBarra); });
                     }
-
-
-                    //engine.Start();
-                    //  btformate.PrinterCodeTemplate.Performance.AllowSerialization = false;
-                    // btformate.ExportImageToClipboard(Seagull.BarTender.Print.ColorDepth.ColorDepth256, new Resolution(200));
-                    //  btformat.Close(BarTender.BtSaveOptions.btDoNotSaveChanges);
-                    engine.Stop();
                 }
+
+
+
+                #region codigo funcional dejado en comentario debido a que bartender no se puede instalar en algunas maquinas
+                /*  var lb = @"D:\ticketUni.btw";
+                  using (Engine engine = new Engine(true))
+                  {
+                      engine.Start();
+
+                      foreach (var item in Lista)
+                      {
+                          if (item.Estado.Equals("Generado") || bandI)
+                          {
+
+                              LabelFormatDocument btformate = engine.Documents.Open(lb);
+                              btformate.SubStrings["lblcorte"].Value = item.POrder.Trim();
+                              btformate.SubStrings["lbltalla"].Value = item.Size.TrimEnd();
+                              btformate.SubStrings["lblcodigo"].Value = item.codigoBarra.TrimEnd();
+                              btformate.SubStrings["lblestilo"].Value = estilo.TrimEnd();
+                              btformate.SubStrings["lblcantidad"].Value = item.Cantidad.ToString();
+
+                              var resp = btformate.Print();
+
+
+
+                              Task.Run(() => { return ActualizarEstado(item.codigoBarra); });
+                          }
+                      }
+
+
+                      //engine.Start();
+                      //  btformate.PrinterCodeTemplate.Performance.AllowSerialization = false;
+                      // btformate.ExportImageToClipboard(Seagull.BarTender.Print.ColorDepth.ColorDepth256, new Resolution(200));
+                      //  btformat.Close(BarTender.BtSaveOptions.btDoNotSaveChanges);
+                      engine.Stop();
+                  } */
+                #endregion
 
 
             }
@@ -257,17 +315,17 @@ namespace AppEmpaqueRocedes
 
                             //eliminaremos el guion del corte para que sea completo 
                             lblEstilo.Content = obj.style;
-                           // lblUnidades.Content = obj.Quantity;//no va 
+                            // lblUnidades.Content = obj.Quantity;//no va 
 
-                            if (idporder != 0) 
+                            if (idporder != 0)
                             {
 
                                 var user = (tbUserEmpaque)App.Current.Properties["User"];
 
-                                listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder,obj.POrder,obj.Id_Style,obj.style,user.nombreUsuario.ToLower()).Result;
+                                listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder, obj.POrder, obj.Id_Style, obj.style, user.nombreUsuario.ToLower()).Result;
 
-                                lblUnidades.Content = listacodigo.Sum(x=>x.Cantidad);
-                                
+                                lblUnidades.Content = listacodigo.Sum(x => x.Cantidad);
+
                                 gridCodigos.ItemsSource = listacodigo;
                             }
 
@@ -318,7 +376,7 @@ namespace AppEmpaqueRocedes
                         idporder = obj.Id_Order;
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
-                       // lblUnidades.Content = obj.Quantity;
+                        // lblUnidades.Content = obj.Quantity;
 
 
                         if (idporder != 0)
@@ -330,7 +388,7 @@ namespace AppEmpaqueRocedes
 
                             lblUnidades.Content = listacodigo.Sum(x => x.Cantidad);
 
-                           // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
+                            // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                             gridCodigos.ItemsSource = listacodigo;
                         }
@@ -362,7 +420,7 @@ namespace AppEmpaqueRocedes
 
                     listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder, obj.POrder, obj.Id_Style, obj.style, user.nombreUsuario.ToLower()).Result;
 
-                   // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
+                    // listacodigo = CodigosNeg.GetCodigosDatsXtalla(idporder).Result;
 
                     gridCodigos.ItemsSource = listacodigo;
                 }
@@ -394,7 +452,7 @@ namespace AppEmpaqueRocedes
                     if (Convert.ToInt16(resp[1]) == 200)
                     {
 
-                       // limpiar();
+                        // limpiar();
 
                         var result = (List<CodigosDat>)resp[0];
 
@@ -404,10 +462,10 @@ namespace AppEmpaqueRocedes
 
                         if (respmensaje == MessageBoxResult.OK)
                         {
-                         //   MessageBoxTimeout((System.IntPtr)0, $"Iniciando impresion de {result.Count} tickets ", "Informacion", 0, 0, 1000);
+                            //   MessageBoxTimeout((System.IntPtr)0, $"Iniciando impresion de {result.Count} tickets ", "Informacion", 0, 0, 1000);
 
-                           // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                           // tarea.Start("Iniciando Trabajo de impresión");
+                            // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                            // tarea.Start("Iniciando Trabajo de impresión");
 
                             List<object> arg = new List<object>
                             {
@@ -425,7 +483,7 @@ namespace AppEmpaqueRocedes
                     else
                     {
                         //Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                       // tarea.Start("Ha ocurrido un error");
+                        // tarea.Start("Ha ocurrido un error");
 
                         string respMess = "Ha ocurrido un error";
 
@@ -440,8 +498,8 @@ namespace AppEmpaqueRocedes
                     string respMess = "Debe Seleccionar corte y Generar codigos";
 
                     var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                   // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                   // tarea.Start("Debe Seleccionar corte y Generar codigos");
+                    // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                    // tarea.Start("Debe Seleccionar corte y Generar codigos");
                 }
 
                 BtnImprimir.IsEnabled = true;
@@ -480,9 +538,9 @@ namespace AppEmpaqueRocedes
             try
             {
                 BtnImprimirAvanzada.IsEnabled = false;
-                if (idporder != 0 && listacodigo.Count > 0 && txtinicio.Text!=string.Empty && txtfinal.Text!=string.Empty)
+                if (idporder != 0 && listacodigo.Count > 0 && txtinicio.Text != string.Empty && txtfinal.Text != string.Empty)
                 {
-                    
+
 
                     if (ValidarNumeros(txtinicio.Text) && ValidarNumeros(txtfinal.Text))
                     {
@@ -496,8 +554,8 @@ namespace AppEmpaqueRocedes
 
                         if (respmensaje == MessageBoxResult.OK)
                         {
-                           // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                           // tarea.Start("Iniciando Trabajo de impresión");
+                            // Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                            // tarea.Start("Iniciando Trabajo de impresión");
 
                             var ListaSecuencia = listacodigo.Where(x => x.NSeq >= secI && x.NSeq <= secF).ToList();
 
@@ -514,7 +572,7 @@ namespace AppEmpaqueRocedes
 
                             _worker.RunWorkerAsync(arg);
 
-                        
+
                         }
                         else
                         {
@@ -529,12 +587,12 @@ namespace AppEmpaqueRocedes
 
                         var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                     }
-                   
+
                 }
                 else
                 {
-                  //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-                  //  tarea.Start("Debe Seleccionar corte y Generar codigos");
+                    //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                    //  tarea.Start("Debe Seleccionar corte y Generar codigos");
                     string respMess = "Debe Seleccionar corte y Generar codigos";
 
                     var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
@@ -547,8 +605,8 @@ namespace AppEmpaqueRocedes
             {
                 string mess = ex.Message;
                 BtnImprimir.IsEnabled = true;
-              //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
-              //  tarea.Start("Ha ocurrido un error");
+                //  Thread tarea = new Thread(new ParameterizedThreadStart(MensajeVoz));
+                //  tarea.Start("Ha ocurrido un error");
 
                 string respMess = "Ha ocurrido un error";
 
@@ -559,7 +617,7 @@ namespace AppEmpaqueRocedes
         #endregion
 
         #region funciones
-       
+
 
         void Limpiar()
         {
@@ -598,13 +656,13 @@ namespace AppEmpaqueRocedes
             voz.Speak(texto.ToString());
         }
 
-        bool ValidarNumeros( string cadena)
+        bool ValidarNumeros(string cadena)
         {
             return Regex.IsMatch(cadena, @"^[0-9]");
         }
 
         #endregion
 
-      
+
     }
 }

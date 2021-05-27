@@ -104,7 +104,6 @@
                         </StackPanel>
                     </Button>
 
-
                     <Button Name="LinkTickets" Style="{StaticResource MyButtonStyle}" Click="LinkTickets_Click"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  >
                         <StackPanel MinWidth="250" Width="auto" Orientation="Horizontal" >
                             <Grid Width="250">
@@ -118,20 +117,20 @@
                         </StackPanel>
                     </Button>
 
-                    <!--
-                    <Button Name="btncargaEta" Style="{StaticResource MyButtonStyle}"  Click="btncargaEta_Click"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" >
+                   
+                    <Button Name="btnConfigPrint" Style="{StaticResource MyButtonStyle}"  Click="btnConfigPrint_Click"  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" >
                         <StackPanel MinWidth="250" Width="auto" Orientation="Horizontal" >
                             <Grid Width="250">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80*" />
                                     <ColumnDefinition Width="20*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Foreground="White" TextAlignment="Left" Grid.Column="0" Padding="8"> Upload Eta</TextBlock>
+                                <TextBlock Foreground="White" TextAlignment="Left" Grid.Column="0" Padding="8"> Establecer Impresora</TextBlock>
                                 <Image Source="images/upload-cloud.png"  Width="30" Height="30" Grid.Column="1" FlowDirection="RightToLeft" />
                             </Grid>
                         </StackPanel>
                     </Button>
-
+                    <!--
                     <Button Name="btnAdministrarShortage" Style="{StaticResource MyButtonStyle}"  Click="btnAdministrarShortage_Click"  Grid.Row="9" Grid.ColumnSpan="3" >
                         <StackPanel MinWidth="250" Width="auto" Orientation="Horizontal" >
                             <Grid Width="250">

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Data;
 using System.Text;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
+using AppEmpaqueRocedes.Model;
+using Newtonsoft.Json;
 
 namespace AppEmpaqueRocedes.VentanasSec
 {
@@ -30,14 +30,14 @@ namespace AppEmpaqueRocedes.VentanasSec
             //las siguientes lineas definen el tamaño de la hoja, en mi caso es de tamaño ticket
             //los tamaños pueden ser en pulgadas(in) o en centimetros(cm).
             string deviceInfo =
-              @"<DeviceInfo>
+               @"<DeviceInfo>
                 <OutputFormat>EMF</OutputFormat>
-                <PageWidth>50.8mm</PageWidth>
-                <PageHeight>38.0mm</PageHeight>
-                <MarginTop>5mm</MarginTop>
-                <MarginLeft>5mm</MarginLeft>
-                <MarginRight>5mm</MarginRight>
-                <MarginBottom>5mm</MarginBottom>
+                <PageWidth>3,8cm</PageWidth>
+                <PageHeight>2,8cm</PageHeight>
+                <MarginTop>0,1cm</MarginTop>
+                <MarginLeft>0,1cm</MarginLeft>
+                <MarginRight>0,1cm</MarginRight>
+                <MarginBottom>0,1cm</MarginBottom>
             </DeviceInfo>";
 
             Warning[] warnings;
@@ -77,10 +77,31 @@ namespace AppEmpaqueRocedes.VentanasSec
         {
             PrintDocument printDoc;
             //busca el nombre de la impresora predeterminada
-            String printerName = ImpresoraPredeterminada();
+            String printerName = "";// ImpresoraPredeterminada();
 
             if (m_streams == null || m_streams.Count == 0)
                 throw new Exception("Error: No hay datos que imprimir.");
+
+
+            var ruta = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath); // Directory.GetCurrentDirectory();
+
+            string path = Path.Combine(ruta, "impresoraSeleccionada.json");
+
+            if (File.Exists(path))
+            {
+                using (StreamReader jsonStream = File.OpenText(path))
+                {
+                    var json = jsonStream.ReadToEnd();
+                    objetoJson impresora = JsonConvert.DeserializeObject<objetoJson>(json);
+
+                    printerName = impresora.impresora;
+                }
+
+            }
+            else
+            {
+                printerName = ImpresoraPredeterminada();
+            }
 
             printDoc = new PrintDocument();
             printDoc.PrinterSettings.PrinterName = printerName;

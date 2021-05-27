@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="AppEmpaqueRocedes.Configuracion.ConfigurarImpresora"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.fontawesome.io/icons/" 
+             xmlns:local="clr-namespace:AppEmpaqueRocedes.Configuracion"
+             mc:Ignorable="d" 
+             Height="350" Width="900" Background="Transparent">
+    <Grid Background="#2e3b4c" Opacity="0.84">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="13*"/>
+
+        </Grid.RowDefinitions>
+
+        <Label Content="Configuración de impresora predeterminada"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="18"  Height="34"  />
+        <Label Content="Seleccionar Impresora" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Style="{StaticResource lblpanelInfoTitulo}" Height="25" />
+
+
+        <ComboBox Name="cbxImpresora" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"  >
+        </ComboBox>
+
+
+        <Button Content="Establecer Predeterminada" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"    Style="{StaticResource ButtonBlue}" Name="BtnGuardar" Click="BtnGuardar_Click" />
+
+
+        <Label Name="lblruta" Grid.Row="6" Grid.ColumnSpan="6"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource lblpanelInfoTitulo}" Height="25"  />
+    </Grid>
+</UserControl>
