@@ -11,12 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!-- Accent and AppTheme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
-
-               
             </ResourceDictionary.MergedDictionaries>
-
-           
-
             <!-- estilode botones -->
             <LinearGradientBrush x:Key="ColorNormal" StartPoint="0,0" EndPoint="0,1">
                 <GradientBrush.GradientStops>

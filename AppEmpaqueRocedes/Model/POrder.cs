@@ -36,6 +36,8 @@ namespace AppEmpaqueRocedes.Model
         public Nullable<int> AfterIntex { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string POrderClient { get; set; }
+        public Nullable<bool> washed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bundle> Bundle { get; set; }

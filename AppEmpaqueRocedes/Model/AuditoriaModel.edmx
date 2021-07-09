@@ -95,6 +95,8 @@
           <Property Name="AfterIntex" Type="int" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="POrderClient" Type="nvarchar" MaxLength="50" />
+          <Property Name="washed" Type="bit" />
         </EntityType>
         <EntityType Name="Style">
           <Key>
@@ -287,6 +289,9 @@
         <Function Name="getInfobox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="box" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="spdBuscarPoCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="porder" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="spdExtraeTallasXCortecompleto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idorder" Type="int" Mode="In" />
           <Parameter Name="porder" Type="nchar" Mode="In" />
@@ -428,6 +433,8 @@
           <NavigationProperty Name="Bundle" Relationship="Self.FK_Bundle_POrder" FromRole="POrder" ToRole="Bundle" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_POrder_Cliente" FromRole="POrder" ToRole="Cliente" />
           <NavigationProperty Name="Style" Relationship="Self.FK_POrder_Style" FromRole="POrder" ToRole="Style" />
+          <Property Name="POrderClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="washed" Type="Boolean" />
         </EntityType>
         <EntityType Name="Style">
           <Key>
@@ -659,6 +666,9 @@
             <End Role="Planta" EntitySet="Planta" />
             <End Role="Linea" EntitySet="Linea" />
           </AssociationSet>
+          <FunctionImport Name="spdBuscarPoCliente" ReturnType="Collection(AuditoriaModel.spdBuscarPoCliente_Result)">
+            <Parameter Name="porder" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getcorteBox_Result">
           <Property Type="String" Name="corte" Nullable="true" MaxLength="20" />
@@ -713,6 +723,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spdBuscarPoCliente_Result">
+          <Property Type="String" Name="Porder" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="Style" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="washed" Nullable="false" />
+          <Property Type="String" Name="Describir" Nullable="true" MaxLength="10" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -790,6 +807,8 @@
           <EntitySetMapping Name="POrder">
             <EntityTypeMapping TypeName="AuditoriaModel.POrder">
               <MappingFragment StoreEntitySet="POrder">
+                <ScalarProperty Name="washed" ColumnName="washed" />
+                <ScalarProperty Name="POrderClient" ColumnName="POrderClient" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
                 <ScalarProperty Name="Id_Style" ColumnName="Id_Style" />
@@ -996,6 +1015,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spdBuscarPoCliente" FunctionName="AuditoriaModel.Store.spdBuscarPoCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.spdBuscarPoCliente_Result">
+                <ScalarProperty Name="Porder" ColumnName="Porder" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="washed" ColumnName="washed" />
+                <ScalarProperty Name="Describir" ColumnName="Describir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

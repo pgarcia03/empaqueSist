@@ -282,6 +282,9 @@
     </Compile>
     <Compile Include="Model\resultBox.cs" />
     <Compile Include="Model\resultTicket.cs" />
+    <Compile Include="Model\spdBuscarPoCliente_Result.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\spdExtraeTallasXCortecompleto_Result.cs">
       <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
@@ -328,6 +331,9 @@
     <Compile Include="Seguridad\HashClass.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="VentanasSec\Class1.cs" />
+    <Compile Include="VentanasSec\GenerarCodigosUnidad.xaml.cs">
+      <DependentUpon>GenerarCodigosUnidad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasSec\ImprimirBox.cs" />
     <Compile Include="VentanasSec\ImprimirTicket.cs" />
     <Page Include="Configuracion\ConfigurarImpresora.xaml">
@@ -379,6 +385,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VentanasSec\GenerarCodigosUnidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CodigosDat.cs" />
@@ -403,6 +413,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanasSec\ReportBox.rdlc" />
+    <EmbeddedResource Include="VentanasSec\ReportBoxStatus.rdlc" />
     <EmbeddedResource Include="VentanasSec\ReportTicket.rdlc" />
     <EntityDeploy Include="Model\AuditoriaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

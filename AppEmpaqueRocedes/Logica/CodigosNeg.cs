@@ -225,7 +225,7 @@ namespace AppEmpaqueRocedes.Logica
                             var l1 = contex1.spdExtraeTallasXCortecompleto(idorder, porder ,idestilo,estilo,usuario)
                                             .Select(x => new CodigosDat
                                             {
-                                                   Id_Order = idorder,
+                                                   Id_Order = 0,//idorder,
                                                    POrder = porder,
                                                    Size = x.Size,
                                                    Quantity = x.Cantidad,
@@ -302,6 +302,67 @@ namespace AppEmpaqueRocedes.Logica
             }
         }
 
+        public async static Task<List<CodigosDat>> GetCodigosDatsXtalla(string porder, string estilo, string usuario)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+
+                    var tarea1 = await Task.Run(() =>
+                    {
+                        using (var contex1 = new AuditoriaEntities())
+                        {
+                            var l1 = contex1.spdExtraeTallasXCortecompleto(0, porder, 0, estilo, usuario)
+                                            .Select(x => new CodigosDat
+                                            {
+                                                Id_Order = 0,//idorder,
+                                                POrder = porder,
+                                                Size = x.Size,
+                                                Quantity = x.Cantidad,
+                                                Estado = "Generado",
+                                            }).ToList();
+
+
+                            return l1;
+                        }
+
+                    });
+
+
+                    var listaTotal = new List<CodigosDat>();
+                    int incrementable = 1;
+
+
+                    foreach (var item in tarea1)
+                    {
+
+                        listaTotal.Add(new CodigosDat()
+                        {
+                           // Id_Order = item.Id_Order,
+                            POrder = item.POrder,
+                            Size = item.Size.Replace('*', 'X'),
+                            NSeq = incrementable,
+                            Cantidad = item.Quantity,
+                            Resto = item.Quantity,
+                            codigoBarra =string.Format("00000000000000", string.Concat(item.POrder.ToString(), incrementable.ToString())),
+                            Estado = item.Estado
+                        });
+
+                        incrementable++;
+
+                    }
+
+                    return listaTotal.OrderBy(x => x.NSeq).ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public static List<object> GuardarCodigos(List<CodigosDat> listaGuardar, string corte)
         {
             List<object> listObject = new List<object>();
@@ -322,13 +383,13 @@ namespace AppEmpaqueRocedes.Logica
 
                             foreach (var item in listaGuardar)
                             {
-                                var cont = contex.tbBultosCodigosBarra.Where(x => x.idCorte == item.Id_Order && x.secuenciaUnidades == item.NSeq).Count();
+                                var cont = contex.tbBultosCodigosBarra.Where(x => x.corteCompleto.Contains(corte.Trim()) && x.secuenciaUnidades == item.NSeq).Count();
 
                                 if (cont == 0)
                                 {
                                     contex.tbBultosCodigosBarra.Add(new tbBultosCodigosBarra
                                     {
-                                        idCorte = item.Id_Order,
+                                       // idCorte = item.Id_Order,
                                         codigoBarra = item.codigoBarra,
                                         talla = item.Size,
                                         secuenciaUnidades = item.NSeq,

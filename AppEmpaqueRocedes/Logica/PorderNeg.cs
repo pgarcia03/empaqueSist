@@ -17,6 +17,14 @@ namespace AppEmpaqueRocedes.Logica
         //    ((IDisposable)db).Dispose();
         //}
 
+        public static List<PorderDat> GetPordersClientAutocompletado(string pre)
+        {
+
+            using (var contex = new AuditoriaEntities())
+                return contex.spdBuscarPoCliente(pre).Select(x=>new PorderDat { POrder=x.Porder,style=x.Style,Quantity=x.Quantity }).ToList();
+
+        }
+
         public static List<PorderDat> GetPordersAutocompletado(string pre)
         {
 

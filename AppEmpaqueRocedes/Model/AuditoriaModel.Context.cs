@@ -113,5 +113,14 @@ namespace AppEmpaqueRocedes.Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdProduccionOperarioDiario_Result>("spdProduccionOperarioDiario", idoperParameter);
         }
+    
+        public virtual ObjectResult<spdBuscarPoCliente_Result> spdBuscarPoCliente(string porder)
+        {
+            var porderParameter = porder != null ?
+                new ObjectParameter("porder", porder) :
+                new ObjectParameter("porder", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdBuscarPoCliente_Result>("spdBuscarPoCliente", porderParameter);
+        }
     }
 }
