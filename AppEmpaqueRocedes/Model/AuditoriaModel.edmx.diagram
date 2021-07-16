@@ -4,29 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b26c3dc20ecb45e48ecfad0707d618d4" Name="Diagram1">
-        <EntityTypeShape EntityType="AuditoriaModel.Biohorario" Width="1.5" PointX="10.125" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.Bundle" Width="1.5" PointX="4.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.Cliente" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.Linea" Width="1.5" PointX="6.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.Operacion" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.Operario" Width="1.5" PointX="2.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.POrder" Width="1.5" PointX="2.625" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="84aafd524b324ac6871652a5976b5817" Name="Diagram1">
+        <EntityTypeShape EntityType="AuditoriaModel.Biohorario" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Bundle" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Cliente" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Linea" Width="1.5" PointX="10" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Operacion" Width="1.5" PointX="2.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Operario" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.Planta" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.POrder" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AuditoriaModel.Style" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbBultosCodigosBarra" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbCodigosBarraScan" Width="1.5" PointX="8.5" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbcodigosCajas" Width="1.5" PointX="6.5" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbCorteSecuenciaCaja" Width="1.5" PointX="10.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tblUserEnvio" Width="1.5" PointX="4.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbPorderSinGuion" Width="1.5" PointX="11.875" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbProduccionTickets" Width="1.5" PointX="4.5" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AuditoriaModel.tbUserEmpaque" Width="1.5" PointX="10.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbBultosCodigosBarra" Width="1.5" PointX="2.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbCodigosBarraScan" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbcodigosCajas" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbCorteSecuenciaCaja" Width="1.5" PointX="10.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tblUserEnvio" Width="1.5" PointX="4.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbPorderSinGuion" Width="1.5" PointX="6.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbProduccionTickets" Width="1.5" PointX="10.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuditoriaModel.tbUserEmpaque" Width="1.5" PointX="12.75" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="AuditoriaModel.FK_Bundle_POrder" ManuallyRouted="false" />
         <AssociationConnector Association="AuditoriaModel.FK_POrder_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="AuditoriaModel.FK_Linea_Planta" ManuallyRouted="false" />
         <AssociationConnector Association="AuditoriaModel.FK_POrder_Style" ManuallyRouted="false" />
         <AssociationConnector Association="AuditoriaModel.FK_tbCodigosBarraScan_tbcodigosCajas" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="AuditoriaModel.Planta" Width="1.5" PointX="6.375" PointY="3.25" />
-        <AssociationConnector Association="AuditoriaModel.FK_Linea_Planta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

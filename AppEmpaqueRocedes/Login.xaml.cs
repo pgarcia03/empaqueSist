@@ -77,7 +77,7 @@ namespace AppEmpaqueRocedes
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }

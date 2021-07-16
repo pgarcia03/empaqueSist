@@ -360,7 +360,7 @@ namespace AppEmpaqueRocedes
                         txtcodigo.Focus();
                         txtcorte.Clear();
 
-                        idporder = resp.Id_Order;
+                        idporder =Convert.ToInt32(resp.Id_Order);
 
                         var total = PorderNeg.TotalesLeft(idporder);
 
@@ -406,7 +406,7 @@ namespace AppEmpaqueRocedes
                         txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
                         var obj = lista.FirstOrDefault(x => x.POrder.Trim().Equals(txtcorte.Text));
-                        idporder = obj.Id_Order;
+                        idporder =Convert.ToInt32(obj.Id_Order);
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
                         lblunidades.Content = obj.Quantity;
@@ -466,7 +466,7 @@ namespace AppEmpaqueRocedes
                         txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
                         var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
-                        idporder = obj.Id_Order;
+                        idporder = Convert.ToInt32(obj.Id_Order);
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
                         lblunidades.Content = obj.Quantity;
@@ -561,7 +561,7 @@ namespace AppEmpaqueRocedes
                         txtcorte.Text = lblsugestion.SelectedItem.ToString();
 
                         var obj = lista.FirstOrDefault(x => x.POrder.Trim().Equals(txtcorte.Text));
-                        idporder = obj.Id_Order;
+                        idporder =Convert.ToInt32(obj.Id_Order);
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
                         lblunidades.Content = obj.Quantity;
@@ -628,7 +628,7 @@ namespace AppEmpaqueRocedes
                     txtcodigo.Focus();
                     txtcorte.Clear();
 
-                    idporder = resp.Id_Order;
+                    idporder =Convert.ToInt32(resp.Id_Order);
 
                     var total = PorderNeg.TotalesLeft(idporder);
 

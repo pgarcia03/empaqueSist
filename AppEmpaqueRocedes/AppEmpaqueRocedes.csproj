@@ -257,7 +257,13 @@
     <Compile Include="Model\Cliente.cs">
       <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\getcorteBox2_Result.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\getcorteBox_Result.cs">
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\getInfobox2_Result.cs">
       <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\getInfobox_Result.cs">
@@ -331,6 +337,9 @@
     <Compile Include="Seguridad\HashClass.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="VentanasSec\Class1.cs" />
+    <Compile Include="VentanasSec\EscanerEmpaqueUnidad.xaml.cs">
+      <DependentUpon>EscanerEmpaqueUnidad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasSec\GenerarCodigosUnidad.xaml.cs">
       <DependentUpon>GenerarCodigosUnidad.xaml</DependentUpon>
     </Compile>
@@ -353,6 +362,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasSec\EscanerEmpaque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasSec\EscanerEmpaqueUnidad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -412,6 +425,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="VentanasSec\Report1.rdlc" />
     <EmbeddedResource Include="VentanasSec\ReportBox.rdlc" />
     <EmbeddedResource Include="VentanasSec\ReportBoxStatus.rdlc" />
     <EmbeddedResource Include="VentanasSec\ReportTicket.rdlc" />

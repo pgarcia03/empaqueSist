@@ -15,7 +15,7 @@ namespace AppEmpaqueRocedes.Model
     public partial class tbPorderSinGuion
     {
         public int id { get; set; }
-        public int idCorte { get; set; }
+        public Nullable<int> idCorte { get; set; }
         public string corte { get; set; }
         public Nullable<int> idEstilo { get; set; }
         public string estilo { get; set; }
