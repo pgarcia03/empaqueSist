@@ -309,6 +309,7 @@ namespace AppEmpaqueRocedes.Logica
                 using (var contex = new AuditoriaEntities())
                 {
 
+
                     var tarea1 = await Task.Run(() =>
                     {
                         using (var contex1 = new AuditoriaEntities())
@@ -327,9 +328,9 @@ namespace AppEmpaqueRocedes.Logica
                             return l1;
                         }
 
-                    });
+                    }).ConfigureAwait(false);
 
-
+                    
                     var listaTotal = new List<CodigosDat>();
                     int incrementable = 1;
 
@@ -345,7 +346,7 @@ namespace AppEmpaqueRocedes.Logica
                             NSeq = incrementable,
                             Cantidad = item.Quantity,
                             Resto = item.Quantity,
-                            codigoBarra =string.Format("00000000000000", string.Concat(item.POrder.ToString(), incrementable.ToString())),
+                            codigoBarra =string.Concat(item.POrder.ToString().Trim(),string.Format("{0:000000}", incrementable)),
                             Estado = item.Estado
                         });
 
@@ -356,9 +357,9 @@ namespace AppEmpaqueRocedes.Logica
                     return listaTotal.OrderBy(x => x.NSeq).ToList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -404,11 +405,10 @@ namespace AppEmpaqueRocedes.Logica
                                     //item.POrder = corte;//opcional
                                     listaguardada.Add(item);
                                 }
-
+                                
                             }
 
                             contex.SaveChanges();
-
                             transaction.Commit();
 
                             listObject.Add(listaguardada);
@@ -536,7 +536,7 @@ namespace AppEmpaqueRocedes.Logica
 
                     var sec = cont == 0 ? 1 : cont + 1;
 
-                    var codigo = string.Concat("box", idcorte, sec);
+                    var codigo = string.Concat("999", idcorte, sec);
 
 
                     var obj = new tbCorteSecuenciaCaja
@@ -603,6 +603,25 @@ namespace AppEmpaqueRocedes.Logica
 
         }
 
+        public static getInfobox2_Result BuscarCaja2(string box)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+                    var obj = contex.getInfobox2(box).FirstOrDefault();
+
+                    return obj;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public static getcorteBox_Result imprimirBox(string codigobox, string usuario, string clasificacion)
         {
             try
@@ -630,6 +649,132 @@ namespace AppEmpaqueRocedes.Logica
             }
         }
 
+
+        public static getcorteBox2_Result imprimirBox2(string codigobox, string usuario, string clasificacion)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+                    var obj = contex.getcorteBox2(codigobox, usuario, clasificacion).First();
+
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                var objerror = new getcorteBox2_Result();
+
+                objerror.unidades = 0;
+                objerror.corte = "corte";
+                objerror.estado = "Error";
+
+                string mes = ex.Message;
+
+
+                return objerror;
+
+            }
+        }
+
+        public async static Task<tbcodigosCajas> crearCaja(string estilo, string porder, string usuario)
+        {
+            try
+            {
+                var tarea1 = Task.Run(() =>
+                {
+                    using (var contex1 = new AuditoriaEntities())
+                    {
+                        var resp = contex1.tbCorteSecuenciaCaja.Where(x => x.corte.Equals(porder.Trim())).Count();
+
+                        return resp;
+                    }
+
+                });
+
+                var tarea2 = Task.Run(() =>
+                {
+                    using (var contex1 = new AuditoriaEntities())
+                    {
+                        var resp = contex1.ExtraefechaServidor(1).ToArray();
+
+                        return resp;
+                    }
+
+                });
+
+                var tarea3 = Task.Run(() =>
+                {
+                    using (var contex1 = new AuditoriaEntities())
+                    {
+                        var resp = contex1.POrder
+                                          .Join(contex1.Bundle, x => x.Id_Order, y => y.Id_Order, (x, y) => new { x.POrderClient, y.Color, x.POrder1 })
+                                          .Where(x => x.POrderClient.Equals(porder))
+                                          .Select(x => new { x.Color, Porder = x.POrderClient }).Take(1).ToArray();
+
+                        return resp[0];
+                    }
+
+                });
+
+
+                await Task.WhenAll(tarea1, tarea2, tarea3);
+
+                using (var contex = new AuditoriaEntities())
+                {
+
+                    var cont = tarea1.Result;
+
+                    var sec = cont == 0 ? 1 : cont + 1;
+
+                    var codigo = string.Concat("999", porder.Trim(), string.Format("{0:000}", sec));
+
+
+                    var obj = new tbCorteSecuenciaCaja
+                    {
+                        codigo = codigo,
+                        idcorte = 0,
+                        sec = sec,
+                        corte=porder.Trim()
+                    };
+
+                    contex.tbCorteSecuenciaCaja.Add(obj);
+                    contex.SaveChanges();
+
+                    var fecha = tarea2.Result;
+
+
+                    var codigoNew = new tbcodigosCajas
+                    {
+                        codigoBox = codigo,
+                        idCorte = 0,
+                        estilo = estilo.TrimEnd(),
+                        secBoxXCorte = sec,
+                        fechaGenerado = fecha[0],
+                        estado = true,
+                        numeroImpresion = 0,
+                        color = tarea3.Result.Color,
+                        corteCompleto = porder,
+                        usuario = usuario
+                    };
+
+                    contex.tbcodigosCajas.Add(codigoNew);
+
+                    contex.SaveChanges();
+
+                    return codigoNew;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var sr = ex.Message;
+                // await crearCaja(idcorte, estilo,porder, usuario);
+                // throw;
+                return null;
+            }
+
+        }
     }
 
 

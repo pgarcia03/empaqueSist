@@ -28,7 +28,7 @@ namespace AppEmpaqueRocedes
     public partial class GenerarCodigosUnidad : UserControl
     {
         private bool band = true;
-        private int idporder = 0;
+       // private int idporder = 0;
         private List<PorderDat> lista = new List<PorderDat>();
         private List<CodigosDat> listacodigo = new List<CodigosDat>();
         private BackgroundWorker _worker;
@@ -446,7 +446,7 @@ namespace AppEmpaqueRocedes
             try
             {
                 BtnImprimir.IsEnabled = false;
-                if (idporder != 0 && listacodigo.Count > 0)
+                if (lblCorte.Content.ToString()!=string.Empty && listacodigo.Count > 0)
                 {
                     // var num = lblCorte.Content.ToString().IndexOf('-', 4);
 
@@ -488,6 +488,10 @@ namespace AppEmpaqueRocedes
                             Limpiar();
 
                             _worker.RunWorkerAsync(arg);
+                        }
+                        else
+                        {
+
                         }
 
                     }
@@ -549,7 +553,7 @@ namespace AppEmpaqueRocedes
             try
             {
                 BtnImprimirAvanzada.IsEnabled = false;
-                if (idporder != 0 && listacodigo.Count > 0 && txtinicio.Text != string.Empty && txtfinal.Text != string.Empty)
+                if (lblCorte.Content.ToString() != string.Empty && listacodigo.Count > 0 && txtinicio.Text != string.Empty && txtfinal.Text != string.Empty)
                 {
 
 
@@ -644,7 +648,7 @@ namespace AppEmpaqueRocedes
 
             listacodigo.Clear();
             lista.Clear();
-            idporder = 0;
+            //idporder = 0;
             band = true;
             gridCodigos.ItemsSource = null;// = listacodigo;
                                            // gridCodigos.ItemsSource=listacodigo;

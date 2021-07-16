@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AuditoriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AuditoriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Biohorario">
           <Key>
             <PropertyRef Name="id_bio" />
@@ -168,6 +168,7 @@
           <Property Name="codigo" Type="nchar" MaxLength="15" Nullable="false" />
           <Property Name="idcorte" Type="int" />
           <Property Name="sec" Type="int" />
+          <Property Name="corte" Type="nchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="tblUserEnvio">
           <Key>
@@ -180,11 +181,11 @@
         </EntityType>
         <EntityType Name="tbPorderSinGuion">
           <Key>
-            <PropertyRef Name="idCorte" />
+            <PropertyRef Name="corte" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idCorte" Type="int" Nullable="false" />
-          <Property Name="corte" Type="nchar" MaxLength="15" />
+          <Property Name="idCorte" Type="int" />
+          <Property Name="corte" Type="nchar" MaxLength="15" Nullable="false" />
           <Property Name="idEstilo" Type="int" />
           <Property Name="estilo" Type="nchar" MaxLength="20" />
           <Property Name="unidades" Type="int" />
@@ -286,7 +287,15 @@
           <Parameter Name="usuario" Type="nchar" Mode="In" />
           <Parameter Name="clasificacion" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="getcorteBox2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigobox" Type="nchar" Mode="In" />
+          <Parameter Name="usuario" Type="nchar" Mode="In" />
+          <Parameter Name="clasificacion" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="getInfobox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="box" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="getInfobox2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="box" Type="nchar" Mode="In" />
         </Function>
         <Function Name="spdBuscarPoCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -341,7 +350,8 @@
             <End Role="tbCodigosBarraScan" EntitySet="tbCodigosBarraScan" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AuditoriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -388,7 +398,7 @@
           <Property Name="numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="idcliente" Type="Int32" />
           <Property Name="Estado" Type="Boolean" />
-          <NavigationProperty Name="Planta" Relationship="AuditoriaModel.FK_Linea_Planta" FromRole="Linea" ToRole="Planta" />
+          <NavigationProperty Name="Planta" Relationship="Self.FK_Linea_Planta" FromRole="Linea" ToRole="Planta" />
         </EntityType>
         <EntityType Name="Operacion">
           <Key>
@@ -410,6 +420,15 @@
           <Property Name="codigoBarra" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
           <Property Name="activo" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Planta">
+          <Key>
+            <PropertyRef Name="id_planta" />
+          </Key>
+          <Property Name="id_planta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="Linea" Relationship="Self.FK_Linea_Planta" FromRole="Planta" ToRole="Linea" />
+        </EntityType>
         <EntityType Name="POrder">
           <Key>
             <PropertyRef Name="Id_Order" />
@@ -430,11 +449,11 @@
           <Property Name="AfterIntex" Type="Int32" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="POrderClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="washed" Type="Boolean" />
           <NavigationProperty Name="Bundle" Relationship="Self.FK_Bundle_POrder" FromRole="POrder" ToRole="Bundle" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_POrder_Cliente" FromRole="POrder" ToRole="Cliente" />
           <NavigationProperty Name="Style" Relationship="Self.FK_POrder_Style" FromRole="POrder" ToRole="Style" />
-          <Property Name="POrderClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="washed" Type="Boolean" />
         </EntityType>
         <EntityType Name="Style">
           <Key>
@@ -506,9 +525,10 @@
             <PropertyRef Name="codigo" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="idcorte" Type="Int32" />
           <Property Name="sec" Type="Int32" />
+          <Property Name="corte" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="tblUserEnvio">
           <Key>
@@ -521,11 +541,11 @@
         </EntityType>
         <EntityType Name="tbPorderSinGuion">
           <Key>
-            <PropertyRef Name="idCorte" />
+            <PropertyRef Name="corte" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCorte" Type="Int32" Nullable="false" />
-          <Property Name="corte" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="idCorte" Type="Int32" />
+          <Property Name="corte" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="idEstilo" Type="Int32" />
           <Property Name="estilo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="unidades" Type="Int32" />
@@ -583,6 +603,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Linea_Planta">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+          <End Role="Linea" Type="Self.Linea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="id_planta" />
+            </Principal>
+            <Dependent Role="Linea">
+              <PropertyRef Name="id_planta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_POrder_Style">
           <End Role="Style" Type="Self.Style" Multiplicity="0..1" />
           <End Role="POrder" Type="Self.POrder" Multiplicity="*" />
@@ -614,6 +646,7 @@
           <EntitySet Name="Linea" EntityType="Self.Linea" />
           <EntitySet Name="Operacion" EntityType="Self.Operacion" />
           <EntitySet Name="Operario" EntityType="Self.Operario" />
+          <EntitySet Name="Planta" EntityType="Self.Planta" />
           <EntitySet Name="POrder" EntityType="Self.POrder" />
           <EntitySet Name="Style" EntityType="Self.Style" />
           <EntitySet Name="tbBultosCodigosBarra" EntityType="Self.tbBultosCodigosBarra" />
@@ -632,6 +665,10 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="POrder" EntitySet="POrder" />
           </AssociationSet>
+          <AssociationSet Name="FK_Linea_Planta" Association="Self.FK_Linea_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Linea" EntitySet="Linea" />
+          </AssociationSet>
           <AssociationSet Name="FK_POrder_Style" Association="Self.FK_POrder_Style">
             <End Role="Style" EntitySet="Style" />
             <End Role="POrder" EntitySet="POrder" />
@@ -641,15 +678,26 @@
             <End Role="tbCodigosBarraScan" EntitySet="tbCodigosBarraScan" />
           </AssociationSet>
           <FunctionImport Name="ExtraefechaServidor" ReturnType="Collection(DateTime)">
-          <Parameter Name="val" Mode="In" Type="Int32" />
+            <Parameter Name="val" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getcorteBox" ReturnType="Collection(AuditoriaModel.getcorteBox_Result)">
             <Parameter Name="codigobox" Mode="In" Type="String" />
             <Parameter Name="usuario" Mode="In" Type="String" />
             <Parameter Name="clasificacion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getcorteBox2" ReturnType="Collection(AuditoriaModel.getcorteBox2_Result)">
+            <Parameter Name="codigobox" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="clasificacion" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="getInfobox" ReturnType="Collection(AuditoriaModel.getInfobox_Result)">
-          <Parameter Name="box" Mode="In" Type="String" />
+            <Parameter Name="box" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getInfobox2" ReturnType="Collection(AuditoriaModel.getInfobox2_Result)">
+            <Parameter Name="box" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spdBuscarPoCliente" ReturnType="Collection(AuditoriaModel.spdBuscarPoCliente_Result)">
+            <Parameter Name="porder" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spdExtraeTallasXCortecompleto" ReturnType="Collection(AuditoriaModel.spdExtraeTallasXCortecompleto_Result)">
             <Parameter Name="idorder" Mode="In" Type="Int32" />
@@ -659,15 +707,7 @@
             <Parameter Name="usario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spdProduccionOperarioDiario" ReturnType="Collection(AuditoriaModel.spdProduccionOperarioDiario_Result)">
-          <Parameter Name="idoper" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="Planta" EntityType="AuditoriaModel.Planta" />
-          <AssociationSet Name="FK_Linea_Planta" Association="AuditoriaModel.FK_Linea_Planta">
-            <End Role="Planta" EntitySet="Planta" />
-            <End Role="Linea" EntitySet="Linea" />
-          </AssociationSet>
-          <FunctionImport Name="spdBuscarPoCliente" ReturnType="Collection(AuditoriaModel.spdBuscarPoCliente_Result)">
-            <Parameter Name="porder" Mode="In" Type="String" />
+            <Parameter Name="idoper" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getcorteBox_Result">
@@ -680,15 +720,42 @@
           <Property Type="String" Name="codigoBox" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="tallas" Nullable="true" MaxLength="120" />
         </ComplexType>
+        <ComplexType Name="getcorteBox2_Result">
+          <Property Type="String" Name="corte" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="estilo" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="unidades" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="corteguion" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="color" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="codigoBox" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="tallas" Nullable="true" MaxLength="120" />
+        </ComplexType>
         <ComplexType Name="getInfobox_Result">
           <Property Type="String" Name="corteCompleto" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="codigoBox" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="estilo" Nullable="true" MaxLength="15" />
           <Property Type="Int32" Name="Quantity" Nullable="true" />
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="Id_Order" Nullable="false" />
+          <Property Type="Int32" Name="Id_Order" Nullable="true" />
           <Property Type="Int32" Name="totalencaja" Nullable="true" />
           <Property Type="String" Name="clasificacion" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="getInfobox2_Result">
+          <Property Type="String" Name="corteCompleto" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="codigoBox" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="estilo" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="Id_Order" Nullable="true" />
+          <Property Type="Int32" Name="totalencaja" Nullable="true" />
+          <Property Type="String" Name="clasificacion" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="spdBuscarPoCliente_Result">
+          <Property Type="String" Name="Porder" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="Style" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="washed" Nullable="false" />
+          <Property Type="String" Name="Describir" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="spdExtraeTallasXCortecompleto_Result">
           <Property Type="String" Name="Size" Nullable="true" MaxLength="4000" />
@@ -701,34 +768,6 @@
           <Property Type="Int32" Name="Bundleno" Nullable="true" />
           <Property Type="String" Name="Descr" Nullable="true" MaxLength="80" />
           <Property Type="Int32" Name="bihorario" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="Planta">
-          <Key>
-            <PropertyRef Name="id_planta" />
-          </Key>
-          <Property Name="id_planta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="estado" Type="Boolean" />
-          <NavigationProperty Name="Linea" Relationship="AuditoriaModel.FK_Linea_Planta" FromRole="Planta" ToRole="Linea" />
-        </EntityType>
-        <Association Name="FK_Linea_Planta">
-          <End Type="AuditoriaModel.Planta" Role="Planta" Multiplicity="0..1" />
-          <End Type="AuditoriaModel.Linea" Role="Linea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Planta">
-              <PropertyRef Name="id_planta" />
-            </Principal>
-            <Dependent Role="Linea">
-              <PropertyRef Name="id_planta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="spdBuscarPoCliente_Result">
-          <Property Type="String" Name="Porder" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Quantity" Nullable="true" />
-          <Property Type="String" Name="Style" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="washed" Nullable="false" />
-          <Property Type="String" Name="Describir" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -804,11 +843,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Planta">
+            <EntityTypeMapping TypeName="AuditoriaModel.Planta">
+              <MappingFragment StoreEntitySet="Planta">
+                <ScalarProperty Name="id_planta" ColumnName="id_planta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="POrder">
             <EntityTypeMapping TypeName="AuditoriaModel.POrder">
               <MappingFragment StoreEntitySet="POrder">
-                <ScalarProperty Name="washed" ColumnName="washed" />
-                <ScalarProperty Name="POrderClient" ColumnName="POrderClient" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
                 <ScalarProperty Name="Id_Style" ColumnName="Id_Style" />
@@ -825,6 +871,8 @@
                 <ScalarProperty Name="AfterIntex" ColumnName="AfterIntex" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="POrderClient" ColumnName="POrderClient" />
+                <ScalarProperty Name="washed" ColumnName="washed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -901,6 +949,7 @@
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="idcorte" ColumnName="idcorte" />
                 <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="corte" ColumnName="corte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -972,6 +1021,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getcorteBox2" FunctionName="AuditoriaModel.Store.getcorteBox2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.getcorteBox2_Result">
+                <ScalarProperty Name="corte" ColumnName="corte" />
+                <ScalarProperty Name="estilo" ColumnName="estilo" />
+                <ScalarProperty Name="unidades" ColumnName="unidades" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="corteguion" ColumnName="corteguion" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="codigoBox" ColumnName="codigoBox" />
+                <ScalarProperty Name="tallas" ColumnName="tallas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getInfobox" FunctionName="AuditoriaModel.Store.getInfobox">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AuditoriaModel.getInfobox_Result">
@@ -983,6 +1046,31 @@
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="totalencaja" ColumnName="totalencaja" />
                 <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getInfobox2" FunctionName="AuditoriaModel.Store.getInfobox2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.getInfobox2_Result">
+                <ScalarProperty Name="corteCompleto" ColumnName="corteCompleto" />
+                <ScalarProperty Name="codigoBox" ColumnName="codigoBox" />
+                <ScalarProperty Name="estilo" ColumnName="estilo" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+                <ScalarProperty Name="totalencaja" ColumnName="totalencaja" />
+                <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spdBuscarPoCliente" FunctionName="AuditoriaModel.Store.spdBuscarPoCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AuditoriaModel.spdBuscarPoCliente_Result">
+                <ScalarProperty Name="Porder" ColumnName="Porder" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="washed" ColumnName="washed" />
+                <ScalarProperty Name="Describir" ColumnName="Describir" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1003,26 +1091,6 @@
                 <ScalarProperty Name="Bundleno" ColumnName="Bundleno" />
                 <ScalarProperty Name="Descr" ColumnName="Descr" />
                 <ScalarProperty Name="bihorario" ColumnName="bihorario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Planta">
-            <EntityTypeMapping TypeName="AuditoriaModel.Planta">
-              <MappingFragment StoreEntitySet="Planta">
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="id_planta" ColumnName="id_planta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spdBuscarPoCliente" FunctionName="AuditoriaModel.Store.spdBuscarPoCliente">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AuditoriaModel.spdBuscarPoCliente_Result">
-                <ScalarProperty Name="Porder" ColumnName="Porder" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="washed" ColumnName="washed" />
-                <ScalarProperty Name="Describir" ColumnName="Describir" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

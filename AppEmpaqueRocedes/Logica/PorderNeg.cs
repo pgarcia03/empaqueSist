@@ -48,6 +48,17 @@ namespace AppEmpaqueRocedes.Logica
 
         }
 
+        public static List<PorderDat> GetPordersClienteGeneradosAutocompletado(string pre)
+        {
+
+            using (var contex = new AuditoriaEntities())
+                return contex.tbPorderSinGuion.Where(x => x.corte.Contains(pre))
+                                    .Take(20)
+                                    .Select(x => new PorderDat { POrder = x.corte.Trim(), Quantity = x.unidades, style = x.estilo })
+                                    .ToList();
+
+        }
+
         public static List<Totales> Totales(int idcorte)
         {
             using (var contex = new AuditoriaEntities())
@@ -60,6 +71,28 @@ namespace AppEmpaqueRocedes.Logica
                                                box=x.Key.codigoBox,
                                                impreso=x.Key.numeroImpresion==null ? (int)x.Key.numeroImpresion:0,
                                                unidades= x.Select(z=>z.codigoBarra).Count() //.codigoBox
+                                             })
+                                             .ToList();
+
+
+                return l;
+            }
+
+
+        }
+
+        public static List<Totales> Totales(string corte)
+        {
+            using (var contex = new AuditoriaEntities())
+            {
+                var l = contex.tbcodigosCajas.Join(contex.tbCodigosBarraScan, x => x.codigoBox, y => y.codigoBox, (x, y) => new { x.corteCompleto, x.codigoBox, y.codigoBarra, x.numeroImpresion })
+                                             .Where(x => x.corteCompleto.Equals(corte))
+                                             .GroupBy(x => new { x.codigoBox, x.numeroImpresion })
+                                             .Select(x => new Totales
+                                             {
+                                                 box = x.Key.codigoBox,
+                                                 impreso = x.Key.numeroImpresion == null ? 0:(int)x.Key.numeroImpresion,
+                                                 unidades = x.Select(z => z.codigoBarra).Count() //.codigoBox
                                              })
                                              .ToList();
 
@@ -106,6 +139,45 @@ namespace AppEmpaqueRocedes.Logica
                // throw;
             }
           
+
+        }
+
+        public static List<Totales> TotalesLeft(string corte)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+                    var l = contex.tbcodigosCajas.Where(x => x.corteCompleto.Equals(corte))
+                                                 .GroupJoin(contex.tbCodigosBarraScan, x => x.codigoBox, y => y.codigoBox, (x, y) => new { x, y })
+                                                 .SelectMany(x => x.y.DefaultIfEmpty(), (a, b) => new
+                                                 {
+                                                     box = a.x.codigoBox,
+                                                     unidades = b.codigoBarra
+                                                 })
+                                                 .GroupBy(x => new
+                                                 {
+                                                     x.box
+                                                 })
+                                                 .Select(x => new Totales
+                                                 {
+                                                     box = x.Key.box,
+                                                     unidades = x.Sum(z => z.unidades == null ? 0 : 1)
+                                                 }).
+                                                 ToList();
+
+
+                    return l;
+                }
+            }
+            catch (Exception ex)
+            {
+                var mess = ex.Message;
+
+                return null;
+                // throw;
+            }
+
 
         }
 

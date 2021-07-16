@@ -33,6 +33,7 @@ namespace AppEmpaqueRocedes.Model
         public virtual DbSet<Linea> Linea { get; set; }
         public virtual DbSet<Operacion> Operacion { get; set; }
         public virtual DbSet<Operario> Operario { get; set; }
+        public virtual DbSet<Planta> Planta { get; set; }
         public virtual DbSet<POrder> POrder { get; set; }
         public virtual DbSet<Style> Style { get; set; }
         public virtual DbSet<tbBultosCodigosBarra> tbBultosCodigosBarra { get; set; }
@@ -43,7 +44,6 @@ namespace AppEmpaqueRocedes.Model
         public virtual DbSet<tbPorderSinGuion> tbPorderSinGuion { get; set; }
         public virtual DbSet<tbProduccionTickets> tbProduccionTickets { get; set; }
         public virtual DbSet<tbUserEmpaque> tbUserEmpaque { get; set; }
-        public virtual DbSet<Planta> Planta { get; set; }
     
         public virtual ObjectResult<Nullable<System.DateTime>> ExtraefechaServidor(Nullable<int> val)
         {
@@ -71,6 +71,23 @@ namespace AppEmpaqueRocedes.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getcorteBox_Result>("getcorteBox", codigoboxParameter, usuarioParameter, clasificacionParameter);
         }
     
+        public virtual ObjectResult<getcorteBox2_Result> getcorteBox2(string codigobox, string usuario, string clasificacion)
+        {
+            var codigoboxParameter = codigobox != null ?
+                new ObjectParameter("codigobox", codigobox) :
+                new ObjectParameter("codigobox", typeof(string));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("usuario", usuario) :
+                new ObjectParameter("usuario", typeof(string));
+    
+            var clasificacionParameter = clasificacion != null ?
+                new ObjectParameter("clasificacion", clasificacion) :
+                new ObjectParameter("clasificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getcorteBox2_Result>("getcorteBox2", codigoboxParameter, usuarioParameter, clasificacionParameter);
+        }
+    
         public virtual ObjectResult<getInfobox_Result> getInfobox(string box)
         {
             var boxParameter = box != null ?
@@ -78,6 +95,24 @@ namespace AppEmpaqueRocedes.Model
                 new ObjectParameter("box", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getInfobox_Result>("getInfobox", boxParameter);
+        }
+    
+        public virtual ObjectResult<getInfobox2_Result> getInfobox2(string box)
+        {
+            var boxParameter = box != null ?
+                new ObjectParameter("box", box) :
+                new ObjectParameter("box", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getInfobox2_Result>("getInfobox2", boxParameter);
+        }
+    
+        public virtual ObjectResult<spdBuscarPoCliente_Result> spdBuscarPoCliente(string porder)
+        {
+            var porderParameter = porder != null ?
+                new ObjectParameter("porder", porder) :
+                new ObjectParameter("porder", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdBuscarPoCliente_Result>("spdBuscarPoCliente", porderParameter);
         }
     
         public virtual ObjectResult<spdExtraeTallasXCortecompleto_Result> spdExtraeTallasXCortecompleto(Nullable<int> idorder, string porder, Nullable<int> idestilo, string estilo, string usario)
@@ -112,15 +147,6 @@ namespace AppEmpaqueRocedes.Model
                 new ObjectParameter("idoper", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdProduccionOperarioDiario_Result>("spdProduccionOperarioDiario", idoperParameter);
-        }
-    
-        public virtual ObjectResult<spdBuscarPoCliente_Result> spdBuscarPoCliente(string porder)
-        {
-            var porderParameter = porder != null ?
-                new ObjectParameter("porder", porder) :
-                new ObjectParameter("porder", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spdBuscarPoCliente_Result>("spdBuscarPoCliente", porderParameter);
         }
     }
 }

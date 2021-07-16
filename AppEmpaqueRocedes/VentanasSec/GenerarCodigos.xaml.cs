@@ -310,7 +310,7 @@ namespace AppEmpaqueRocedes
 
                             var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
 
-                            idporder = obj.Id_Order;
+                            idporder = Convert.ToInt32(obj.Id_Order);
                             lblCorte.Content = obj.POrder;
 
                             //eliminaremos el guion del corte para que sea completo 
@@ -373,7 +373,7 @@ namespace AppEmpaqueRocedes
 
                         lblsugestion.Visibility = Visibility.Collapsed;
                         var obj = lista.FirstOrDefault(x => x.POrder.Equals(txtcorte.Text));
-                        idporder = obj.Id_Order;
+                        idporder = Convert.ToInt32(obj.Id_Order);
                         lblCorte.Content = obj.POrder;
                         lblEstilo.Content = obj.style;
                         // lblUnidades.Content = obj.Quantity;

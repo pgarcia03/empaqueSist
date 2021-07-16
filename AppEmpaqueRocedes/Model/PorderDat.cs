@@ -8,7 +8,7 @@ namespace AppEmpaqueRocedes.Model
 {
     public class PorderDat
     {
-        public int Id_Order { get; set; }
+        public int? Id_Order { get; set; }
         public Nullable<int> Id_Cliente { get; set; }
         public Nullable<int> Id_Style { get; set; }
         public string POrder { get; set; }

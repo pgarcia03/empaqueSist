@@ -18,5 +18,6 @@ namespace AppEmpaqueRocedes.Model
         public string codigo { get; set; }
         public Nullable<int> idcorte { get; set; }
         public Nullable<int> sec { get; set; }
+        public string corte { get; set; }
     }
 }
