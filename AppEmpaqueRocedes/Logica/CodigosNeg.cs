@@ -334,9 +334,13 @@ namespace AppEmpaqueRocedes.Logica
                     var listaTotal = new List<CodigosDat>();
                     int incrementable = 1;
 
+                    string corteCadenaProto = "9999999999";
+
+
 
                     foreach (var item in tarea1)
                     {
+                        var subcadena = string.Concat(corteCadenaProto.Substring(0, 10 - item.POrder.ToString().Trim().Length));
 
                         listaTotal.Add(new CodigosDat()
                         {
@@ -346,7 +350,7 @@ namespace AppEmpaqueRocedes.Logica
                             NSeq = incrementable,
                             Cantidad = item.Quantity,
                             Resto = item.Quantity,
-                            codigoBarra =string.Concat(item.POrder.ToString().Trim(),string.Format("{0:000000}", incrementable)),
+                            codigoBarra =string.Concat(subcadena,item.POrder,string.Format("{0:000000}", incrementable)),
                             Estado = item.Estado
                         });
 
@@ -448,7 +452,7 @@ namespace AppEmpaqueRocedes.Logica
                 using (var contex = new AuditoriaEntities())
                 {
 
-                    var fecha = contex.ExtraefechaServidor(1).ToArray();
+                    var fecha = contex.ExtraefechaServidor(1).ToArray();////
                     var fechaActual = fecha[0];
                     var obj = contex.tbBultosCodigosBarra.Find(codigoBarra);
 
@@ -535,6 +539,9 @@ namespace AppEmpaqueRocedes.Logica
                     var cont = tarea1.Result;
 
                     var sec = cont == 0 ? 1 : cont + 1;
+
+                    //var formato = "0000000000";
+                    //var subcadena = formato.Substring(0, 10 - porder.Trim().Length);
 
                     var codigo = string.Concat("999", idcorte, sec);
 
@@ -649,6 +656,32 @@ namespace AppEmpaqueRocedes.Logica
             }
         }
 
+        public static string GetcodigoBarraXcodBox(string codigobox)
+        {
+            try
+            {
+                using (var contex = new AuditoriaEntities())
+                {
+                    var obj = contex.tbCodigosBarraScan.FirstOrDefault(x => x.codigoBox.Trim().Equals(codigobox));
+
+                    return obj.codigoBarra;
+                }
+            }
+            catch (Exception ex)
+            {
+                //var objerror = new getcorteBox_Result();
+
+                //objerror.unidades = 0;
+                //objerror.corte = "corte";
+                //objerror.estado = "Error";
+
+                string mes = ex.Message;
+
+
+                return "error";
+
+            }
+        }
 
         public static getcorteBox2_Result imprimirBox2(string codigobox, string usuario, string clasificacion)
         {
@@ -727,7 +760,10 @@ namespace AppEmpaqueRocedes.Logica
 
                     var sec = cont == 0 ? 1 : cont + 1;
 
-                    var codigo = string.Concat("999", porder.Trim(), string.Format("{0:000}", sec));
+                    var formato = "0000000000";
+                    var subcadena = formato.Substring(0, 10 - porder.Trim().Length);
+
+                    var codigo = string.Concat("999",subcadena, porder.Trim(), string.Format("{0:000}", sec));
 
 
                     var obj = new tbCorteSecuenciaCaja
@@ -742,7 +778,6 @@ namespace AppEmpaqueRocedes.Logica
                     contex.SaveChanges();
 
                     var fecha = tarea2.Result;
-
 
                     var codigoNew = new tbcodigosCajas
                     {

@@ -39,6 +39,11 @@ namespace AppEmpaqueRocedes
         {
             _worker.CancelAsync();
         }
+        
+        private void BtncancelarImpr_Click(object sender, RoutedEventArgs e)
+        {
+            _worker.CancelAsync();
+        }
 
         private async Task<string> ActualizarEstado(string codigoBarra)
         {
@@ -80,6 +85,7 @@ namespace AppEmpaqueRocedes
                 var Lista = (List<CodigosDat>)genericlist[0];
                 var estilo = (string)genericlist[1];
                 var bandI = (bool)genericlist[2];
+                var unidadesImp=(int)genericlist[3];
 
                 BackgroundWorker worker = sender as BackgroundWorker;
 
@@ -127,9 +133,11 @@ namespace AppEmpaqueRocedes
 
                         rdlc.DataSources.Add(new ReportDataSource("DataSet2", T));
 
+                        var UnidadesImprimir = unidadesImp == 0 ? item.Cantidad : item.Cantidad < unidadesImp ? item.Cantidad : unidadesImp;
+
                         using (ImprimirTicket imp = new ImprimirTicket())
                         {
-                            for (int i = 0; i < item.Cantidad; i++)
+                            for (int i = 0; i < UnidadesImprimir; i++)
                             {
                                 imp.Imprime(rdlc);//imprimir codigo de barra por cada unidad del corte
                             }
@@ -460,6 +468,8 @@ namespace AppEmpaqueRocedes
 
                     var cont = listacodigo.Count();
 
+                    var unidades = 0;
+
                     if (Convert.ToInt16(resp[1]) == 200)
                     {
 
@@ -482,7 +492,8 @@ namespace AppEmpaqueRocedes
                             {
                                 result,
                                 estilo,
-                                false
+                                false,
+                                unidades
                             };
 
                             Limpiar();
@@ -563,6 +574,8 @@ namespace AppEmpaqueRocedes
                         var secF = Convert.ToInt32(txtinicio.Text) < Convert.ToInt32(txtfinal.Text) ? Convert.ToInt32(txtfinal.Text) : Convert.ToInt32(txtinicio.Text);
                         string respMess = $"Desea imprimir la siguiente secuencia {secI}-{secF}??";
 
+                        var unidades = string.IsNullOrEmpty(txtunidadesImp.Text) == true ? 0 : Convert.ToInt32(txtunidadesImp.Text);
+
                         var estilo = lblEstilo.Content.ToString();
 
                         var respmensaje = MessageBox.Show(respMess, "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Question);
@@ -575,12 +588,13 @@ namespace AppEmpaqueRocedes
                             var ListaSecuencia = listacodigo.Where(x => x.NSeq >= secI && x.NSeq <= secF).ToList();
 
                             // MessageBoxTimeout((System.IntPtr)0, $"Iniciando impresion de {ListaSecuencia.Count} tickets ", "Informacion", 0, 0, 1000);
-
+                             
                             List<object> arg = new List<object>
                             {
                                 ListaSecuencia,
                                 estilo,
-                                true
+                                true,
+                                unidades
                             };
 
                             Limpiar();
@@ -675,8 +689,9 @@ namespace AppEmpaqueRocedes
             return Regex.IsMatch(cadena, @"^[0-9]");
         }
 
+
         #endregion
 
-
+       
     }
 }

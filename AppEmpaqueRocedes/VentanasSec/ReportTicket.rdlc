@@ -242,7 +242,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!Cantidad.Value</Value>
+                <Value>Unidad</Value>
                 <Style>
                   <FontFamily>Consolas</FontFamily>
                   <FontSize>9pt</FontSize>

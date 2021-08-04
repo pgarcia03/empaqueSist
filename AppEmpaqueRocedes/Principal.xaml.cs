@@ -53,11 +53,11 @@ namespace AppEmpaqueRocedes
                     stackPanelContenido.Children.Add(new GenerarCodigos());
                     break;
                 case "Empaque":
-                    LinkEmpaque.Visibility = Visibility.Visible;
-                    LinkCodigos.Visibility = Visibility.Visible;
+                   // LinkEmpaque.Visibility = Visibility.Visible;
+                   // LinkCodigos.Visibility = Visibility.Visible;
                     btnEmpaque2.Visibility = Visibility.Visible;
                     btngenerar2.Visibility = Visibility.Visible;
-                    stackPanelContenido.Children.Add(new EscanerEmpaque());
+                    stackPanelContenido.Children.Add(new EscanerEmpaqueUnidad());
                     break;
                 case "SAdmin":
                 
@@ -147,7 +147,7 @@ namespace AppEmpaqueRocedes
             stackPanelContenido.Children.Clear();
 
             // Añadir el CustomControl
-            stackPanelContenido.Children.Add(new EscanerEmpaqueUnidad());
+            stackPanelContenido.Children.Add(new EscanerEmpaqueUnidad2());
 
         }
     }

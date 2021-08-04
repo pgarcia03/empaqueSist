@@ -136,10 +136,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="escan.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Rocedes"/>
-    <ROW Property="ProductCode" Value="1033:{EDF1973C-AA7D-4AFB-AF04-59788B662DEB} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{55733053-F221-4773-9A25-ABFE82456B92} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Scanning"/>
-    <ROW Property="ProductVersion" Value="2.1.4" Type="32"/>
+    <ROW Property="ProductVersion" Value="2.1.6" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{7FD4ED2A-1E0B-4DF5-8AE0-A872D7D9965C}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

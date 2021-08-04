@@ -21,6 +21,10 @@
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
 
+
+        <Button Content="Cancelar Impresiones" Grid.Row="0"  Style="{StaticResource ButtonYellow}" Margin="5" Name="BtncancelarImpr" Click="BtncancelarImpr_Click" Grid.Column="2"  />
+
+
         <Label Content="Generar Codigos de Barra" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="18" Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3"   />
         <Label Content="Busqueda de Corte" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource lblpanelInfoTitulo}" Height="25" />
 
@@ -74,6 +78,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="39*"/>
                         <ColumnDefinition Width="68*"/>
+                        <ColumnDefinition Width="68*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="33*"/>
@@ -82,9 +87,9 @@
                         <RowDefinition Height="45*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Content="Imprimir Avanzada" Style="{StaticResource lblpanelInfoTitulo}" Grid.ColumnSpan="2" />
+                    <Label Content="Imprimir Avanzada" Style="{StaticResource lblpanelInfoTitulo}" Grid.ColumnSpan="3" />
 
-                    <Button Content="Imprimir Secuencia" Grid.Row="1"  Style="{StaticResource ButtonBlue}" Name="BtnImprimirAvanzada" Click="BtnImprimirAvanzada_Click" Grid.ColumnSpan="2"  />
+                    <Button Content="Imprimir Secuencia" Grid.Row="1"  Style="{StaticResource ButtonBlue}" Name="BtnImprimirAvanzada" Click="BtnImprimirAvanzada_Click" Grid.ColumnSpan="3"  />
 
                     <Label  Style="{StaticResource lblpanelInfoTitulo}" Content="Inicio" Grid.Row="2" />
                     <Label  Style="{StaticResource lblpanelInfoTitulo}" Content="Final" Grid.Row="3"/>
@@ -98,6 +103,31 @@
                         <TextBox Style="{StaticResource mytextbox}"  x:Name="txtfinal"   TextWrapping="NoWrap" >
                         </TextBox>
                     </Border>
+
+                    <Border Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" BorderBrush="White" BorderThickness="1,0,0,0" Margin="3,8,0,5" >
+                        <DockPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*"/>
+                                   
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                </Grid.RowDefinitions>
+
+
+
+                                <Label  Style="{StaticResource lblpanelInfoTitulo}" Content="Unidades" />
+                                <Border BorderBrush="White"  BorderThickness="0,0,0,1" Margin="5,5,5,0" Padding="5,0,0,0" Grid.Column="2" Grid.Row="3"   >
+                                    <TextBox Style="{StaticResource mytextbox}"  x:Name="txtunidadesImp"   TextWrapping="NoWrap" >
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                          
+                        </DockPanel>
+                    </Border>
+                   
 
                 </Grid>
             </Border>

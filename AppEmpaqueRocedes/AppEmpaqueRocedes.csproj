@@ -340,6 +340,9 @@
     <Compile Include="VentanasSec\EscanerEmpaqueUnidad.xaml.cs">
       <DependentUpon>EscanerEmpaqueUnidad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasSec\EscanerEmpaqueUnidad2.xaml.cs">
+      <DependentUpon>EscanerEmpaqueUnidad2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasSec\GenerarCodigosUnidad.xaml.cs">
       <DependentUpon>GenerarCodigosUnidad.xaml</DependentUpon>
     </Compile>
@@ -366,6 +369,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasSec\EscanerEmpaqueUnidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasSec\EscanerEmpaqueUnidad2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

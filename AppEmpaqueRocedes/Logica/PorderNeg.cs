@@ -59,6 +59,18 @@ namespace AppEmpaqueRocedes.Logica
 
         }
 
+        public static PorderDat GetPordersClienteGeneradosAutocompletadoCodigoBarra(string codigobarra)
+        {
+
+            using (var contex = new AuditoriaEntities())
+                return contex.tbPorderSinGuion.Join(contex.tbBultosCodigosBarra,x=>x.corte,y=>y.corteCompleto,(x,y)=>new { x,y })
+                                    .Where(z => z.y.codigoBarra.TrimEnd().Equals(codigobarra))
+                                    .GroupBy(x=>new { x.x.corte,x.x.estilo,x.x.unidades })
+                                    .Select(w => new PorderDat { POrder = w.Key.corte, Quantity = w.Key.unidades, style =w.Key.estilo})
+                                    .FirstOrDefault();
+
+        }
+
         public static List<Totales> Totales(int idcorte)
         {
             using (var contex = new AuditoriaEntities())
